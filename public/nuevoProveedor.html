@@ -1,0 +1,28 @@
+
+	<form action="Controllers/nuevoProveedor.controller.php" method="POST" class="form-horizontal" role="form">
+			<div class="form-group">
+				<legend>Nuevo Proveedor</legend>
+			</div>
+
+			<input type="text" name="nombreProveedor" id="inputNombre" class="form-control" required="required" placeholder="Nombre del Proveedor">
+
+			<input type="text" name="razonSocial" id="inputRazonSocial" class="form-control" value="" required="required" placeholder="Razon Social">
+
+			<input type="number" name="numRuc" id="inputNumRuc" class="form-control" required="required" placeholder="Numero de RUC">
+
+			<input type="text" name="direccion" id="inputDireccion" class="form-control" required="required" placeholder="Direccion">
+
+			<input type="tel" name="celular" id="inputCelular" class="form-control" value="" required="required" placeholder="Num. Celular">
+
+			<input type="tel" name="telfijo" id="inputTelfijo" class="form-control" value="" required="required" placeholder="Telf. Fijo">
+
+			<input type="email" name="email" id="inputEma" class="form-control" required="required" placeholder="E-Mail">
+
+			<input type="text" name="website" id="inputWebsite" class="form-control" value="" required="required" placeholder="WebSite">
+
+			<textarea name="obs" id="inputObs" class="form-control" rows="3" required="required"></textarea>
+
+			<button type="submit" id="btnnewproveedor" class="btn btn-primary">Guardar</button>
+			<a href="#">Cancelar</a>
+
+	</form>
