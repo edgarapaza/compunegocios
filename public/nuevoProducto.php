@@ -1,5 +1,8 @@
 <?php
-require_once "header.php";
+session_start();
+if(isset($_SESSION['administrador']))
+{
+require_once "headerLogin.php";
 
 require_once "Models/nuevoProducto.class.php";
 $producto = new Producto();
@@ -12,6 +15,7 @@ $subfam = $producto->SubFamilias();
 
 ?>
 	<script type="text/javascript" src="js/acciones.js"></script>
+	<script type="text/javascript" src="js/operaciones.js"></script>
 
 	<div class="container">
   		<div class="row">
@@ -29,18 +33,10 @@ $subfam = $producto->SubFamilias();
 						</div>
 
 						<div class="form-group">
-							<label for="inputNumserie" class="col-sm-2 control-label">Numserie:</label>
+							<label for="inputProvedor" class="col-sm-3 control-label">Provedor:</label>
 							<div class="col-sm-6">
-								<input type="text" name="numserie" id="inputNumserie" class="form-control" required="required">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputProvedor" class="col-sm-2 control-label">Provedor:</label>
-							<div class="col-sm-6">
-								<select name="provedor" id="inputProvedor" class="form-control" required="required">
+								<select name="codproveedor" id="inputProvedor" class="form-control" required="required">
 									<?php while ($listaprov = $prov->fetch_array(MYSQLI_ASSOC)) { ?>
-
 
 									<option value="<?php echo $listaprov['idproveedor'];  ?>"><?php echo $listaprov['razonSocial'];  ?></option>
 									<?php } ?>
@@ -49,9 +45,33 @@ $subfam = $producto->SubFamilias();
 							<button type="button" class="btn btn-default" id="btnNewProveedor">Nuevo Proveedor</button>
 						</div>
 
+						<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $_SESSION['administrador'];?>">
 
 						<div class="form-group">
-							<label for="inputFamilia" class="col-sm-2 control-label">Familia:</label>
+							<label for="inputNumFactura" class="col-sm-3 control-label">Num. Factura:</label>
+							<div class="col-sm-6">
+								<input type="text" name="numFactura" id="inputnumFactura" class="form-control" required="required">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputFechaemision" class="col-sm-3 control-label">Fecha Emision:</label>
+							<div class="col-sm-4">
+								<input type="date" name="fechaEmision" id="inputFechaEmision" class="form-control">
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="form-group">
+							<label for="inputNumserie" class="col-sm-3 control-label">Numero de Serie:</label>
+							<div class="col-sm-9">
+								<input type="text" name="numserie" id="inputNumserie" class="form-control" required="required">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputFamilia" class="col-sm-3 control-label">Familia:</label>
 							<div class="col-sm-6">
 								<select name="familia" id="inputFamilia" class="form-control" required="required">
 
@@ -64,7 +84,7 @@ $subfam = $producto->SubFamilias();
 						</div>
 
 						<div class="form-group">
-							<label for="inputSubfamilia" class="col-sm-2 control-label">Subfamilia:</label>
+							<label for="inputSubfamilia" class="col-sm-3 control-label">Subfamilia:</label>
 							<div class="col-sm-6">
 								<select name="subfamilia" id="inputSubfamilia" class="form-control" required="required">
 									<?php while ($listaSubFam = $subfam->fetch_array(MYSQLI_ASSOC)) { ?>
@@ -76,8 +96,8 @@ $subfam = $producto->SubFamilias();
 						</div>
 
 						<div class="form-group">
-							<label for="inputMarca" class="col-sm-2 control-label">Marca:</label>
-							<div class="col-sm-4">
+							<label for="inputMarca" class="col-sm-3 control-label">Marca:</label>
+							<div class="col-sm-6">
 								<select name="marca" id="inputMarca" class="form-control" required="required">
 									<option value="0">Seleccionar</option>
 									<?php while ($listamarca = $marca->fetch_array(MYSQLI_ASSOC)) { ?>
@@ -89,35 +109,21 @@ $subfam = $producto->SubFamilias();
 						</div>
 
 						<div class="form-group">
-							<label for="inputNumfactura" class="col-sm-2 control-label">Numfactura:</label>
-							<div class="col-sm-6">
-								<input type="number" name="numfactura" id="inputNumfactura" class="form-control" required="required">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputFechaemision" class="col-sm-2 control-label">Fecha Emision:</label>
-							<div class="col-sm-3">
-								<input type="date" name="fechaEmision" id="inputFechaEmision" class="form-control">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputDescripcion" class="col-sm-2 control-label">Descripcion:</label>
-							<div class="col-sm-10">
+							<label for="inputDescripcion" class="col-sm-3 control-label">Descripcion:</label>
+							<div class="col-sm-9">
 								<input type="text" name="Descripcion" id="inputDescripcion" class="form-control" required="required">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="inputModelo" class="col-sm-2 control-label">Modelo:</label>
-							<div class="col-sm-10">
+							<label for="inputModelo" class="col-sm-3 control-label">Modelo:</label>
+							<div class="col-sm-9">
 								<input type="text" name="modelo" id="inputModelo" class="form-control" value="" required="required">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="inputTipoUnidad" class="col-sm-2 control-label">Tipo Unidad:</label>
+							<label for="inputTipoUnidad" class="col-sm-3 control-label">Tipo Unidad:</label>
 							<div class="col-sm-3">
 								<select name="tipoUnidad" id="inputTipoUnidad" class="form-control" required="required">
 									<option value="28">Unidad</option>
@@ -128,36 +134,8 @@ $subfam = $producto->SubFamilias();
 						</div>
 
 						<div class="form-group">
-							<label for="inputCantidad" class="col-sm-2 control-label">Cantidad:</label>
-							<div class="col-sm-2">
-								<input type="number" name="cantidad" id="inputCantidad" class="form-control" required="required">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputPrecioUnitario" class="col-sm-2 control-label">PrecioUnitario:</label>
+							<label for="inputTipoArticulo" class="col-sm-3 control-label">TipoArticulo:</label>
 							<div class="col-sm-3">
-								<input type="number" name="precioUnitario" id="inputPrecioUnitario" class="form-control" required="required" step="0.01" min="1" max="9999999">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputMargenGanancia" class="col-sm-2 control-label">MargenGanancia:</label>
-							<div class="col-sm-3">
-								<input type="text" name="margenGanancia" id="inputMargenGanancia" class="form-control" value="10%" required="required">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputPrecioVenta" class="col-sm-2 control-label">PrecioVenta:</label>
-							<div class="col-sm-3">
-								<input type="number" name="precioVenta" id="inputPrecioVenta" class="form-control" required="required" step="0.01" min="1" max="9999999">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputTipoArticulo" class="col-sm-2 control-label">TipoArticulo:</label>
-							<div class="col-sm-2">
 								<select name="tipoArticulo" id="inputTipoArticulo" class="form-control" required="required">
 									<option value="Simple">Simple</option>
 									<option value="Compuesto">Compuesto</option>
@@ -167,16 +145,102 @@ $subfam = $producto->SubFamilias();
 						</div>
 
 						<div class="form-group">
-							<label for="inputAlmacen" class="col-sm-2 control-label">Almacen:</label>
+							<label for="inputPrecioUnitario" class="col-sm-3 control-label">PrecioUnitario:</label>
 							<div class="col-sm-3">
-								<select name="almacen" id="inputAlmacen" class="form-control" required="required">
+								<input type="number" name="precioUnitario" id="inputPrecioUnitario" class="form-control" required="required" step="0.01" min="1" max="9999999">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputMargenGanancia" class="col-sm-3 control-label">MargenGanancia:</label>
+							<div class="col-sm-2">
+								<input type="text" name="margenGanancia" id="inputMargenGanancia" class="form-control" value="10" required="required">
+							</div>%
+
+						</div>
+
+						<div class="form-group">
+							<label for="inputPrecioVenta" class="col-sm-3 control-label">PrecioVenta:</label>
+							<div class="col-sm-3">
+								<input type="text" name="precioVenta" id="inputPrecioVenta" class="form-control" required="required" step="0.01" min="1" max="9999999">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputCantidad" class="col-sm-3 control-label">Cantidad:</label>
+							<div class="col-sm-2">
+								<input type="number" name="cantidad" id="inputCantidad" class="form-control" required="required">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputAlmacen" class="col-sm-3 control-label">Almacen:</label>
+							<div class="col-sm-6">
+								<select name="idalmacen" id="inputAlmacen" class="form-control" required="required">
+									<option>[Seleccionar]</option>
 									<?php while ($listaalmacen = $almacen->fetch_array(MYSQLI_ASSOC)) { ?>
-									<option value="<?php echo $listaalmacen['idalmacen']; ?>"><?php  echo $listaalmacen['descripcion'];?></option>
-									<?php }?>
+									<option value="<?php echo $listaalmacen['idtienda']; ?>"><?php  echo $listaalmacen['descripcion'];?></option>
+									<?php } ?>
 								</select>
 							</div>
 						</div>
 
+
+						<div class="form-group">
+							<label for="inputPeso" class="col-sm-3 control-label">Peso:</label>
+							<div class="col-sm-2">
+								<input type="text" name="peso" id="inputPeso" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputSize" class="col-sm-3 control-label">Tamaño:</label>
+							<div class="col-sm-2">
+								<input type="text" name="size" id="inputSize" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputAlto" class="col-sm-3 control-label">Alto:</label>
+							<div class="col-sm-2">
+								<input type="text" name="alto" id="inputAlto" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputLargo" class="col-sm-3 control-label">Largo:</label>
+							<div class="col-sm-2">
+								<input type="text" name="largo" id="inputLargo" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputAncho" class="col-sm-3 control-label">Ancho:</label>
+							<div class="col-sm-2">
+								<input type="text" name="ancho" id="inputAncho" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputColor" class="col-sm-3 control-label">Color:</label>
+							<div class="col-sm-2">
+								<input type="text" name="color" id="inputColor" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputIncluye" class="col-sm-3 control-label">Incluye:</label>
+							<div class="col-sm-9">
+								<input type="text" name="incluye" id="inputIncluye" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputObservaciones" class="col-sm-3 control-label">Observaciones:</label>
+							<div class="col-sm-9">
+								<input type="text" name="observaciones" id="inputObservaciones" class="form-control">
+							</div>
+						</div>
 
 
 						<div class="form-group">
@@ -194,4 +258,8 @@ $subfam = $producto->SubFamilias();
   		</div>
   	</div>
 
-<?php include "footer.php"; ?>
+<?php include "footer.php";
+}else{
+	header("Location: index.php");
+}
+?>

@@ -25,7 +25,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: 'post',
-            url: '../../public/Controllers/nuevaFamilia.controller.php',
+            url: '../Controllers/nuevaFamilia.controller.php',
             data: $(this).serialize(),
             dataType: 'json',
             beforeSend:function(){
@@ -108,7 +108,7 @@ $(document).ready(function(){
                 /*
                 * Se ejecuta si la peticón ha sido erronea
                 * */
-                alert("Problemas al tratar de registrar el formulario");
+                document.getElementById("msg").innerHTML = "Error en el ingreso";
             }
         });
 

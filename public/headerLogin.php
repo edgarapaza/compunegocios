@@ -93,13 +93,15 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
                   <ol class="breadcrumb">
-                      <li>
-                          <a href="index.php">Home</a>
-                      </li>
-
-                      <li>
-                          <a href="#" id="login">Login</a>
-                      </li>
+                    <li>
+                        <a href="landing.php">Home</a>
+                    </li>
+                    <li>
+                        <a href="nuevoProducto.php">Nuevo producto</a>
+                    </li>
+                    <li>
+                        <a href="Controllers/sesion_close.php" id="login">Cerrar Sesion</a>
+                    </li>
 
                   </ol>
             </div>

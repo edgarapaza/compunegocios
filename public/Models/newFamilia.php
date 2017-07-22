@@ -16,7 +16,7 @@ class NewFamilia extends Conexion
 
 			try {
 				$sql = "INSERT INTO familia (IDfamilia,codigo,familia,descripcion,caracteristica1,caracteristica2,caracteristica3,caracteristica4,caracteristica5,caracteristica6,tipoArticulo,IDprecio) VALUES ('$IDfamilia','$codigo','$familia','$descripcion','$caracteristica1','$caracteristica2','$caracteristica3','$caracteristica4','$caracteristica5','$caracteristica6','$tipoArticulo','$IDprecio')";
-				$this->link->query();
+				$this->link->query($sql);
 				print "<script type='text/javascript'>alert('Guardado');</script>";
 			} catch (Exception $e) {
 				throw $e;
@@ -31,7 +31,7 @@ class NewFamilia extends Conexion
 	{
 		$sql = "SELECT codigo,familia,descripcion,caracteristica1,caracteristica2 FROM familia";
 
-		$res = $this->link->query();
+		$res = $this->link->query($sql);
 		$num = $res->num_rows;
 		return $num;
 	}

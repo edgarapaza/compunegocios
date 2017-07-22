@@ -82,7 +82,7 @@ class Producto extends Conexion
 	public function Almacen()
 	{
 		try {
-			$sql = "SELECT idalmacen, descripcion FROM almacen";
+			$sql = "SELECT idtienda, descripcion FROM tienda";
 			$rpta = $this->link->query($sql);
 			return $rpta;
 		} catch (Exception $e) {
