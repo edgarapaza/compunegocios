@@ -13,6 +13,9 @@ $(document).ready(function(){
     $("#btnnewfamilia").on("click", function(){
         $("#eventos").load("../newFamilia.html");
     });
+    $("#btnnewfamilia").on("click", function(){
+        $("#eventos").load("../newFamilia.html");
+    });
 
 
     /*************************************************************

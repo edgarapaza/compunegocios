@@ -6,9 +6,10 @@ if(isset($_SESSION['administrador'])){
 $IDPersonal = $_SESSION['administrador'];
 
 require_once "../Models/newproducto.class.php";
-$newProducto = new NewProducto();
+$newProducto    = new NewProducto();
 
-$codproveedor  = $_REQUEST['codproveedor'];
+$codproveedor   = $_REQUEST['codproveedor'];
+$producto       = $_REQUEST['producto'];
 $numfactura     = $_REQUEST['numFactura'];
 $fechaEmision   = $_REQUEST['fechaEmision'];
 
@@ -35,9 +36,8 @@ $pro_incluye    = ucfirst(strtolower($_REQUEST['incluye']));
 $obs            = ucfirst(strtolower($_REQUEST['observaciones']));
 $imagen         = "NULL";
 
-$newProducto->AddProducto($codproveedor,$numfactura,$fechaEmision,$numserie,$idfamilia,$idsubfamilia,
-	$idmarca,$modelo,$tipoUnidad,$tipoArticulo,$descripcion,$precioUnitario,$margenGanancia,$precioVenta,$cantidad,
-	$pro_peso,$pro_tamaño,$pro_alto,$pro_largo,$pro_ancho,$pro_color,$pro_incluye,$obs,$imagen,$idalmacen,$IDPersonal);
+$newProducto->AddProducto($codproveedor,$producto, $numfactura,$fechaEmision,$numserie,$idfamilia,$idsubfamilia,
+	$idmarca,$modelo,$tipoUnidad,$tipoArticulo,$descripcion,$precioUnitario,$margenGanancia,$precioVenta,$cantidad,$pro_peso,$pro_tamaño,$pro_alto,$pro_largo,$pro_ancho,$pro_color,$pro_incluye,$obs,$imagen,$idalmacen,$IDPersonal);
 
 header("Location: ../nuevoProducto.php");
 }

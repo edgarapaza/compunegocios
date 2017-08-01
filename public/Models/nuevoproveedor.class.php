@@ -18,15 +18,12 @@ class Proveedor extends Conexion
 		$dat8 = $datos['websitepvd'];
 		$dat9 = $datos['obspvd'];
 
-
 		try {
 
 			$fecha = date('Y-m-d H:m');
-			$sql = "INSERT INTO proveedor (nombreProveedor,razonSocial,numRUC,direccion,telfFijo,celular,email,website,obs,fecRegistro) VALUES ('$dat1','$dat2','$dat3','$dat4','$dat5','$dat6','$dat7','$dat8','$dat9','$fecha');";
-			echo $sql;
-			$rpta = $this->link->query($sql);
+			$sql = "INSERT INTO proveedor (idproveedor,nombreProveedor,razonSocial,numRUC,direccion,telfFijo,celular,email,website,obs,fecRegistro) VALUES (NULL,'$dat1','$dat2','$dat3','$dat4','$dat5','$dat6','$dat7','$dat8','$dat9','$fecha')";
 
-			return $rpta;
+			$rpta = $this->link->query($sql);
 
 		} catch (Exception $e) {
 			throw $e;

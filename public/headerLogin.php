@@ -17,7 +17,8 @@
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="js/vendor/jquery-1.12.0.min.js"></script>
-
+        <!-- Latest compiled and minified JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
         <style>
         @font-face{
@@ -34,8 +35,10 @@
             font-family: 'Fira Sans';
             font-weight: 300;
             overflow-x: hidden;
-            background-color: #666666;
-            color: white;
+
+
+
+            color: black;
         }
         article {
             margin: 0 auto;
@@ -73,6 +76,19 @@
             }
         }
 
+        #logo{
+            background-color: #F99F4D;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        #dropdownMenu1{
+            position: relative;
+        }
+
     </style>
     </head>
     <body>
@@ -82,13 +98,17 @@
 
         <!-- Add your site or application content here -->
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="logo">
 
-                <img src="img/dap_logo.png" class="img-responsive" alt="Image" width="200" height="100">
+                <em>Compunegocios.net</em>
             </div>
         </div>
+
+    </div>
+
+    <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
@@ -100,10 +120,18 @@
                         <a href="nuevoProducto.php">Nuevo producto</a>
                     </li>
                     <li>
+                        <a href="listado.php">Listado</a>
+                    </li>
+
+                    <li>
                         <a href="Controllers/sesion_close.php" id="login">Cerrar Sesion</a>
                     </li>
 
                   </ol>
+
+
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="js/acciones.js"></script>

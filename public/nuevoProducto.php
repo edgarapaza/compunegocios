@@ -6,12 +6,12 @@ require_once "headerLogin.php";
 
 require_once "Models/nuevoProducto.class.php";
 $producto = new Producto();
-$familia = $producto->Familias();
-$prov = $producto->Proveedor();
-$marca = $producto->Marca();
-$unidad = $producto->Unidades();
-$almacen = $producto->Almacen();
-$subfam = $producto->SubFamilias();
+$familia  = $producto->Familias();
+$prov     = $producto->Proveedor();
+$marca    = $producto->Marca();
+$unidad   = $producto->Unidades();
+$almacen  = $producto->Almacen();
+$subfam   = $producto->SubFamilias();
 
 ?>
 	<script type="text/javascript" src="js/acciones.js"></script>
@@ -64,9 +64,16 @@ $subfam = $producto->SubFamilias();
 						<hr>
 
 						<div class="form-group">
+							<label for="inputProducto" class="col-sm-3 control-label">Producto:</label>
+							<div class="col-sm-9">
+								<input type="text" name="producto" id="inputproducto" class="form-control" required="required" placeholder="Laptop, Memoria USB, Monitor, etc.">
+							</div>
+						</div>
+
+						<div class="form-group">
 							<label for="inputNumserie" class="col-sm-3 control-label">Numero de Serie:</label>
 							<div class="col-sm-9">
-								<input type="text" name="numserie" id="inputNumserie" class="form-control" required="required">
+								<input type="text" name="numserie" id="inputNumserie" class="form-control" required="required" placeholder="Use Lector de Codigo de Barras">
 							</div>
 						</div>
 
@@ -111,14 +118,14 @@ $subfam = $producto->SubFamilias();
 						<div class="form-group">
 							<label for="inputDescripcion" class="col-sm-3 control-label">Descripcion:</label>
 							<div class="col-sm-9">
-								<input type="text" name="Descripcion" id="inputDescripcion" class="form-control" required="required">
+								<input type="text" name="Descripcion" id="inputDescripcion" class="form-control" required="required" placeholder="Breve descripcion del producto">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="inputModelo" class="col-sm-3 control-label">Modelo:</label>
 							<div class="col-sm-9">
-								<input type="text" name="modelo" id="inputModelo" class="form-control" value="" required="required">
+								<input type="text" name="modelo" id="inputModelo" class="form-control" value="" required="required" placeholder="Indique el Modelo">
 							</div>
 						</div>
 
@@ -147,7 +154,7 @@ $subfam = $producto->SubFamilias();
 						<div class="form-group">
 							<label for="inputPrecioUnitario" class="col-sm-3 control-label">PrecioUnitario:</label>
 							<div class="col-sm-3">
-								<input type="number" name="precioUnitario" id="inputPrecioUnitario" class="form-control" required="required" step="0.01" min="1" max="9999999">
+								<input type="number" name="precioUnitario" id="inputPrecioUnitario" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
 							</div>
 						</div>
 
@@ -162,14 +169,14 @@ $subfam = $producto->SubFamilias();
 						<div class="form-group">
 							<label for="inputPrecioVenta" class="col-sm-3 control-label">PrecioVenta:</label>
 							<div class="col-sm-3">
-								<input type="text" name="precioVenta" id="inputPrecioVenta" class="form-control" required="required" step="0.01" min="1" max="9999999">
+								<input type="text" name="precioVenta" id="inputPrecioVenta" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="inputCantidad" class="col-sm-3 control-label">Cantidad:</label>
 							<div class="col-sm-2">
-								<input type="number" name="cantidad" id="inputCantidad" class="form-control" required="required">
+								<input type="number" name="cantidad" id="inputCantidad" class="form-control" required="required" placeholder="Num">
 							</div>
 						</div>
 

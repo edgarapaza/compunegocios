@@ -18,62 +18,16 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="js/vendor/jquery-1.12.0.min.js"></script>
 
-
-        <style>
-        @font-face{
-            font-family: 'Fira Sans';
-            src: url('../fonts/eot/FiraSans-Light.eot');
-            src: url('../fonts/eot/FiraSans-Light.eot') format('embedded-opentype'),
-                 url('../fonts/woff2/FiraSans-Light.woff2') format('woff2'),
-                 url('../fonts/woff/FiraSans-Light.woff') format('woff'),
-                 url('../fonts/ttf/FiraSans-Light.ttf') format('truetype');
-            font-weight: 300;
-            font-style: normal;
-        }
-        body {
-            font-family: 'Fira Sans';
-            font-weight: 300;
-            overflow-x: hidden;
-            background-color: #666666;
+        <style type="text/css">
+             #logo{
+            background-color: #F99F4D;
             color: white;
-        }
-        article {
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 1em;
-        }
-        h1, .glyph {
-            font-family: 'Fira Sans';
-            font-size: 18px;
-        }
-        p {
-            font-family: 'Fira Sans';
-            font-size: 18px;
-            padding: 0 1em;
-        }
-        form{
-            font-family: 'Fira Sans';
-            font-size: 18px;
-            padding: 0 1em;
-        }
-        legend{
-
-            font-family: 'Fira Sans';
+            font-size: 35px;
             font-weight: bold;
-            font-size: 20px;
-            border-bottom: 1px solid gray;
-            color: #F0B200;
-
+            height: 60px;
+            margin-bottom: 10px;
         }
-
-        @media (max-width: 640px) {
-            p {
-                padding: 0;
-                font-size: 18px;
-            }
-        }
-
-    </style>
+        </style>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -81,14 +35,18 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="logo">
 
-                <img src="img/dap_logo.png" class="img-responsive" alt="Image" width="200" height="100">
+                <em>Compunegocios.net</em>
             </div>
         </div>
+
+    </div>
+
+    <div class="container">
+
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
