@@ -32,6 +32,8 @@ $subfam   = $producto->SubFamilias();
 							</div>
 						</div>
 
+						<input type="text" name="idpersonal" value="<?php echo $_SESSION['administrador'];?>">
+
 						<div class="form-group">
 							<label for="inputProvedor" class="col-sm-3 control-label">Provedor:</label>
 							<div class="col-sm-6">
@@ -203,7 +205,7 @@ $subfam   = $producto->SubFamilias();
 						<div class="form-group">
 							<label for="inputSize" class="col-sm-3 control-label">Tamaño:</label>
 							<div class="col-sm-2">
-								<input type="text" name="size" id="inputSize" class="form-control">
+								<input type="text" name="tamano" id="inputSize" class="form-control">
 							</div>
 						</div>
 
