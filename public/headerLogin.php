@@ -7,74 +7,19 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/fira.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/acciones.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="js/vendor/jquery-1.12.0.min.js"></script>
-        <!-- Latest compiled and minified JS -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-        <style>
-        @font-face{
-            font-family: 'Fira Sans';
-            src: url('../fonts/eot/FiraSans-Light.eot');
-            src: url('../fonts/eot/FiraSans-Light.eot') format('embedded-opentype'),
-                 url('../fonts/woff2/FiraSans-Light.woff2') format('woff2'),
-                 url('../fonts/woff/FiraSans-Light.woff') format('woff'),
-                 url('../fonts/ttf/FiraSans-Light.ttf') format('truetype');
-            font-weight: 300;
-            font-style: normal;
-        }
-        body {
-            font-family: 'Fira Sans';
-            font-weight: 300;
-            overflow-x: hidden;
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <style>
 
-
-            color: black;
-        }
-        article {
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 1em;
-        }
-        h1, .glyph {
-            font-family: 'Fira Sans';
-            font-size: 18px;
-        }
-        p {
-            font-family: 'Fira Sans';
-            font-size: 18px;
-            padding: 0 1em;
-        }
-        form{
-            font-family: 'Fira Sans';
-            font-size: 18px;
-            padding: 0 1em;
-        }
-        legend{
-
-            font-family: 'Fira Sans';
-            font-weight: bold;
-            font-size: 20px;
-            border-bottom: 1px solid gray;
-            color: #F0B200;
-
-        }
-
-        @media (max-width: 640px) {
-            p {
-                padding: 0;
-                font-size: 18px;
-            }
-        }
 
         #logo{
             background-color: #F99F4D;
@@ -90,13 +35,41 @@
         }
 
     </style>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#producto").on("click", function(){
+                $("#ventanas").load("../nuevoProducto.php");
+            });
+            $("#proveedor").on("click", function(){
+                $("#ventanas").load("nuevoProveedor.html");
+            });
+            $("#familia").on("click", function(){
+                $("#ventanas").load("newFamilia.html");
+            });
+            $("#subfamilia").on("click", function(){
+                $("#ventanas").load("newSubFamilia.php");
+            });
+            $("#marca").on("click", function(){
+                $("#ventanas").load("nuevaMarca.html");
+            });
+            $("#almacen").on("click", function(){
+                $("#ventanas").load("nuevoAlmacen.php");
+            });
+
+            $("#personal").on("click", function(){
+                $("#ventanas").load("nuevoPersonal.php");
+            });
+            $("#listado").on("click", function(){
+                $("#ventanas").load("listado.php");
+            });
+
+
+        });
+    </script>
+
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
 
     <div class="container-fluid">
         <div class="row">
@@ -117,10 +90,28 @@
                         <a href="landing.php">Home</a>
                     </li>
                     <li>
-                        <a href="nuevoProducto.php">Nuevo producto</a>
+                        <a href="#" id="producto">Nuevo producto</a>
                     </li>
                     <li>
-                        <a href="listado.php">Listado</a>
+                        <a href="#" id="proveedor">Nuevo Proveedor</a>
+                    </li>
+                    <li>
+                        <a href="#" id="familia">Nueva Familia</a>
+                    </li>
+                    <li>
+                        <a href="#" id="subfamilia">Nueva Sub Familia</a>
+                    </li>
+                    <li>
+                        <a href="#" id="marca">Nueva Marca</a>
+                    </li>
+                    <li>
+                        <a href="#" id="almacen">Nuevo Almacen</a>
+                    </li>
+                    <li>
+                        <a href="#" id="personal">Nuevo Personal</a>
+                    </li>
+                    <li>
+                        <a href="#" id="listado">Listado</a>
                     </li>
 
                     <li>
@@ -134,4 +125,3 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="js/acciones.js"></script>

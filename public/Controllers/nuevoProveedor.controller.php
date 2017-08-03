@@ -16,5 +16,5 @@ $data = array(
 $proveedor = new Proveedor();
 $proveedor->Duplicado($data);
 
-header("Location: ../nuevoProducto.php");
+header("Location: ../landing.php");
 ?>

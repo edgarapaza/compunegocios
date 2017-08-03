@@ -6,34 +6,34 @@ class Marca extends Conexion
 
 	function AddMarca($codigo, $marca)
 	{
-		echo "Codigo:".$codigo;
-		echo "Marca: ".$marca;
 
-		$mar = $marca;
-		$res = $this::Duplicado($mar);
-
-		if($res > 0){
-			echo "<script type='text/javascript'>alert('Duplicado');</script>";
-		}else{
-			try {
-
-				$sql ="INSERT INTO marca (codigo,marca) VALUES ('". $codigo ."','". $marca ."')";
-				$rpta = $this->link->query($sql);
-
-			} catch (Exception $e) {
-				throw $e;
-			}
-		}
-		return true;
+		$sql ="INSERT INTO marca (codigo,marca) VALUES ('". $codigo ."','". $marca ."')";
+		echo $sql;
+		$rpta = $this->link->query($sql);
 	}
 
-	public function Duplicado($mar1)
+	public function Duplicado($codigo, $marca1)
 	{
-		echo "Marca enviado: ".$mar1;
-		$sql = "SELECT idmarca FROM marca WHERE marca = '$mar1'";
+		echo "codigo:".$codigo;
+		echo "marca1:".$marca1;
+
+		$sql = "SELECT * FROM marca WHERE marca = '$marca1'";
+		echo $sql;
 		$res = $this->link->query($sql);
-		$num = $res->num_rows;
-		return $num;
+		$num = $res->fetch_array();
+		echo "Numeor: ". $num[0];
+
+		$devolver = "";
+
+		if($num[0] == 0){
+			$this::AddMarca($codigo, $marca1);
+			$devolver = 0;
+		}else{
+			echo "Duplicado";
+			$devolver = 1;
+		}
+
+		return $devolver;
 	}
 }
 

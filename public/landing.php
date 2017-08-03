@@ -3,11 +3,18 @@ session_start();
 if(isset($_SESSION['administrador'])){
 
 include_once "headerLogin.php";
+@$msg = $_REQUEST['msg'];
+if($msg == ""){
+
+}else{
+	echo "<script type='text/javascript'>alert('". $msg."');</script>";
+}
 
 ?>
 
 	<div class="container">
 		<div class="row">
+		<div id="ventanas">
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<div id="carousel-id" class="carousel slide" data-ride="carousel">
 					<ol class="carousel-indicators">
@@ -58,6 +65,8 @@ include_once "headerLogin.php";
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt</p>
 			</div>
+
+		</div>
 		</div>
 	</div>
 

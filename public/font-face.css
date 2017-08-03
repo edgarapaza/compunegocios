@@ -1,0 +1,54 @@
+@font-face{
+            font-family: 'Fira Sans';
+            src: url('../fonts/eot/FiraSans-Light.eot');
+            src: url('../fonts/eot/FiraSans-Light.eot') format('embedded-opentype'),
+                 url('../fonts/woff2/FiraSans-Light.woff2') format('woff2'),
+                 url('../fonts/woff/FiraSans-Light.woff') format('woff'),
+                 url('../fonts/ttf/FiraSans-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        body {
+            font-family: 'Fira Sans';
+            font-weight: 300;
+            overflow-x: hidden;
+
+
+
+            color: black;
+        }
+        article {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 1em;
+        }
+        h1, .glyph {
+            font-family: 'Fira Sans';
+            font-size: 18px;
+        }
+        p {
+            font-family: 'Fira Sans';
+            font-size: 18px;
+            padding: 0 1em;
+        }
+        form{
+            font-family: 'Fira Sans';
+            font-size: 18px;
+            padding: 0 1em;
+        }
+        legend{
+
+            font-family: 'Fira Sans';
+            font-weight: bold;
+            font-size: 20px;
+            border-bottom: 1px solid gray;
+            color: #F0B200;
+
+        }
+
+        @media (max-width: 640px) {
+            p {
+                padding: 0;
+                font-size: 18px;
+            }
+        }

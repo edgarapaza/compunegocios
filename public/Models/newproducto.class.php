@@ -1,28 +1,41 @@
 <?php
 require_once "Conexion.php";
-class NewProducto extends Conexion
-{
-	public function AddProducto($codproveedor,$producto, $numfactura,$fechaEmision,$numserie,$idfamilia,$idsubfamilia,$idmarca,$modelo,$tipoUnidad,$tipoArticulo,$descripcion,$precioUnitario,$margenGanancia,$precioVenta,$cantidad,$pro_peso,$pro_tamano,$pro_alto,$pro_largo,$pro_ancho,$pro_color,$pro_incluye,$obs,$imagen,$idalmacen,$idpersonal)
-	{
 
-		try {
+$conn = new Conexion();
+#echo $conn->link->host_info. " Dentro de la clase";
 
-			$pro_fecRegistro = date('Y-m-d H:m:s');
-			$estadoActivo = 1;
 
-			$sql= "INSERT INTO compu.productos (producto,IDproveedor,numFactura,fecEmision,numserie,IDFamilia,IDSubFam,IDmarca,modelo,tipoUnidad,tipArticulo,descripcion,preUnitario,marGanancia,precioVenta,cantidad,pro_peso,pro_tamaño,pro_alto,pro_largo,pro_ancho,pro_color,pro_incluye,pro_fecRegistro,IDPersonal,estadoActivo,obs,imagen,IDAlmacen) VALUES
-('$producto','$codproveedor','$numfactura','$fechaEmision','$numserie','$idfamilia','$idsubfamilia','$idmarca','$modelo','$tipoUnidad','$tipoArticulo','$descripcion','$precioUnitario','$margenGanancia','$precioVenta','$cantidad','$pro_peso','$pro_tamano','$pro_alto','$pro_largo','$pro_ancho','$pro_color','$pro_incluye','$pro_fecRegistro','$idpersonal','$estadoActivo','$obs','$imagen','$idalmacen');";
+$produ           = $_REQUEST['produ'];
+$idproveedor     = $_REQUEST['prove'];
+$factura         = $_REQUEST['factura'];
+$fecha           = $_REQUEST['fecha'];
+$serie           = $_REQUEST['varserie'];
+$idfamila        = $_REQUEST['famil'];
+$idsubfamilia    = $_REQUEST['subfam'];
+$idmarca         = $_REQUEST['mimarca'];
+$model           = $_REQUEST['model'];
+$tipuni          = $_REQUEST['tipuni'];
+$tipart          = $_REQUEST['tipart'];
+$descr           = $_REQUEST['descr'];
+$preuni          = $_REQUEST['preuni'];
+$margen1         = $_REQUEST['marge1'];
+$margen2         = $_REQUEST['marge2'];
+$margen3         = $_REQUEST['marge3'];
+$preventa1       = $_REQUEST['preven1'];
+$preventa2       = $_REQUEST['preven2'];
+$preventa3       = $_REQUEST['preven3'];
+$cantidad        = $_REQUEST['cantida'];
+$idalmacen       = $_REQUEST['almace'];
+$color           = $_REQUEST['color'];
+$incluye         = $_REQUEST['inclu'];
+$pro_fecRegistro = date('Y-m-d H:m:s');
+$idpersonal      = $_REQUEST['idpers'];
+$obs             = $_REQUEST['obser'];
+$parte           = $_REQUEST['partee'];
 
-			$this->link->query($sql);
 
-			print "<script type='text/javascript'>alert('Guardado');</script>";
+$sql = "INSERT INTO productos (IDproducto,producto,IDproveedor,numFactura,fecEmision,numserie,IDFamilia,IDSubFam,IDmarca,modelo,tipoUnidad,tipArticulo,descripcion,preUnitario,marGanancia1,marGanancia2,marGanancia3,precioVenta1,precioVenta2,precioVenta3,cantidad,IDAlmacen,pro_color,pro_incluye,pro_fecRegistro,IDPersonal,obs, parte) VALUES (NULL,'$produ','$idproveedor','$factura','$fecha','$serie','$idfamila','$idsubfamilia','$idmarca','$model','$tipuni','$tipart','$descr','$preuni','$margen1','$margen2','$margen3','$preventa1','$preventa2','$preventa3','$cantidad','$idalmacen','$color','$incluye','$pro_fecRegistro','$idpersonal','$obs','$parte')";
+$conn->link->query($sql);
 
-		} catch (Exception $e) {
-			throw $e;
-		}
-
-	}
-
-}
-
+echo "<strong>Guardado</strong> correctamente ...";
 ?>

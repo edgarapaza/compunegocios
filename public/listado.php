@@ -1,4 +1,3 @@
-<?php require_once "headerLogin.php"; ?>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -26,5 +25,3 @@
 </div>
 
 	<div id="principal"></div>
-
-<?php require_once "footer.php"; ?>
