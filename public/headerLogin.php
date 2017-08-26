@@ -22,7 +22,7 @@
 
 
         #logo{
-            background-color: #F99F4D;
+            background-color: #A32222;
             color: white;
             font-size: 35px;
             font-weight: bold;
