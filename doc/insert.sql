@@ -1,2 +1,0 @@
-//Insert producto
-$sql  = "INSERT INTO productos (IDproductos, numserie, IDFamilia, IDSubFam, descripcion, entradas, salidas, stock, costo, fecRegistro, IDPersonal) VALUES (NULL, 'FRT44832JSJ2929', '1', '0', 'Monitor slsl', '3', '8', '34', '260', CURRENT_TIMESTAMP, '1')";
