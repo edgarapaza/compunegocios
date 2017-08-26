@@ -6,6 +6,7 @@ require_once "Conexion.php";
 class Consultas extends Conexion
 {
 
+<<<<<<< HEAD
 	public function ProductoSerie($serie)
 	{
 		try{
@@ -59,6 +60,20 @@ class Consultas extends Conexion
 
 
 			return $valores;
+=======
+	public function ProductoSerie()
+	{
+		try{
+
+			$sql = "SELECT IDproducto,producto,IDproveedor,numFactura,fecEmision,numserie,IDFamilia,IDSubFam,IDmarca,modelo,tipoUnidad,tipArticulo,descripcion,preUnitario,marGanancia,precioVenta,cantidad,pro_peso,pro_tamaño,pro_alto,pro_largo,pro_ancho,pro_color,pro_incluye,pro_fecRegistro,IDPersonal,alertAmbar,alertRojo,estadoActivo,obs,imagen,IDAlmacen FROM compu.productos WHERE numserie = '7506339390230'";
+			$res = $this->link->query($sql);
+			$fila = $res->fetch_array();
+			var_dump($fila);
+			$this::getProveedor($fila[2]);
+			$this::getFamilia($fila[7]);
+			//$this::getSbFamilia($fila[8]);
+			$this::getMarca($fila[9]);
+>>>>>>> e258af6d66b5fb7e9c6421e585da58b05454e385
 
 		}catch(Exception $e){
 			throw $e;
@@ -69,11 +84,18 @@ class Consultas extends Conexion
 	{
 		try {
 			$sql = "SELECT nombreProveedor,razonSocial,numRUC,direccion,telfFijo,celular,email,website,obs FROM proveedor WHERE idproveedor = ". $idproveedor;
+<<<<<<< HEAD
 
 			$res = $this->link->query($sql);
 			$fila = $res->fetch_array();
 			#echo "Proveedor: ".$fila['0'];
 			return $fila['0'];
+=======
+			echo "<br>---------------------------------------------<br>";
+			$res = $this->link->query($sql);
+			$fila = $res->fetch_array();
+			var_dump($fila);
+>>>>>>> e258af6d66b5fb7e9c6421e585da58b05454e385
 
 		} catch (Exception $e) {
 			throw $e;
@@ -84,11 +106,18 @@ class Consultas extends Conexion
 	{
 		try {
 			$sql = "SELECT familia FROM familia WHERE IDfamilia = " . $idfamilia;
+<<<<<<< HEAD
 
 			$res = $this->link->query($sql);
 			$fila = $res->fetch_array();
 			#echo "Familia: ".$fila['0'];
 			return $fila['0'];
+=======
+			echo "<br>---------------------------------------------<br>";
+			$res = $this->link->query($sql);
+			$fila = $res->fetch_array();
+			var_dump($fila);
+>>>>>>> e258af6d66b5fb7e9c6421e585da58b05454e385
 
 		} catch (Exception $e) {
 			throw $e;
@@ -99,11 +128,18 @@ class Consultas extends Conexion
 	{
 		try {
 			$sql = "SELECT Subfamilia FROM subfamilias WHERE idsubfamilias = $idsubfamilias AND IDfamilia = $idfamilia";
+<<<<<<< HEAD
 
 			$res = $this->link->query($sql);
 			$fila = $res->fetch_array();
 			#echo "Sub Familia: ".$fila['0'];
 			return $fila['0'];
+=======
+			echo "<br>---------------------------------------------<br>";
+			$res = $this->link->query($sql);
+			$fila = $res->fetch_array();
+			var_dump($fila);
+>>>>>>> e258af6d66b5fb7e9c6421e585da58b05454e385
 
 		} catch (Exception $e) {
 			throw $e;
@@ -114,16 +150,24 @@ class Consultas extends Conexion
 	{
 		try {
 			$sql = "SELECT marca FROM marca WHERE idmarca = " .$idmarca;
+<<<<<<< HEAD
 
 			$res = $this->link->query($sql);
 			$fila = $res->fetch_array();
 			#echo "Marca: ".$fila['0'];
 			return $fila['0'];
+=======
+			echo "<br>---------------------------------------------<br>";
+			$res = $this->link->query($sql);
+			$fila = $res->fetch_array();
+			var_dump($fila);
+>>>>>>> e258af6d66b5fb7e9c6421e585da58b05454e385
 
 		} catch (Exception $e) {
 			throw $e;
 		}
 	}
+<<<<<<< HEAD
 
 	public function getPersonal($idpersonal='')
 	{
@@ -158,4 +202,18 @@ class Consultas extends Conexion
 
 }
 
+=======
+}
+
+$consultas = new Consultas();
+$consultas->ProductoSerie();
+
+/*
+
+
+SELECT CONCAT(nombres,' ',paterno,' ',materno) AS personal FROM Personal WHERE IDPersonal = 1002;
+
+SELECT descripcion FROM tienda WHERE idtienda = 4;
+*/
+>>>>>>> e258af6d66b5fb7e9c6421e585da58b05454e385
  ?>
