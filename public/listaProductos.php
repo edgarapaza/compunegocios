@@ -1,10 +1,10 @@
 <?php
-require_once "../public/Models/listadoproductos.model.php";
+require_once "Models/listadoProductos.class.php";
+$listado1 = new ListadoProductos();
+$data = $listado1->Productos();
 
-$lista = new Listado();
-$data = $lista->Productos();
 ?>
-
+<h2>Productos</h2>
 <table class="table table-hover">
 	<thead>
 		<tr>

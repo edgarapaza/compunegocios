@@ -14,6 +14,8 @@ if(isset($_SESSION['administrador']))
 
 ?>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 	<script type="text/javascript">
 
 		$(document).ready(function(){
@@ -398,6 +400,6 @@ if(isset($_SESSION['administrador']))
 
 <?php
 }else{
-	header("Location: index.php");
+	header("Location: index.html");
 }
 ?>

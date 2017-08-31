@@ -4,7 +4,6 @@ require_once "Conexion.php";
 $conn = new Conexion();
 #echo $conn->link->host_info. " Dentro de la clase";
 
-
 $produ           = $_REQUEST['produ'];
 $idproveedor     = $_REQUEST['prove'];
 $factura         = $_REQUEST['factura'];

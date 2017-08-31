@@ -17,13 +17,13 @@ $fila = $data->fetch_array();
 			case 1: // Administrado
 
 				$_SESSION['administrador'] = $fila[2];
-				header("location: ../landing.php");
+				header("location: ../inicio.html");
 				break;
 
 			case 2: //Empleado
 
 				$_SESSION['empleado'] = $fila[2];
-				header("location: ../otro.php");
+				header("location: ../landing.php");
 				break;
 		}
 

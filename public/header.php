@@ -129,22 +129,7 @@
         </div>
         </div>
     <br>
-    <hr>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Novedades Tecnologicas</h3>
-      </div>
-      <div class="panel-body">
 
-        <img src="img/ia.png" class="rounded float-left mx-auto d-block" alt="..." hspace="5" vspace="5" style="float: right;">
-        <p>La inteligencia artificial (IA) ya no es un tema propio de la ciencia ficción. El 2017 marcará la consolidación de una tecnología que se hará presente mediante asistentes cada vez más sofisticados en el celular y sistemas avanzados capaces de brindar recomendaciones en sectores como la salud, la agricultura y el área del transporte. El mercado mundial de robótica e IA se valora en 153.000 millones de dólares para 2020, según Intel.  <br>
-        En la salud será cada vez más común que los médicos apoyen sus diagnósticos con los análisis de una máquina capaz de evaluar múltiples opciones de tratamiento y sus posibles consecuencias, según IBM.<br>
-
-        En la agricultura se optimizará el uso de recursos naturales y se mejorará la calidad de los productos cosechados gracias al análisis de datos.<br>
-
-        En el sector de transporte, los carros autónomos ganarán fuerza. Uber continuará trabajando en su flota de automóviles sin conductor y cabe prever que varias marcas, como Toyota, Audi, Mercedes-Benz, BMW, Tesla y Ford presenten sus propuestas.</p>
-      </div>
-    </div>
 
     </div>
 
