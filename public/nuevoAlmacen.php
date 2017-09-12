@@ -18,25 +18,25 @@ $usuario = $_SESSION['administrador'];
 			<div class="form-group">
 
 			</div>
-			<input type="text" name="idpersonal" id="idpersonal" value="<?php echo $usuario;?>">
+			<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $usuario;?>">
 			<div class="form-group">
 				<label for="inputTienda" class="col-sm-2 control-label">Tienda:</label>
 				<div class="col-sm-8">
-					<input type="text" name="tienda" id="inputTienda" class="form-control" required="required">
+					<input type="text" name="tienda" id="inputTienda" class="form-control" required="required" placeholder="Nombre Tienda">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="inputDireccion" class="col-sm-2 control-label">Direccion:</label>
 				<div class="col-sm-8">
-					<input type="text" name="direccion" id="inputDireccion" class="form-control" required="required">
+					<input type="text" name="direccion" id="inputDireccion" class="form-control" required="required" placeholder="Jr. Av. urb.">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="inputDescripcion" class="col-sm-2 control-label">Descripcion:</label>
+				<label for="inputDescripcion" class="col-sm-2 control-label">Ubicación:</label>
 				<div class="col-sm-8">
-					<input type="text" name="descripcion" id="inputDescripcion" class="form-control" required="required">
+					<input type="text" name="descripcion" id="inputDescripcion" class="form-control" placeholder="Lugar, Ubicacion, Descripcion">
 				</div>
 			</div>
 
@@ -44,7 +44,7 @@ $usuario = $_SESSION['administrador'];
 			<div class="form-group">
 				<label for="inputTelefono" class="col-sm-2 control-label">Telefono:</label>
 				<div class="col-sm-8">
-					<input type="text" name="telefono" id="inputTelefono" class="form-control" required="required">
+					<input type="text" name="telefono" id="inputTelefono" class="form-control" required="required" placeholder="(051) - 9999999">
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary" id="btnalmacen">Guardar</button>

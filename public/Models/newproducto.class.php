@@ -1,4 +1,7 @@
 <?php
+session_start();
+$usuario = $_SESSION['administrador'];
+
 require_once "Conexion.php";
 
 $conn = new Conexion();
@@ -28,7 +31,7 @@ $idalmacen       = $_REQUEST['almace'];
 $color           = $_REQUEST['color'];
 $incluye         = $_REQUEST['inclu'];
 $pro_fecRegistro = date('Y-m-d H:m:s');
-$idpersonal      = $_REQUEST['idpers'];
+$idpersonal      = $usuario;
 $obs             = $_REQUEST['obser'];
 $parte           = $_REQUEST['partee'];
 

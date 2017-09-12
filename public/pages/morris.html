@@ -12,19 +12,19 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,59 +32,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <script src="vendor/jquery/jquery.min.js"></script>
-
-
-    <script type="text/javascript">
-        $(function(){
-            $("#productos").on("click", function(){
-                $("#page-wrapper").load("nuevoProducto.php");
-            });
-            $("#proveedor").on("click", function(){
-                $("#page-wrapper").load("nuevoProveedor.html");
-            });
-            $("#familias").on("click", function(){
-
-                $("#page-wrapper").load("newFamilia.html");
-            });
-            $("#subfamilia").on("click", function(){
-                $("#page-wrapper").load("newSubFamilia.php");
-            });
-            $("#marca").on("click", function(){
-                $("#page-wrapper").load("nuevaMarca.html");
-            });
-            $("#almacen").on("click", function(){
-                $("#page-wrapper").load("nuevoAlmacen.php");
-            });
-
-            $("#personal").on("click", function(){
-                $("#page-wrapper").load("nuevoPersonal.php");
-            });
-            $("#listado").on("click", function(){
-                $("#page-wrapper").load("listado.php");
-            });
-            $("#buscar1").on("click", function(){
-                $("#page-wrapper").load("buscarxserie.php");
-            });
-
-            $("#buscarserie").on("click", function(){
-                  $("#page-wrapper").load("buscarxserie.php");
-              });
-            $("#linkproductos").on("click", function(){
-
-                    $("#page-wrapper").load("listaProductos.php");
-                });
-
-            $("#linkpersonal").on("click", function(){
-                  $("#page-wrapper").load("listaPersonal.php");
-              });
-            $("#linkpersonal").on("click", function(){
-                  $("#page-wrapper").load("listaPersonal.php");
-              });
-
-        });
-    </script>
 
 </head>
 
@@ -96,12 +43,12 @@
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Navegacion</span>
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema de Ventas - Compunegocios</a>
+                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -114,24 +61,24 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <strong>Administrador</strong>
+                                    <strong>John Smith</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Ayer</em>
+                                        <em>Yesterday</em>
                                     </span>
                                 </div>
-                                <div>Facturas remitidas ayer, de la empresa san cristobal.</div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a href="#">
                                 <div>
-                                    <strong>Jose Chavez</strong>
+                                    <strong>John Smith</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Ayer</em>
+                                        <em>Yesterday</em>
                                     </span>
                                 </div>
-                                <div>Envio de computadoras marca HP </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -306,7 +253,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="Controllers/sesion_close.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -330,88 +277,92 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="inicio.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-
                         <li>
-                            <a href="#"><i class="fa fa-database"></i> Nuevas Entradas<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                              <li>
-                                <a href="#" id="proveedor"> Proveedor</a>
-                              </li>
-                              <li>
-                                <a href="#" id="almacen">Almacen</a>
-                              </li>
-                              <li>
-                                <a href="#" id="familias">Familias</a>
-                              </li>
-                              <li>
-                                <a href="#" id="subfamilias">Sub Familias</a>
-                              </li>
-                              <li>
-                                <a href="#" id="marca">Marca</a>
-                              </li>
-                              <li>
-                                <a href="#" id="productos">Productos</a>
-                              </li>
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#" id="listas"><i class="fa fa-table fa-fw"></i> Ventas</a>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
-
                         <li>
-                            <a href="#" id="listas"><i class="fa fa-table fa-fw"></i> Compras</a>
+                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
                         </li>
-
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Listado<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-
                                 <li>
-                                    <a href="#" id="buscarserie">Buscar x Serie</a>
+                                    <a href="panels-wells.html">Panels and Wells</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="linkproductos">Productos</a>
+                                    <a href="buttons.html">Buttons</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="linkfamilias">Familias</a>
+                                    <a href="notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="linkmarcas">Marcas</a>
+                                    <a href="typography.html">Typography</a>
                                 </li>
                                 <li>
-                                    <a href="#" id="linkpersonal">Personal</a>
+                                    <a href="icons.html"> Icons</a>
                                 </li>
-
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-
                         <li>
-                            <a href="#"><i class="fa-files-o fa-fw"></i> Reportes<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Reporte 1</a>
+                                    <a href="#">Second Level Item</a>
                                 </li>
                                 <li>
-                                    <a href="#">Reporte 2 <span class="fa arrow"></span></a>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="#">Por Categorias</a>
+                                            <a href="#">Third Level Item</a>
                                         </li>
                                         <li>
-                                            <a href="#">Por Fecha</a>
+                                            <a href="#">Third Level Item</a>
                                         </li>
-
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
                                     </ul>
-
+                                    <!-- /.nav-third-level -->
                                 </li>
                             </ul>
-
+                            <!-- /.nav-second-level -->
                         </li>
-
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -419,33 +370,110 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Software de Control de Inventario</h1>
-                    <em>Venta de Computadoras, Equipos y accesorios</em><br>
-                    <img src="img/dap_logo.png" width="50%"><br>
-                    <strong><em>Desarrollador por: Corporación DIGI-ARCH Peru.  2017</em></strong><br>
-                    <em>Todos los derechos estan reservados.</em>
+                    <h1 class="page-header">Morris.js Charts</h1>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Area Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-area-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Bar Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-bar-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Line Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-line-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Donut Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-donut-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Morris.js Usage
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <p>Morris.js is a jQuery based charting plugin created by Olly Smith. In SB Admin, we are using the most recent version of Morris.js which includes the resize function, which makes the charts fully responsive. The documentation for Morris.js is available on their website, <a target="_blank" href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>.</p>
+                            <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://morrisjs.github.io/morris.js/">View Morris.js Documentation</a>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.row -->
         </div>
-
+        <!-- /#page-wrapper -->
 
     </div>
+    <!-- /#wrapper -->
 
-
-
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
 
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
 

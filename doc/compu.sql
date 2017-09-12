@@ -1,3 +1,5 @@
+CREATE DATABASE compu;
+use compu;
 -- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
 -- Host: localhost    Database: compu
