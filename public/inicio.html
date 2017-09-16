@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Compunegocios</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,9 +48,7 @@
 
                 $("#page-wrapper").load("newFamilia.html");
             });
-            $("#subfamilia").on("click", function(){
-                $("#page-wrapper").load("newSubFamilia.php");
-            });
+
             $("#marca").on("click", function(){
                 $("#page-wrapper").load("nuevaMarca.html");
             });
@@ -73,15 +71,21 @@
               });
             $("#linkproductos").on("click", function(){
 
-                    $("#page-wrapper").load("listaProductos.php");
-                });
+                $("#page-wrapper").load("listaProductos.php");
+            });
 
             $("#linkpersonal").on("click", function(){
                   $("#page-wrapper").load("listaPersonal.php");
               });
             $("#linkpersonal").on("click", function(){
                   $("#page-wrapper").load("listaPersonal.php");
-              });
+            });
+            $("#linkproveedor").on("click", function(){
+                  $("#page-wrapper").load("listaProveedor.php");
+            });
+            $("#linkalmacen").on("click", function(){
+                  $("#page-wrapper").load("listaAlmacen.php");
+            });
 
         });
     </script>
@@ -346,9 +350,6 @@
                                 <a href="#" id="familias">Familias</a>
                               </li>
                               <li>
-                                <a href="#" id="subfamilias">Sub Familias</a>
-                              </li>
-                              <li>
                                 <a href="#" id="marca">Marca</a>
                               </li>
                               <li>
@@ -383,6 +384,12 @@
                                 </li>
                                 <li>
                                     <a href="#" id="linkpersonal">Personal</a>
+                                </li>
+                                <li>
+                                    <a href="#" id="linkproveedor">Proveedor</a>
+                                </li>
+                                <li>
+                                    <a href="#" id="linkalmacen">Almacen</a>
                                 </li>
 
                             </ul>

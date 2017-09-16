@@ -10,7 +10,7 @@ $(document).ready(function(){
 			url: '../Models/search.php',
 			data: {'serie': serie},
 			beforeSend: function(){
-				$('#result').html('img src="../img/loading-2.gif">');
+				$('#result').html('<img src="../img/loading-2.gif">');
 			},
 			success: function(resultado) {
 				$('#result').html(resultado);
@@ -20,7 +20,6 @@ $(document).ready(function(){
 			}
 		});
 
-
 	});
 
-})
+});
