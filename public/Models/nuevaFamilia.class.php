@@ -1,15 +1,22 @@
 <?php
 require_once "Conexion.php";
 
-class NuevaFamilia extends Conexion
-{
+class NuevaFamilia{
+
+	private $con="";
+
+	function __construct(){
+		$conexion = new Conexion();
+		$this->con = $conexion->Conectarse();
+		return $this->con;
+	}
 
 	public function Duplicado($codigo,$familia)
 	{
 
 		$sql       = "SELECT * FROM familia WHERE codigo ='$codigo' AND familia ='$familia';";
 		echo $sql;
-		$resultado = $this->link->query($sql);
+		$resultado = $this->con->query($sql);
 		$data      = $resultado->fetch_array();
 		echo $data[0];
 		$devolver = "";
@@ -31,7 +38,7 @@ class NuevaFamilia extends Conexion
 
 		$sql = "INSERT INTO familia (IDfamilia,codigo,familia) VALUES (NULL,'$codigo','$familia')";
 		echo $sql;
-		$this->link->query($sql);
+		$this->con->query($sql);
 	}
 
 }

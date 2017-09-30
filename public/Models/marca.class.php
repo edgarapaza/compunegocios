@@ -4,12 +4,21 @@ require_once "Conexion.php";
 class Marca extends Conexion
 {
 
+	private $con="";
+
+	function __construct(){
+		$conexion = new Conexion();
+		$this->con = $conexion->Conectarse();
+		return $this->con;
+	}
+
+
 	function AddMarca($codigo, $marca)
 	{
 
 		$sql ="INSERT INTO marca (codigo,marca) VALUES ('". $codigo ."','". $marca ."')";
 		echo $sql;
-		$rpta = $this->link->query($sql);
+		$rpta = $this->con->query($sql);
 	}
 
 	public function Duplicado($codigo, $marca1)
@@ -19,7 +28,7 @@ class Marca extends Conexion
 
 		$sql = "SELECT * FROM marca WHERE marca = '$marca1'";
 		echo $sql;
-		$res = $this->link->query($sql);
+		$res = $this->con->query($sql);
 		$num = $res->fetch_array();
 		echo "Numeor: ". $num[0];
 

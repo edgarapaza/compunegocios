@@ -1,20 +1,16 @@
 <?php
 require_once "Conexion.php";
 
-class Login extends Conexion
+class Login
 {
 	function Ingreso($user, $pass)
 	{
-		try {
+		$conexion = new Conexion();
+		$mysqli =$conexion->Conectarse();
 			$sql ="SELECT estado, nivel, IDpersonal FROM login WHERE usuario = '$user' AND passwd = '$pass'";
 
-			$rpta = $this->link->query($sql);
+			$rpta = $mysqli->query($sql);
 			return $rpta;
-
-		} catch (Exception $e) {
-			throw $e;
-		}
-
 	}
 }
 ?>

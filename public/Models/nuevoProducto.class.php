@@ -1,122 +1,78 @@
 <?php
 require_once "Conexion.php";
 
-class Producto extends Conexion
-{
+class Producto{
+
+	private $con="";
+
+	function __construct(){
+		$conexion = new Conexion();
+		$this->con = $conexion->Conectarse();
+		return $this->con;
+	}
+
 	public function Familias()
 	{
-		try {
-			$sql = "SELECT IDfamilia, familia FROM familia";
-			$rpta = $this->link->query($sql);
 
-	        return $rpta;
+		$sql = "SELECT IDfamilia, familia FROM familia";
+		$rpta = $this->con->query($sql);
+        return $rpta;
 
-		} catch (Exception $e) {
-			throw $e;
-		}
 	}
 
 	public function SubFamilias()
 	{
-		try{
-			$sql = "SELECT idsubfamilias, subfamilia FROM subfamilias;";
-			$rpta = $this->link->query($sql);
-	        return $rpta;
-		}catch(Exception $e){
-			throw $e;
-		}
+
+		$sql = "SELECT idsubfamilias, subfamilia FROM subfamilias;";
+		$rpta = $this->con->query($sql);
+        return $rpta;
 	}
 
 	public function Proveedor()
 	{
-		try {
-			$sql= "SELECT idproveedor, razonSocial FROM proveedor;";
-			$rpta = $this->link->query($sql);
-	        #$data = $rpta->fetch_array();
-	        return $rpta;
-		} catch (Exception $e) {
-			throw $e;
-		}
+
+		$sql= "SELECT idproveedor, razonSocial FROM proveedor;";
+		$rpta = $this->con->query($sql);
+        return $rpta;
 	}
 
 	public function Marca()
 	{
-		try {
-			$sql= "SELECT idmarca, marca FROM marca;";
-			$rpta = $this->link->query($sql);
-	        #$data = $rpta->fetch_array();
-	        return $rpta;
-		} catch (Exception $e) {
-			throw $e;
-		}
+
+		$sql= "SELECT idmarca, marca FROM marca;";
+		$rpta = $this->con->query($sql);
+        #$data = $rpta->fetch_array();
+        return $rpta;
 	}
 
 	public function Unidades()
 	{
-		try{
-			$sql = "SELECT idunidad, unidadMedida FROM unidad;";
-			$rpta = $this->link->query($sql);
-			return $rpta;
-		} catch (Exception $e) {
-			throw $e;
-		}
+
+		$sql = "SELECT idunidad, unidadMedida FROM unidad;";
+		$rpta = $this->con->query($sql);
+		return $rpta;
 	}
 
 	public function Almacen()
 	{
-		try {
-			$sql = "SELECT idtienda, descripcion FROM tienda";
-			$rpta = $this->link->query($sql);
-			return $rpta;
-		} catch (Exception $e) {
-			throw $e;
-		}
+
+		$sql = "SELECT idtienda, descripcion FROM tienda";
+		$rpta = $this->con->query($sql);
+		return $rpta;
 
 	}
 
+	public function UltimoCodigo()
+	{
 
-	public function Modificar(){
-
-	}
-
-	public function Eliminar(){
-
-	}
-
-	public function Consulta(){
+		$sql = "SELECT codigo FROM productos ORDER BY codigo DESC LIMIT 1;";
+		$rpta = $this->con->query($sql);
+		$dato = $rpta->fetch_array();
+		return $dato;
 
 	}
 
 }
-
-
-$producto = new Producto();
-$lista = $producto->Familias();
-/*
-$subfam = $producto->SubFamilias();
-while ($listaSubFam = $subfam->fetch_array(MYSQLI_ASSOC)) {
-	echo $listaSubFam['idsubfamilias'];
-	echo $listaSubFam['subfamilias'];
-}
-while ($fila = $lista->fetch_array(MYSQLI_ASSOC)) {
-	echo $fila['IDfamilia']." ".$fila['familia'];
-}
-
-/*
-$marca = $producto->Marca();
-while ($listamarca = $marca->fetch_array(MYSQLI_ASSOC)) {
-	echo $listamarca['idmarca']." ".$listamarca['marca'];
-}
-$unidad = $producto->Unidades();
-while ($listaunidad = $unidad->fetch_array(MYSQLI_ASSOC)) {
-	echo $listaunidad['idunidad'];
-	echo $listaunidad['unidadMedida'];
-}
-$prov = $producto->Proveedor();
-while ($listaprov = $prov->fetch_array(MYSQLI_ASSOC)) {
-	echo $listaprov['idproveedor']." ".$listaprov['razonSocial'];
-}
-*/
 
 ?>
 

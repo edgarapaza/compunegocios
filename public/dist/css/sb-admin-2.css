@@ -20,7 +20,7 @@ body {
     margin: 0 0 0 250px;
     padding: 0 30px;
     border-left: 1px solid #e7e7e7;
-  }
+  }9
 }
 .navbar-top-links {
   margin-right: 0;
@@ -78,7 +78,7 @@ body {
   border-bottom: 1px solid #e7e7e7;
 }
 .sidebar ul li a.active {
-  background-color: #eeeeee;
+  background-color: #722C2C;
 }
 .sidebar .arrow {
   float: right;

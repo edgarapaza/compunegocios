@@ -1,5 +1,6 @@
 <?php
 session_start();
+$personal = $_SESSION['administrador'];
 
 	require_once "Models/nuevoProducto.class.php";
 	$producto = new Producto();
@@ -10,15 +11,24 @@ session_start();
 	$almacen  = $producto->Almacen();
 	$subfam   = $producto->SubFamilias();
 
-?>
+	$ultimo = $producto->UltimoCodigo();
 
+	$porciones = explode("-", $ultimo[0]);
+	#echo "porcion 1: ".$porciones[0]."<br>";
+	#echo "porcion 2: ".$porciones[1]."<br>";
+	$next = $porciones[1] + 1;
+
+	$codigo = "CN-". $next;
+
+?>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css">
+	<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
 	<script type="text/javascript">
 
 		$(document).ready(function(){
 
 			$("#btnCalcular").click(function(){
 				var precio = $("#inputPrecioUnitario").val();
-
 				var margen1 = $("#inputMargenGanancia1").val();
 				var margen2 = $("#inputMargenGanancia2").val();
 				var margen3 = $("#inputMargenGanancia3").val();
@@ -35,6 +45,8 @@ session_start();
 				document.getElementById("inputPrecioVenta2").value = pv2.toFixed(2);
 				document.getElementById("inputPrecioVenta3").value = pv3.toFixed(2);
 			});
+
+
 			var cantid;
 
 			$("#btnCargar").click(function(event) {
@@ -53,46 +65,42 @@ session_start();
 
 
 			$("#btnRegistrar").click(function(){
-				var btnRegistrar = $("#btnRegistrar");
-				//alert(btnRegistrar.text() + " Presionado");
-
-				var prove_dor = document.getElementById('inputProvedor').value;
-				var famil = document.getElementById('inputFamilia').value;
-				var subfam = document.getElementById('inputSubfamilia').value;
-				var mimarca = document.getElementById('inputMimarca').value;
-				var tipuni = document.getElementById('inputTipoUnidad').value;
-				var tipart = document.getElementById('inputTipoArticulo').value;
-				var almace = document.getElementById('inputAlmacen').value;
-
-				var factu = document.getElementById("inputnumFactura").value;
-				var fecha = document.getElementById("inputFechaEmision").value;
-				var produ = document.getElementById("inputproducto").value;
-				var partee = document.getElementById("inputNumparte").value;
-				var descr = document.getElementById("inputDescripcion").value;
-				var model = document.getElementById("inputModelo").value;
-				var preuni  = document.getElementById("inputPrecioUnitario").value;
-				var marge1  = document.getElementById("inputMargenGanancia1").value;
-				var marge2  = document.getElementById("inputMargenGanancia2").value;
-				var marge3  = document.getElementById("inputMargenGanancia3").value;
-				var preven1 = document.getElementById("inputPrecioVenta1").value;
-				var preven2 = document.getElementById("inputPrecioVenta2").value;
-				var preven3 = document.getElementById("inputPrecioVenta3").value;
-				var cantida  = document.getElementById("inputCantidad").value;
-				var color  = document.getElementById("inputColor").value;
-				var inclu  = document.getElementById("inputIncluye").value;
-				var obser  = document.getElementById("inputObservaciones").value;
-				var idpers = document.getElementById("idpersonal").value;
-
+				var provedor   = $("#inputProvedor").val();
+				var idfamilia  = $("#inputFamilia").val();
+				var subfamilia = $("#inputSubfamilia").val();
+				var mimarca  = $("#inputMimarca").val();
+				var tipuni   = $("#inputTipoUnidad").val();
+				var tipart   = $("#inputTipoArticulo").val();
+				var almacen  = $("#inputAlmacen").val();
+				var numfact  = $("#inputnumFactura").val();
+				var fechaemi = $("#inputFechaEmision").val();
+				var producto = $("#inputproducto").val();
+				var partee  = $("#inputNumparte").val();
+				var descr   = $("#inputDescripcion").val();
+				var model   = $("#inputModelo").val();
+				var preuni  = $("#inputPrecioUnitario").val();
+				var marge1  = $("#inputMargenGanancia1").val();
+				var marge2  = $("#inputMargenGanancia2").val();
+				var marge3  = $("#inputMargenGanancia3").val();
+				var preven1 = $("#inputPrecioVenta1").val();
+				var preven2 = $("#inputPrecioVenta2").val();
+				var preven3 = $("#inputPrecioVenta3").val();
+				var cantida = $("#inputCantidad").val();
+				var color   = $("#inputColor").val();
+				var inclu   = $("#inputIncluye").val();
+				var obser   = $("#inputObservaciones").val();
+				var idpers  = $("#idpersonal").val();
+				var cod     = $("#idcodigo").val();
 
 				for (var i = 0; i <= cantida -1 ; i++) {
 
-					var textserie=document.getElementsByName("serie")[i].value;
-					alert(textserie);
+					var textserie = document.getElementsByName("serie")[i].value;
 
 					var parametros = {
-						"factura" : factu,
-						"fecha"   : fecha,
-						"produ"   : produ,
+						"provedor": provedor,
+						"factura" : numfact,
+						"fecha"   : fechaemi,
+						"producto": producto,
 						"partee"  : partee,
 						"descr"   : descr,
 						"model"   : model,
@@ -103,266 +111,257 @@ session_start();
 						"preven1" : preven1,
 						"preven2" : preven2,
 						"preven3" : preven3,
-						"cantida"  : cantida,
+						"cantida" : cantida,
 						"color"   : color,
 						"inclu"   : inclu,
 						"obser"   : obser,
 						"idpers"  : idpers,
-						"prove"   : prove_dor,
-						"famil"   : famil,
-						"subfam"  : subfam,
+						"famil"   : idfamilia,
+						"subfam"  : subfamilia,
 						"mimarca" : mimarca,
 						"tipuni"  : tipuni,
 						"tipart"  : tipart,
 						"preuni"  : preuni,
-						"almace"  : almace,
-						"varserie"	  : textserie
+						"almacen" : almacen,
+						"cod"     : cod,
+						"varserie": textserie
+
 			        };
 
 					$.ajax({
-
 		                data : parametros,
-		                url  : 'Models/newproducto.class.php',
+		                url  : 'Controllers/nuevoProducto.controller.php',
 		                type : 'POST',
 		                beforeSend: function () {
 		                    //alert(varserie.value);
 		                    $("#resultado").html("Procesando, espere por favor...");
 		                },
 		                success:  function (data) {
-		                    //alert(varserie.value);
+
 		                    $("#resultado").html(data);
 		                }
 			        });
 				}
 
 			});
-				return false;
 
 		});
 	</script>
 
-	<style type="text/css">
-		*{
-			color: black;
-		}
-		.marco1{
-			border: 1px orange solid;
-		}
-	</style>
+<div class="container">
+	<div id="row">
+		<div class="col-md-8">
+			<form action="" method="POST" class="form-horizontal" role="form" id="formulario">
 
-
-	<div class="container-fluid">
-		<div id="resultado" class="alert alert-success respuesta"></div>
-		<div id="row">
-			<div class="col-md-8">
-				<form action="" method="POST" class="form-horizontal" role="form" id="formulario">
-
-					<div class="form-group row">
-						<div class="col-sm-10 col-sm-offset-2">
-							<button type="submit" id="btnRegistrar" class="btn btn-lg btn-primary">Guardar</button>
-							<a href="#">Cancelar</a>
-						</div>
+				<div class="form-group row">
+					<div class="col-sm-10">
+						<button type="button" id="btnRegistrar" class="btn btn-lg btn-primary">Guardar</button>
+						<a href="inicio.html">Cancelar</a>
+						<div id="resultado"></div>
 					</div>
+				</div>
 
 					<div class="form-group row">
 						<legend>Registro de Productos</legend>
 					</div>
 
-					<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $_SESSION['administrador'];?>">
+				<input type="hidden" name="idpersonal" id="idpersonal" value="1001">
+				<input type="text" readonly="readonly" name="codigo" id="idcodigo" value="<?php echo $codigo; ?>" >
 
-					<div class="form-group row">
-						<label for="inputProvedor" class="col-sm-3 col-form-label">*Provedor:</label>
-						<div class="col-sm-8">
-							<select name="codproveedor" id="inputProvedor" class="form-control" required="required">
-								<?php while ($listaprov = $prov->fetch_array(MYSQLI_ASSOC)) { ?>
+				<div class="form-group row">
+					<label for="inputProvedor" class="col-sm-3 col-form-label">*Provedor:</label>
+					<div class="col-sm-8">
+						<select name="codproveedor" id="inputProvedor" class="form-control" required="required">
+							<?php while ($listaprov = $prov->fetch_array(MYSQLI_ASSOC)) { ?>
 
-								<option value="<?php echo $listaprov['idproveedor'];  ?>"><?php echo $listaprov['razonSocial'];  ?></option>
-								<?php } ?>
-							</select>
-						</div>
-
+							<option value="<?php echo $listaprov['idproveedor'];  ?>"><?php echo $listaprov['razonSocial'];  ?></option>
+							<?php } ?>
+						</select>
 					</div>
 
-					<div class="form-group row">
-						<label for="inputNumFactura" class="col-sm-3 col-form-label">Num. Factura:</label>
-						<div class="col-sm-8">
-							<input type="text" name="numFactura" id="inputnumFactura" class="form-control" required="required">
-						</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="inputNumFactura" class="col-sm-3 col-form-label">Num. Factura:</label>
+					<div class="col-sm-8">
+						<input type="text" name="numFactura" id="inputnumFactura" class="form-control" required="required">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="inputFechaemision" class="col-sm-3 col-form-label">Fecha Emision:</label>
+					<div class="col-sm-8">
+						<input type="date" name="fechaEmision" id="inputFechaEmision" class="form-control">
+					</div>
+				</div>
+
+				<hr>
+
+				<div class="form-group row">
+					<label for="inputProducto" class="col-sm-3 col-form-label">*Producto:</label>
+					<div class="col-sm-8">
+						<input type="text" name="producto" id="inputproducto" class="form-control" required="required" placeholder="Laptop, Memoria USB, Monitor, etc.">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="inputNumparte" class="col-sm-3 col-form-label">Numero de Parte:</label>
+					<div class="col-sm-8">
+						<input type="text" name="numparte" id="inputNumparte" class="form-control" required="required" placeholder="Parte">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="inputFamilia" class="col-sm-3 col-form-label">*Familia:</label>
+					<div class="col-sm-8">
+						<select name="familia" id="inputFamilia" class="form-control" required="required">
+
+							<?php while ($listafamilia = $familia->fetch_array(MYSQLI_ASSOC)) { ?>
+							<option value="<?php echo $listafamilia['IDfamilia'];?>"><?php echo $listafamilia['familia'];?></option>
+							<?php } ?>
+						</select>
 					</div>
 
-							<div class="form-group row">
-								<label for="inputFechaemision" class="col-sm-3 col-form-label">Fecha Emision:</label>
-								<div class="col-sm-8">
-									<input type="date" name="fechaEmision" id="inputFechaEmision" class="form-control">
-								</div>
-							</div>
+				</div>
 
-							<hr>
+				<div class="form-group row">
+					<label for="inputSubfamilia" class="col-sm-3 col-form-label">Subfamilia:</label>
+					<div class="col-sm-8">
+						<select name="subfamilia" id="inputSubfamilia" class="form-control" required="required">
+							<?php while ($listaSubFam = $subfam->fetch_array(MYSQLI_ASSOC)) { ?>
+							<option value="<?php  echo $listaSubFam['idsubfamilias'];?>"><?php  echo $listaSubFam['subfamilia'];?></option>
+							<?php } ?>
+						</select>
+					</div>
 
-							<div class="form-group row">
-								<label for="inputProducto" class="col-sm-3 col-form-label">*Producto:</label>
-								<div class="col-sm-8">
-									<input type="text" name="producto" id="inputproducto" class="form-control" required="required" placeholder="Laptop, Memoria USB, Monitor, etc.">
-								</div>
-							</div>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputNumparte" class="col-sm-3 col-form-label">Numero de Parte:</label>
-								<div class="col-sm-8">
-									<input type="text" name="numparte" id="inputNumparte" class="form-control" required="required" placeholder="Parte">
-								</div>
-							</div>
+				<div class="form-group row">
+					<label for="inputMimarca" class="col-sm-3 col-form-label">Marca:</label>
+					<div class="col-sm-8">
+						<select name="mimarca" id="inputMimarca" class="form-control" required="required">
+							<?php while ($listamarca = $marca->fetch_array()) { ?>
+							<option value="<?php echo $listamarca[0];?>"><?php echo $listamarca[1]; ?></option>
+							<?php } ?>
+						</select>
+					</div>
 
-							<div class="form-group row">
-								<label for="inputFamilia" class="col-sm-3 col-form-label">*Familia:</label>
-								<div class="col-sm-8">
-									<select name="familia" id="inputFamilia" class="form-control" required="required">
+				</div>
 
-										<?php while ($listafamilia = $familia->fetch_array(MYSQLI_ASSOC)) { ?>
-										<option value="<?php echo $listafamilia['IDfamilia'];?>"><?php echo $listafamilia['familia'];?></option>
-										<?php } ?>
-									</select>
-								</div>
+				<div class="form-group row">
+					<label for="inputDescripcion" class="col-sm-3 col-form-label">Descripcion:</label>
+					<div class="col-sm-9">
+						<input type="text" name="Descripcion" id="inputDescripcion" class="form-control" required="required" placeholder="Breve descripcion del producto">
+					</div>
+				</div>
 
-							</div>
+				<div class="form-group row">
+					<label for="inputModelo" class="col-sm-3 col-form-label">Modelo:</label>
+					<div class="col-sm-9">
+						<input type="text" name="modelo" id="inputModelo" class="form-control" required="required" placeholder="Indique el Modelo">
+					</div>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputSubfamilia" class="col-sm-3 col-form-label">Subfamilia:</label>
-								<div class="col-sm-8">
-									<select name="subfamilia" id="inputSubfamilia" class="form-control" required="required">
-										<?php while ($listaSubFam = $subfam->fetch_array(MYSQLI_ASSOC)) { ?>
-										<option value="<?php  echo $listaSubFam['idsubfamilias'];?>"><?php  echo $listaSubFam['subfamilia'];?></option>
-										<?php } ?>
-									</select>
-								</div>
+				<div class="form-group row">
+					<label for="inputTipoUnidad" class="col-sm-3 col-form-label">Tipo Unidad:</label>
+					<div class="col-sm-8">
+						<select name="tipoUnidad" id="inputTipoUnidad" class="form-control" required="required">
+							<option value="28">Unidad</option>
+							<?php while ($listaunidad = $unidad->fetch_array(MYSQLI_ASSOC)) { ?>
+							<option value="<?php echo $listaunidad['idunidad']; ?>"><?php echo $listaunidad['unidadMedida']; ?></option><?php } ?>
+						</select>
+					</div>
+				</div>
 
-							</div>
+				<div class="form-group row">
+					<label for="inputTipoArticulo" class="col-sm-3 col-form-label">TipoArticulo:</label>
+					<div class="col-sm-8">
+						<select name="tipoArticulo" id="inputTipoArticulo" class="form-control" required="required">
+							<option value="Simple" selected>Simple</option>
+							<option value="Compuesto">Compuesto</option>
+							<option value="Servicio">Servicio</option>
+						</select>
+					</div>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputMimarca" class="col-sm-3 col-form-label">Marca:</label>
-								<div class="col-sm-8">
-									<select name="mimarca" id="inputMimarca" class="form-control" required="required">
-										<?php while ($listamarca = $marca->fetch_array()) { ?>
-										<option value="<?php echo $listamarca[0];?>"><?php echo $listamarca[1]; ?></option>
-										<?php } ?>
-									</select>
-								</div>
+				<div class="form-group row">
+					<label for="inputPrecioUnitario" class="col-sm-3 col-form-label">PrecioUnitario:</label>
+					<div class="col-sm-5">
+						<input type="number" name="precioUnitario" id="inputPrecioUnitario" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
+					</div>
+				</div>
 
-							</div>
+				<div class="form-group row">
+					<label for="inputMargenGanancia" class="col-sm-3 col-form-label">MargenGanancia:</label>
+					<div class="col-sm-2">
+						<input type="text" name="margenGanancia1" id="inputMargenGanancia1" class="form-control" value="8" required="required">
+					</div>
+					<div class="col-sm-2">
+						<input type="text" name="margenGanancia2" id="inputMargenGanancia2" class="form-control" value="10" required="required">
+					</div>
+					<div class="col-sm-2">
+						<input type="text" name="margenGanancia3" id="inputMargenGanancia3" class="form-control" value="12" required="required">
+					</div> %
+					<button type="button" id="btnCalcular" class="btn btn-sm btn-success">Calcular</button>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputDescripcion" class="col-sm-3 col-form-label">Descripcion:</label>
-								<div class="col-sm-9">
-									<input type="text" name="Descripcion" id="inputDescripcion" class="form-control" required="required" placeholder="Breve descripcion del producto">
-								</div>
-							</div>
+				<div class="form-group row">
+					<label for="inputPrecioVenta" class="col-sm-3 col-form-label">PrecioVenta:</label>
+					<div class="col-sm-3">
+						<input type="text" name="precioVenta1" id="inputPrecioVenta1" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
+					</div>
+					<div class="col-sm-3">
+						<input type="text" name="precioVenta2" id="inputPrecioVenta2" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
+					</div>
+					<div class="col-sm-3">
+						<input type="text" name="precioVenta3" id="inputPrecioVenta3" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
+					</div>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputModelo" class="col-sm-3 col-form-label">Modelo:</label>
-								<div class="col-sm-9">
-									<input type="text" name="modelo" id="inputModelo" class="form-control" required="required" placeholder="Indique el Modelo">
-								</div>
-							</div>
+				<div class="form-group row">
+					<label for="inputCantidad" class="col-sm-3 col-form-label">Cantidad:</label>
+					<div class="col-sm-4">
+						<input type="number" name="cantidad" id="inputCantidad" class="form-control" required="required" placeholder="Num">
+					</div><button type="button" id="btnCargar" class="btn btn-md btn-warning"> Crear Casilleros</button>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputTipoUnidad" class="col-sm-3 col-form-label">Tipo Unidad:</label>
-								<div class="col-sm-8">
-									<select name="tipoUnidad" id="inputTipoUnidad" class="form-control" required="required">
-										<option value="28">Unidad</option>
-										<?php while ($listaunidad = $unidad->fetch_array(MYSQLI_ASSOC)) { ?>
-										<option value="<?php echo $listaunidad['idunidad']; ?>"><?php echo $listaunidad['unidadMedida']; ?></option><?php } ?>
-									</select>
-								</div>
-							</div>
+				<div class="form-group row">
+					<label for="inputAlmacen" class="col-sm-3 col-form-label">Almacen:</label>
+					<div class="col-sm-8">
+						<select name="idalmacen" id="inputAlmacen" class="form-control" required="required">
+							<option>[Seleccionar]</option>
+							<?php while ($listaalmacen = $almacen->fetch_array(MYSQLI_ASSOC)) { ?>
+							<option value="<?php echo $listaalmacen['idtienda']; ?>"><?php  echo $listaalmacen['descripcion'];?></option>
+							<?php } ?>
+						</select>
+					</div>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputTipoArticulo" class="col-sm-3 col-form-label">TipoArticulo:</label>
-								<div class="col-sm-8">
-									<select name="tipoArticulo" id="inputTipoArticulo" class="form-control" required="required">
-										<option value="Simple" selected>Simple</option>
-										<option value="Compuesto">Compuesto</option>
-										<option value="Servicio">Servicio</option>
-									</select>
-								</div>
-							</div>
+				<div class="form-group row">
+					<label for="inputColor" class="col-sm-3 col-form-label">Color:</label>
+					<div class="col-sm-8">
+						<input type="text" name="color" id="inputColor" class="form-control">
+					</div>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputPrecioUnitario" class="col-sm-3 col-form-label">PrecioUnitario:</label>
-								<div class="col-sm-5">
-									<input type="number" name="precioUnitario" id="inputPrecioUnitario" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
-								</div>
-							</div>
+				<div class="form-group row">
+					<label for="inputIncluye" class="col-sm-3 col-form-label">Incluye:</label>
+					<div class="col-sm-9">
+						<input type="text" name="incluye" id="inputIncluye" class="form-control">
+					</div>
+				</div>
 
-							<div class="form-group row">
-								<label for="inputMargenGanancia" class="col-sm-3 col-form-label">MargenGanancia:</label>
-								<div class="col-sm-2">
-									<input type="text" name="margenGanancia1" id="inputMargenGanancia1" class="form-control" value="8" required="required">
-								</div>
-								<div class="col-sm-2">
-									<input type="text" name="margenGanancia2" id="inputMargenGanancia2" class="form-control" value="10" required="required">
-								</div>
-								<div class="col-sm-2">
-									<input type="text" name="margenGanancia3" id="inputMargenGanancia3" class="form-control" value="12" required="required">
-								</div> %
-								<button type="button" id="btnCalcular" class="btn btn-sm btn-success">Calcular</button>
-							</div>
+				<div class="form-group row">
+					<label for="inputObservaciones" class="col-sm-3 col-form-label">Observaciones:</label>
+					<div class="col-sm-9">
+						<input type="text" name="observaciones" id="inputObservaciones" class="form-control">
+					</div>
+				</div>
+			</form>
+		</div>
 
-							<div class="form-group row">
-								<label for="inputPrecioVenta" class="col-sm-3 col-form-label">PrecioVenta:</label>
-								<div class="col-sm-3">
-									<input type="text" name="precioVenta1" id="inputPrecioVenta1" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
-								</div>
-								<div class="col-sm-3">
-									<input type="text" name="precioVenta2" id="inputPrecioVenta2" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
-								</div>
-								<div class="col-sm-3">
-									<input type="text" name="precioVenta3" id="inputPrecioVenta3" class="form-control" required="required" step="0.01" min="1" max="9999999" placeholder="0.00">
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<label for="inputCantidad" class="col-sm-3 col-form-label">Cantidad:</label>
-								<div class="col-sm-4">
-									<input type="number" name="cantidad" id="inputCantidad" class="form-control" required="required" placeholder="Num">
-								</div><button type="button" id="btnCargar" class="btn btn-md btn-warning"> Crear Casilleros</button>
-							</div>
-
-							<div class="form-group row">
-								<label for="inputAlmacen" class="col-sm-3 col-form-label">Almacen:</label>
-								<div class="col-sm-8">
-									<select name="idalmacen" id="inputAlmacen" class="form-control" required="required">
-										<option>[Seleccionar]</option>
-										<?php while ($listaalmacen = $almacen->fetch_array(MYSQLI_ASSOC)) { ?>
-										<option value="<?php echo $listaalmacen['idtienda']; ?>"><?php  echo $listaalmacen['descripcion'];?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<label for="inputColor" class="col-sm-3 col-form-label">Color:</label>
-								<div class="col-sm-8">
-									<input type="text" name="color" id="inputColor" class="form-control">
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<label for="inputIncluye" class="col-sm-3 col-form-label">Incluye:</label>
-								<div class="col-sm-9">
-									<input type="text" name="incluye" id="inputIncluye" class="form-control">
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<label for="inputObservaciones" class="col-sm-3 col-form-label">Observaciones:</label>
-								<div class="col-sm-9">
-									<input type="text" name="observaciones" id="inputObservaciones" class="form-control">
-								</div>
-							</div>
-				</form>
-			</div>
-			<div class="col-md-4 marco1">
-				<div id="eventos"><legend>Numeros de Serie</legend></div>
-			</div>
+		<div class="col-md-4 marco1">
+			<div id="eventos"><legend>Numeros de Serie</legend></div>
 		</div>
 	</div>
+</div>

@@ -1,17 +1,17 @@
 <?php
 require_once "Conexion.php";
 
-class ListadoAlmacen extends Conexion{
+class ListadoAlmacen{
 
 	public function Almacen()
 	{
-		try {
+		$conexion = new Conexion();
+		$mysqli = $conexion->Conectarse();
+
 			$sql = "SELECT idtienda, tienda, direccion, telefono FROM tienda;";
-			$data = $this->link->query($sql);
+			$data = $mysqli->query($sql);
 			return $data;
-		} catch (Exception $e) {
-			throw $e;
-		}
+
 	}
 }
 

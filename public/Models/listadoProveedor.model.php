@@ -5,16 +5,13 @@ class ListadoProveedor extends Conexion{
 
 	public function Proveedor()
 	{
-		try {
+		$conexion = new Conexion();
+		$mysqli = $conexion->Conectarse();
 			$sql = "SELECT idproveedor,nombreProveedor,razonSocial,numRUC,direccion,telfFijo,celular,email,website FROM proveedor";
-			$data = $this->link->query($sql);
+			$data = $mysqli->query($sql);
 			return $data;
-		} catch (Exception $e) {
-			throw $e;
-		}
+
 	}
 }
 
 ?>
-
-SELECT idproveedor,nombreProveedor,razonSocial,numRUC,direccion,telfFijo,celular,email,website,obs,fecRegistro FROM proveedor;

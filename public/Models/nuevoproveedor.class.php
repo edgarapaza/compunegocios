@@ -3,10 +3,19 @@ require_once "Conexion.php";
 /**
 *
 */
-class Proveedor extends Conexion
-{
+class Proveedor{
+
+	private $con="";
+
+	function __construct(){
+		$conexion = new Conexion();
+		$this->con = $conexion->Conectarse();
+		return $this->con;
+	}
+
 	public function AddProveedor($data)
 	{
+
 		$datos = unserialize(serialize($data));
 		$dat1 = $datos['nombprove'];
 		$dat2 = $datos['razonsocial'];
@@ -18,16 +27,14 @@ class Proveedor extends Conexion
 		$dat8 = $datos['websitepvd'];
 		$dat9 = $datos['obspvd'];
 
-		try {
+		$duplicado = $sql = "SELECT idproveedor FROM proveedor WHERE numRUC = '".$datos['numruc']."'";
+		$sql_duplicado = $this->con->query
 
 			$fecha = date('Y-m-d H:m');
-			$sql = "INSERT INTO proveedor (idproveedor,nombreProveedor,razonSocial,numRUC,direccion,telfFijo,celular,email,website,obs,fecRegistro) VALUES (NULL,'$dat1','$dat2','$dat3','$dat4','$dat5','$dat6','$dat7','$dat8','$dat9','$fecha')";
+			$sql = "INSERT INTO proveedor (idprovsdasdeedor,nombreProveedor,razonSocial,numRUC,direccion,telfFijo,celular,email,website,obs,fecRegistro) VALUES (NULL,'$dat1','$dat2','$dat3','$dat4','$dat5','$dat6','$dat7','$dat8','$dat9','$fecha')";
 
-			$rpta = $this->link->query($sql);
+			$rpta = $this->con->query($sql);
 
-		} catch (Exception $e) {
-			throw $e;
-		}
 	}
 
 	public function Duplicado($data)
@@ -36,8 +43,8 @@ class Proveedor extends Conexion
 		try {
 				$datos = unserialize(serialize($data));
 				#echo "Numero de RUC: ".$datos['numruc'];
-			$sql = "SELECT idproveedor FROM proveedor WHERE numRUC = '".$datos['numruc']."'";
-			$rpta = $this->link->query($sql);
+
+			$rpta = $this->con->query($sql);
 			$registros = $rpta->num_rows;
 			if($registros > 0){
 				echo "Ya existe";

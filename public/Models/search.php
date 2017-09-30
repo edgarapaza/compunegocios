@@ -1,21 +1,33 @@
 <?php
+require "listadoProductos.class.php";
+require_once "Conexion.php";
 
-if(!isset($_POST['serie'])) exit('No se recibio el valor a buscar');
+$conexion = new Conexion();
+$mysqli = $conexion->Conectarse();
+
+$listado1 = new ListadoProductos();
+
+if(!isset($_GET['serie'])) exit('No se recibio el valor a buscar');
 
 require_once 'conexion.ajax.php';
 
 function search()
 {
-	$mysqli = getConnection();
+	$mysqli = new Conexion();
 
-	$serie = $mysqli->real_escape_string($_POST['serie']);
+	$serie = $mysqli->real_escape_string($_GET['serie']);
 
 
-	$sql = "SELECT IDproducto,producto,IDproveedor,numFactura,fecEmision,numserie,IDFamilia,IDSubFam,IDmarca,modelo,tipoUnidad,tipArticulo,descripcion,preUnitario,marGanancia1,marGanancia2,marGanancia3,precioVenta1,precioVenta2,precioVenta3,cantidad,IDAlmacen,pro_color,pro_incluye,pro_fecRegistro,IDPersonal,alertAmbar,alertRojo,estadoActivo,obs,parte FROM productos WHERE numserie = '". $serie ."' LIMIT 1";
+	$sql = "SELECT IDproducto,producto,IDproveedor,numFactura,fecEmision,numserie,IDFamilia,IDSubFam,IDmarca,modelo,tipoUnidad,tipArticulo,descripcion,preUnitario,marGanancia1,marGanancia2,marGanancia3,precioVenta1,precioVenta2,precioVenta3,cantidad,IDAlmacen,pro_color,pro_incluye,pro_fecRegistro,IDPersonal,estadoActivo,obs,parte,codigo FROM productos WHERE numserie = '". $serie ."' LIMIT 1";
 	$res = $mysqli->query($sql);
 	$row = $res->fetch_array(MYSQLI_ASSOC);
 
-	echo "
+	$mar = $listado1->ConvierteMarca($row['IDmarca']);
+	echo "Mi marca".$mar['marca'];
+	//$alm = $listado1->ConvierteAlmace($row[IDAlmacen]);
+
+
+	echo "<div class='container'>
 		<div class='row'>
 			<div class='col-sm-4 col-lg-12'>
 			<div class='panel panel-default'>
@@ -25,16 +37,16 @@ function search()
 
 			<div class='panel-body'>
 			<div class='row'>
-			<div class='col-lg-6'>
+			<div class='col-md-12'>
 				<p><strong>Codigo:</strong> $row[IDproducto]</p>
 				<p><strong>Producto:</strong> $row[producto]</p>
 				<p><strong>Num. Serie:</strong> $row[numserie]</p>
-				<p><strong>Marca:</strong> $row[IDmarca]</p>
+				<p><strong>Marca:</strong> $mar[0]</p>
 				<p><strong>Modelo:</strong> $row[modelo]</p>
 				<p><strong>Descripcion:</strong> $row[descripcion]</p>
 				<p><strong>Observaciones:</strong> $row[obs]</p>
 			</div>
-			<div class='col-lg-6'>
+			<div class='col-md-12'>
 				<p><strong>Precio1:</strong> $row[precioVenta1]</p>
 				<p><strong>Precio2:</strong> $row[precioVenta2]</p>
 				<p><strong>Precio3:</strong> $row[precioVenta3]</p>
@@ -71,7 +83,7 @@ function search()
 				<p><strong>Margen 1:</strong> $row[marGanancia1]</p>
 				<p><strong>Margen 2:</strong> $row[marGanancia2]</p>
 				<p><strong>Margen 3:</strong> $row[marGanancia3]</p>
-				<p><strong>Almacen:</strong> $row[IDAlmacen]</p>
+				<p><strong>Almacen:</strong> $alm[0]</p>
 				<p><strong>Fecha Reg:</strong> $row[pro_fecRegistro]</p>
 				<p><strong>Personal:</strong> $row[IDPersonal]</p>
 				<p><strong>Num Parte:</strong> $row[parte]</p>
@@ -81,6 +93,7 @@ function search()
 			</div>
 			</div>
 		</div>
+	</div>
 	";
 
 }

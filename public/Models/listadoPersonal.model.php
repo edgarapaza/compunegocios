@@ -5,13 +5,12 @@ class ListadoPersonal extends Conexion{
 
 	public function Personal()
 	{
-		try {
+		$conexion = new Conexion();
+		$mysqli = $conexion->Conectarse();
 			$sql = "SELECT IDPersonal,CONCAT(nombres,' ', paterno,' ', materno) AS nombre,dni,direccion,telefono1,telefono2,obs,fecCreacion FROM Personal";
-			$data = $this->link->query($sql);
+			$data = 4$mysqli->query($sql);
 			return $data;
-		} catch (Exception $e) {
-			throw $e;
-		}
+
 	}
 }
 

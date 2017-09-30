@@ -1,15 +1,22 @@
 <?php
 require_once "Conexion.php";
 
-class NuevaSudFamilia extends Conexion
-{
+class NuevaSudFamilia{
+
+	private $con="";
+
+	function __construct(){
+		$conexion = new Conexion();
+		$this->con = $conexion->Conectarse();
+		return $this->con;
+	}
 
 	public function Duplicado($IDfamilia,$codigo,$subfamilia)
 	{
 
 		$sql       = "SELECT idsubfamilias FROM subfamilias WHERE codigo = '$codigo' AND subfamilia = '$subfamilia';";
 		echo $sql;
-		$resultado = $this->link->query($sql);
+		$resultado = $this->con->query($sql);
 		$data      = $resultado->fetch_array();
 		echo $data[0];
 
@@ -32,7 +39,7 @@ class NuevaSudFamilia extends Conexion
 
 		$sql = "INSERT INTO subfamilias (idsubfamilias,IDfamilia,codigo,subfamilia) VALUES (NULL, '$IDfamilia','$codigo','$subfamilia');";
 		echo $sql;
-		$this->link->query($sql);
+		$this->con->query($sql);
 	}
 
 }

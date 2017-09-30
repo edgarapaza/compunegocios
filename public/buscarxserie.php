@@ -8,26 +8,12 @@
 			display: none;
 		}
 	</style>
-
-	<script type="text/javascript">
-		$(function(){
-
-				$("#mostrar").on( "click", function() {
-					$('.target').show(); //muestro mediante clase
-				 });
-				$("#ocultar").on( "click", function() {
-					$('.target').hide(); //muestro mediante clase
-				});
-
-		});
-	</script>
-
+	<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
 	<script type="text/javascript" src="js/buscador.js"></script>
 
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
+			<div class="col-md-10">
 				<form action="" method="POST">
 					<legend>Buscar por Serie del Producto</legend>
 
@@ -39,10 +25,7 @@
 				</form>
 
 
-				<div id="result"></div>
-
-				<button type="button" class="btn btn-danger" id="mostrar">Mostrar +</button>
-				<button type="button" class="btn btn-default" id="ocultar">Ocultar +</button>
+				<div id="result" class="alert alert-info"></div>
 
 			</div>
 		</div>

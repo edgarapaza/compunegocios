@@ -103,7 +103,7 @@ footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', s
 </div>
 
 
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="vendor/jquery/jquery.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 

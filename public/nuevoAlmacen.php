@@ -3,8 +3,7 @@ session_start();
 $usuario = $_SESSION['administrador'];
 
 ?>
-
-
+	<script type="text/javascript" src="js/funcionalidad.js"></script>
       <div class="container-fluid">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -13,14 +12,14 @@ $usuario = $_SESSION['administrador'];
           <li class="breadcrumb-item active">Almacen</li>
         </ol>
 
-        <h1>Nuevo almacen</h1>
-		<form action="Controllers/nuevoAlmacen.controller.php" method="POST" class="form-horizontal" role="form">
+        <h1>Nuevo almacen</h1> <div id="respuesta" class="alert alert-info"></div>
+		<form action="" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">
 
 			</div>
 			<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $usuario;?>">
 			<div class="form-group">
-				<label for="inputTienda" class="col-sm-2 control-label">Tienda:</label>
+				<label for="inputTienda" class="col-sm-2 control-label" required="required">Tienda:</label>
 				<div class="col-sm-8">
 					<input type="text" name="tienda" id="inputTienda" class="form-control" required="required" placeholder="Nombre Tienda">
 				</div>
@@ -36,7 +35,7 @@ $usuario = $_SESSION['administrador'];
 			<div class="form-group">
 				<label for="inputDescripcion" class="col-sm-2 control-label">Ubicación:</label>
 				<div class="col-sm-8">
-					<input type="text" name="descripcion" id="inputDescripcion" class="form-control" placeholder="Lugar, Ubicacion, Descripcion">
+					<input type="text" name="descripcion" id="inputDescripcion" class="form-control" required="required" placeholder="Lugar, Ubicacion, Descripcion">
 				</div>
 			</div>
 
@@ -47,7 +46,7 @@ $usuario = $_SESSION['administrador'];
 					<input type="text" name="telefono" id="inputTelefono" class="form-control" required="required" placeholder="(051) - 9999999">
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary" id="btnalmacen">Guardar</button>
+			<button type="button" class="btn btn-primary" id="btnalmacen">Guardar</button>
 
 		</form>
 

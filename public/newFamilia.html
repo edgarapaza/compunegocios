@@ -1,71 +1,13 @@
 
 <div class="container-fluid">
 
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<form action="Controllers/nuevaFamilia.controller.php" method="POST" class="form-horizontal" role="form" id="formFamilia">
-			<div class="form-group">
-				<legend>Agregar Familia</legend>
-			</div>
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Lista de familias</h3>
 
-			<div class="form-group">
-				<label for="inputCodigo" class="col-sm-2 control-label">Codigo (3 letras):</label>
-				<div class="col-sm-4">
-
-					<input type="text" name="codigo" id="inputCodigo" class="form-control" required="required" placeholder="ABC">
-
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputFamilia" class="col-sm-2 control-label">Familia:</label>
-				<div class="col-sm-6">
-
-					<input type="text" name="familia" id="inputFamilia" class="form-control" required="required" placeholder="Familia">
-
-				</div>
-			</div>
-
-			<button type="submit" class="btn btn-primary" id="btnGuardarFamilia">Guardar</button>
-			<a href="#">Cancelar</a>
-		</form>
-
+		</div>
+		<div class="col-md-6">
+			<h3>Lista de Sub Familias</h3>
+		</div>
 	</div>
-	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-		<form action="Controllers/nuevaSubFamilia.controller.php" method="POST" class="form-horizontal" role="form" id="formFamilia">
-			<div class="form-group">
-				<legend>Agregar Sub Familia</legend>
-			</div>
-
-			<div class="form-group">
-				<label for="inputFamilia" class="col-sm-2 control-label">Familia a la que pertence:</label>
-				<div class="col-sm-4">
-					<select name="familia" id="inputFamilia" class="form-control" required="required">
-
-						<?php while ($listafamilia = $fams->fetch_array(MYSQLI_ASSOC)) { ?>
-						<option value="<?php echo $listafamilia['IDfamilia'];?>"><?php echo $listafamilia['familia'];?></option>
-						<?php } ?>
-					</select>
-				</div>
-
-			</div>
-
-			<div class="form-group">
-				<label for="inputCodigosub" class="col-sm-2 control-label">Codigo:</label>
-				<div class="col-sm-4">
-					<input type="text" name="codigosub" id="inputCodigosub" class="form-control" required="required" placeholder="Codigo 3 letras *">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputSubFamilia" class="col-sm-2 control-label">Nueva Sub Familia:</label>
-				<div class="col-sm-8">
-					<input type="text" name="subfamilia" id="inputSubFamilia" class="form-control" required="required" placeholder="sub familia">
-				</div>
-			</div>
-
-			<button type="submit" class="btn btn-primary" id="btnGuardarSubFamilia">Guardar</button>
-			<a href="#">Cancelar</a>
-		</form>
-	</div>
-
-
 </div>

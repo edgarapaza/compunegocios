@@ -1,9 +1,8 @@
 <?php
 require_once "Conexion.php";
 
-$conn = new Conexion();
-#echo $conn->link->host_info. " Dentro de la clase";
-
+	$conexion = new Conexion();
+	$mysqli = $conexion->Conectarse();
 
 $codigo  = $_REQUEST['micodigo'];
 $familia = $_REQUEST['mifam'];
