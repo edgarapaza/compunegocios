@@ -1,7 +1,7 @@
 <?php
 require_once "Conexion.php";
 
-class ListadoProductos extends Conexion
+class ListadoProductos
 {
 
 	private $con="";
@@ -12,65 +12,75 @@ class ListadoProductos extends Conexion
 		return $this->con;
 	}
 
-	function Productos(){
-		try {
-		$sql = "SELECT IDproducto,producto,IDproveedor,numFactura,fecEmision,numserie,IDFamilia,IDSubFam,IDmarca,modelo,tipoUnidad,tipArticulo,descripcion,preUnitario,marGanancia1,marGanancia2,marGanancia3,precioVenta1,precioVenta2,precioVenta3,cantidad,IDAlmacen,pro_color,pro_incluye,pro_fecRegistro,IDPersonal,estadoActivo,obs,parte FROM productos";
+	public function Productos(){
 
-			$data = $this->con->query($sql);
+		$sql = "SELECT * FROM productos";
 
-		} catch (Exception $e) {
-			throw $e;
+		if (!$this->con->query($sql)) {
+ 		  echo("Error description: " . mysqli_error($this->con));
 		}
 
+ 		$data = $this->con->query($sql);
+		return $data;
+
+		$this->con->close();
+
+	}
+
+	public function listaxSerie($serie){
+
+		$sql = "SELECT * FROM productos WHERE numserie = '". $serie ."'";
+
+		if (!$this->con->query($sql)) {
+ 		  echo("Error description: " . mysqli_error($this->con));
+		}
+
+ 		$data = $this->con->query($sql);
+		$this->con->close();
 		return $data;
 	}
 
-	function listaxSerie($serie){
-		try {
-			$sql = "SELECT IDproducto,codigo, producto,IDproveedor,numFactura,fecEmision,numserie,IDFamilia,IDSubFam,IDmarca,modelo,tipoUnidad,tipArticulo,descripcion,preUnitario,marGanancia1,marGanancia2,marGanancia3,precioVenta1,precioVenta2,precioVenta3,cantidad,IDAlmacen,pro_color,pro_incluye,pro_fecRegistro,IDPersonal,alertAmbar,alertRojo,estadoActivo,obs,parte FROM productos WHERE numserie = '". $serie ."'";
-			$data = $this->con->query($sql);
-		} catch (Exception $e) {
-			throw $e;
+	public function ConvierteMarca($marca){
+
+		$sql = "SELECT marca FROM marca WHERE idmarca = " . $marca;
+
+		if (!$this->con->query($sql)) {
+ 		  echo("Error description: " . mysqli_error($this->con));
 		}
 
-		return $data;
-	}
-
-	function ConvierteMarca($marca){
-		try {
-			$sql = "SELECT marca FROM marca WHERE idmarca = " . $marca;
-			$data = $this->con->query($sql);
-			$valor = $data->fetch_array();
-
-		} catch (Exception $e) {
-			throw $e;
-		}
+ 		$data = $this->con->query($sql);
+		$valor = $data->fetch_array();
 
 		return $valor;
+
+		$this->con->close();
 	}
 
-	function ConvierteAlmace($almacen){
-		try {
-			$sql = "SELECT tienda FROM tienda WHERE idtienda =" . $almacen;
-			$data = $this->con->query($sql);
-			$valor = $data->fetch_array();
-		} catch (Exception $e) {
-			throw $e;
+	public function ConvierteAlmace($almacen){
+
+		$sql = "SELECT tienda FROM tienda WHERE idtienda =" . $almacen;
+
+		if (!$this->con->query($sql)) {
+ 		  echo("Error description: " . mysqli_error($this->con));
 		}
 
+ 		$data = $this->con->query($sql);
+		$valor = $data->fetch_array();
+
 		return $valor;
+		$this->con->close();
 	}
 }
 
 /*
 $listado1 = new ListadoProductos();
-$mar = $listado1->ConvierteMarca(22);
+$mar = $listado1->ConvierteMarca(11);
 echo $mar[0];
 $dat = $listado1->Productos();
 while ($fila = $dat->fetch_array(MYSQLI_ASSOC)) {
 	echo $fila['producto'];
 }
-$data = $listado1->listaxSerie('884745754');
+$data = $listado1->listaxSerie('11');
 while ($fila = $data->fetch_array(MYSQLI_ASSOC)) {
 	echo $fila['IDproducto']."<br>";
 	echo $fila['producto']."<br>";
@@ -98,8 +108,6 @@ while ($fila = $data->fetch_array(MYSQLI_ASSOC)) {
 	echo $fila['pro_incluye']."<br>";
 	echo $fila['pro_fecRegistro']."<br>";
 	echo $fila['IDPersonal']."<br>";
-	echo $fila['alertAmbar']."<br>";
-	echo $fila['alertRojo']."<br>";
 	echo "Estado:".$fila['estadoActivo']."<br>";
 	echo $fila['obs']."<br>";
 	echo $fila['parte']."<br>";

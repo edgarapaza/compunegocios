@@ -104,153 +104,157 @@
 
 <body>
 
-    <div id="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div id="wrapper">
+                    <!-- Navigation -->
+                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Menu</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="inicio.html">Panel de Administracion</a>
+                        </div>
+                        <!-- /.navbar-header -->
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Menu</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="inicio.html">Panel de Administracion</a>
-            </div>
-            <!-- /.navbar-header -->
+                        <ul class="nav navbar-top-links navbar-right">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#"><i class="fa fa-user fa-fw"></i> Datos personal</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuraciones</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="Controllers/sesion_close.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Datos personal</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuraciones</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="Controllers/sesion_close.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                        <div class="navbar-default sidebar" role="navigation">
+                            <div class="sidebar-nav navbar-collapse">
+                                <ul class="nav" id="side-menu">
+                                    <li>
+                                        <a href="inicio.html"><i class="glyphicon glyphicon-hand-up active"></i> Panel de control</a>
+                                    </li>
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="inicio.html"><i class="glyphicon glyphicon-hand-up active"></i> Panel de control</a>
-                        </li>
+                                    <li>
+                                        <a href="#"><i class="glyphicon glyphicon-arrow-right"></i> Nuevas Entradas<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level">
+                                          <li>
+                                            <a href="#" id="proveedor"> Proveedor</a>
+                                          </li>
+                                          <li>
+                                            <a href="#" id="almacen">Almacen</a>
+                                          </li>
+                                          <li>
+                                            <a href="#" id="familias">Familias</a>
+                                          </li>
+                                          <li>
+                                            <a href="#" id="marca">Marca</a>
+                                          </li>
+                                          <li>
+                                            <a href="#" id="productos">Productos</a>
+                                          </li>
+                                        </ul>
+                                        <!-- /.nav-second-level -->
+                                    </li>
+                                    <li>
+                                        <a href="#" id="linkventas"><i class="glyphicon glyphicon-bookmark"></i> Ventas</a>
+                                    </li>
 
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-arrow-right"></i> Nuevas Entradas<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                              <li>
-                                <a href="#" id="proveedor"> Proveedor</a>
-                              </li>
-                              <li>
-                                <a href="#" id="almacen">Almacen</a>
-                              </li>
-                              <li>
-                                <a href="#" id="familias">Familias</a>
-                              </li>
-                              <li>
-                                <a href="#" id="marca">Marca</a>
-                              </li>
-                              <li>
-                                <a href="#" id="productos">Productos</a>
-                              </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#" id="linkventas"><i class="glyphicon glyphicon-bookmark"></i> Ventas</a>
-                        </li>
+                                    <li>
+                                        <a href="#" id="listas"><i class="glyphicon glyphicon-cloud"></i> Compras</a>
+                                    </li>
 
-                        <li>
-                            <a href="#" id="listas"><i class="glyphicon glyphicon-cloud"></i> Compras</a>
-                        </li>
+                                    <li>
+                                        <a href="#"><i class="glyphicon glyphicon-search"></i> Buscador<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level">
 
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-search"></i> Buscador<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                                            <li>
+                                                <a href="#" id="buscarserie">Buscar por Serie</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="buscarfamilias">Buscar por Familias</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="buscarmarca">Buscar por marca</a>
+                                            </li>
 
-                                <li>
-                                    <a href="#" id="buscarserie">Buscar por Serie</a>
-                                </li>
-                                <li>
-                                    <a href="#" id="buscarfamilias">Buscar por Familias</a>
-                                </li>
-                                <li>
-                                    <a href="#" id="buscarmarca">Buscar por marca</a>
-                                </li>
+                                        </ul>
+                                        <!-- /.nav-second-level -->
+                                    </li>
 
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                                    <li>
+                                        <a href="#"><i class="glyphicon glyphicon-list-alt"></i> Listado<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level">
 
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-list-alt"></i> Listado<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                                            <li>
+                                                <a href="#" id="linkproductos">Productos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="linkfamilias">Familias</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="linkmarcas">Marcas</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="linkpersonal">Personal</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="linkproveedor">Proveedor</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" id="linkalmacen">Almacen</a>
+                                            </li>
 
-                                <li>
-                                    <a href="#" id="linkproductos">Productos</a>
-                                </li>
-                                <li>
-                                    <a href="#" id="linkfamilias">Familias</a>
-                                </li>
-                                <li>
-                                    <a href="#" id="linkmarcas">Marcas</a>
-                                </li>
-                                <li>
-                                    <a href="#" id="linkpersonal">Personal</a>
-                                </li>
-                                <li>
-                                    <a href="#" id="linkproveedor">Proveedor</a>
-                                </li>
-                                <li>
-                                    <a href="#" id="linkalmacen">Almacen</a>
-                                </li>
+                                        </ul>
+                                        <!-- /.nav-second-level -->
+                                    </li>
 
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                                    <li>
+                                        <a href="#"><i class="glyphicon glyphicon-book"></i> Reportes<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level">
+                                            <li>
+                                                <a href="#">Reporte 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Reporte 2 <span class="fa arrow"></span></a>
+                                                <ul class="nav nav-third-level">
+                                                    <li>
+                                                        <a href="#">Por Categorias</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Por Fecha</a>
+                                                    </li>
 
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-book"></i> Reportes<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Reporte 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Reporte 2 <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Por Categorias</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Por Fecha</a>
-                                        </li>
+                                                </ul>
 
-                                    </ul>
+                                            </li>
+                                        </ul>
 
-                                </li>
-                            </ul>
+                                    </li>
 
-                        </li>
-
-                    </ul>
+                                </ul>
+                            </div>
+                            <!-- /.sidebar-collapse -->
+                        </div>
+                        <!-- /.navbar-static-side -->
+                    </nav>
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+        </div>
 
-
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="page-wrapper">
                     <h1 class="page-header">Software de Control <small>compunegocios.com</small></h1>
                     <img src="img/logo.png" width="50%"><br>
                     <strong><em>Desarrollador por: Corporación DIGI-ARCH Peru.2017</em></strong><br>
@@ -258,10 +262,8 @@
                 </div>
             </div>
         </div>
+
     </div>
-
-
-
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

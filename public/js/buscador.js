@@ -2,21 +2,21 @@ $(document).ready(function(){
 
 	$('#serie').focus();
 
-	$('#serie').on('keyup', function(){
-		var serie = $('#serie').val();
+	$('#serie').on("keyup", function(){
+		var serie = $("#serie").val();
 
 		$.ajax({
-			type: 'POST',
-			url: "../Models/search.php",
 			data: {'serie': serie},
+			type: 'POST',
+			url: '../Models/search.php',
 			beforeSend: function(){
-				$('#result').html('<img src="img/loading-2.gif">');
+				$('#result').html("<img src='../img/loading.gif'>");
 			},
-			success: function(resultado) {
-				$('#result').html(resultado);
+			success: function(response) {
+				$('#result').html(response);
 			},
 			error: function(){
-				console.log("Articulo no Encontrado");
+				$('#result').html("Producto no encontrado... ");
 			}
 		});
 

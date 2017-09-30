@@ -1,96 +1,188 @@
 <?php
-require "listadoProductos.class.php";
 require_once "Conexion.php";
+require_once "listadoProductos.class.php";
 
-$conexion = new Conexion();
-$mysqli = $conexion->Conectarse();
-
-$listado1 = new ListadoProductos();
-
-if(!isset($_GET['serie'])) exit('No se recibio el valor a buscar');
-
-require_once 'conexion.ajax.php';
+if(!isset($_POST['serie'])) exit('No se recibio el valor a buscar');
 
 function search()
 {
-	$mysqli = new Conexion();
+	$conexion = new Conexion();
+	$listado1 = new ListadoProductos();
 
-	$serie = $mysqli->real_escape_string($_GET['serie']);
+	$link = $conexion->Conectarse();
 
+	$serie = $_POST['serie'];
 
-	$sql = "SELECT IDproducto,producto,IDproveedor,numFactura,fecEmision,numserie,IDFamilia,IDSubFam,IDmarca,modelo,tipoUnidad,tipArticulo,descripcion,preUnitario,marGanancia1,marGanancia2,marGanancia3,precioVenta1,precioVenta2,precioVenta3,cantidad,IDAlmacen,pro_color,pro_incluye,pro_fecRegistro,IDPersonal,estadoActivo,obs,parte,codigo FROM productos WHERE numserie = '". $serie ."' LIMIT 1";
-	$res = $mysqli->query($sql);
-	$row = $res->fetch_array(MYSQLI_ASSOC);
+	$sql = "SELECT * FROM productos WHERE numserie = '". $serie ."' LIMIT 1";
+	$res = $link->query($sql);
+	$row = $res->fetch_array();
 
 	$mar = $listado1->ConvierteMarca($row['IDmarca']);
-	echo "Mi marca".$mar['marca'];
-	//$alm = $listado1->ConvierteAlmace($row[IDAlmacen]);
+
+	$alm = $listado1->ConvierteAlmace($row[IDAlmacen]);
 
 
-	echo "<div class='container'>
-		<div class='row'>
-			<div class='col-sm-4 col-lg-12'>
-			<div class='panel panel-default'>
-			<div class='panel-heading'>
-			<i class='fa fa-server'></i> Datos del producto
-			</div>
+	echo "
+	<style type='text/css'>
+	table{
+		font-size: 1.5em;
+		}
+	</style>
+	<div class='container'>
+    	<div class='row'>
+      		<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
+				<h3>Buscador</h3>
+      		</div>
+      	</div>
 
-			<div class='panel-body'>
-			<div class='row'>
-			<div class='col-md-12'>
-				<p><strong>Codigo:</strong> $row[IDproducto]</p>
-				<p><strong>Producto:</strong> $row[producto]</p>
-				<p><strong>Num. Serie:</strong> $row[numserie]</p>
-				<p><strong>Marca:</strong> $mar[0]</p>
-				<p><strong>Modelo:</strong> $row[modelo]</p>
-				<p><strong>Descripcion:</strong> $row[descripcion]</p>
-				<p><strong>Observaciones:</strong> $row[obs]</p>
-			</div>
-			<div class='col-md-12'>
-				<p><strong>Precio1:</strong> $row[precioVenta1]</p>
-				<p><strong>Precio2:</strong> $row[precioVenta2]</p>
-				<p><strong>Precio3:</strong> $row[precioVenta3]</p>
-				<p><strong>Cantidad:</strong> $row[cantidad]</p>
-				<p><strong>Color:</strong> $row[pro_color]</p>
-				<p><strong>Incluye:</strong> $row[pro_incluye]</p>
-				<p><strong>Estado:</strong> $row[estadoActivo]</p>
-			</div>
-			</div>
-			</div>
-			</div>
-			</div>
-		</div>
+    	<div class='row'>
+      		<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
+      			<table class='table table-striped'>
+      				<thead>
+      					<th>Item</th>
+      					<th>Datos</th>
+      				</thead>
+      				<tbody>
+      					<tr>
+      						<td>Codigo:</td>
+							<td>$row[IDproducto]</td>
+      					</tr>
+      					<tr>
+							<td>Producto:</td>
+							<td>$row[producto]</td>
+      					</tr>
+      					<tr>
+							<td>Num. Serie:</td>
+							<td>$row[numserie]</td>
+      					</tr>
+      					<tr>
+      						<td>Marca:</td>
+							<td>$mar[0]</td>
+      					</tr>
+      					<tr>
+							<td>Modelo:</td>
+							<td>$row[modelo]</td>
+      					</tr>
+      					<tr>
+							<td>Descripcion:</td>
+							<td>$row[descripcion]</td>
+      					</tr>
+      					<tr>
+							<td>Observaciones:</td>
+							<td>$row[obs]</td>
+      					</tr>
+      					<tr>
+							<td>Precio1:</td>
+							<td>$row[precioVenta1]</td>
+      					</tr>
+      					<tr>
+							<td>Precio2:</td>
+							<td>$row[precioVenta2]</td>
+      					</tr>
+      					<tr>
+							<td>Precio3:</td>
+							<td>$row[precioVenta3]</td>
+      					</tr>
+      					<tr>
+							<td>Cantidad:</td>
+							<td>$row[cantidad]</td>
+      					</tr>
+      					<tr>
+      						<td>Color:</td>
+							<td>$row[pro_color]</td>
+      					</tr>
+      					<tr>
+      						<td>Incluye:</td>
+							<td>$row[pro_incluye]</td>
+      					</tr>
+      					<tr>
+      						<td>Estado:</td>
+							<td>$row[estadoActivo]</td>
+      					</tr>
+      				</tbody>
+      			</table>
 
-		<div class='row target'>
-			<div class='col-sm-4 col-lg-12'>
-			<div class='panel panel-default'>
-			<div class='panel-heading'>
-			<i class='fa fa-server'></i> Datos Adicionales
 			</div>
+			<script type='text/javascript'>
+				$(document).ready(function(){
+					$('#target').hide();
 
-			<div class='panel-body'>
-			<div class='row'>
-			<div class='col-lg-6'>
-				<p><strong>Proveedor:</strong> $row[IDproveedor]</p>
-				<p><strong>Num. Factura:</strong> $row[numFactura]</p>
-				<p><strong>Fecha Emision:</strong> $row[fecEmision]</p>
-				<p><strong>Familia:</strong> $row[IDFamilia]</p>
-				<p><strong>Sub Familia:</strong> $row[IDSubFam]</p>
-				<p><strong>Unidad:</strong> $row[tipoUnidad]</p>
-				<p><strong>Articulo:</strong> $row[tipArticulo]</p>
-			</div>
-			<div class='col-lg-6'>
-				<p><strong>Margen 1:</strong> $row[marGanancia1]</p>
-				<p><strong>Margen 2:</strong> $row[marGanancia2]</p>
-				<p><strong>Margen 3:</strong> $row[marGanancia3]</p>
-				<p><strong>Almacen:</strong> $alm[0]</p>
-				<p><strong>Fecha Reg:</strong> $row[pro_fecRegistro]</p>
-				<p><strong>Personal:</strong> $row[IDPersonal]</p>
-				<p><strong>Num Parte:</strong> $row[parte]</p>
-			</div>
-			</div>
-			</div>
-			</div>
+					$('#mostrar').on('click', function() {
+						$('#target').show();
+					 });
+					$('#ocultar').on('click', function() {
+						$('#target').hide(); //oculto mediante id
+					});
+				});
+			</script>
+			<button type='button' class='btn btn-success' id='mostrar'>Mostrar Adicionales</button>
+			<button type='button' class='btn btn-danger' id='ocultar'>Ocultar Adicionales</button>
+			<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6 ' id='target'>
+				<table class='table table-striped'>
+      				<thead>
+      					<th>Item</th>
+      					<th>Datos</th>
+      				</thead>
+      				<tbody>
+      					<tr>
+      						<td>Proveedor:</td>
+							<td>$row[IDproveedor]</td>
+      					</tr>
+      					<tr>
+							<td>Num. Factura:</td>
+							<td>$row[numFactura]</td>
+      					</tr>
+      					<tr>
+							<td>Fecha Emision:</td>
+							<td>$row[fecEmision]</td>
+      					</tr>
+      					<tr>
+      						<td>Familia:</td>
+							<td>$row[IDFamilia]</td>
+      					</tr>
+      					<tr>
+							<td>Sub Familia:</td>
+							<td>$row[IDSubFam]</td>
+      					</tr>
+      					<tr>
+							<td>Unidad:</td>
+							<td>$row[tipoUnidad]</td>
+      					</tr>
+      					<tr>
+							<td>Articulo:</td>
+							<td>$row[tipArticulo]</td>
+      					</tr>
+      					<tr>
+							<td>Margen 1:</td>
+							<td>$row[marGanancia1]</td>
+      					</tr>
+      					<tr>
+							<td>Margen 2:</td>
+							<td>$row[marGanancia2]</td>
+      					</tr>
+      					<tr>
+							<td>Margen 3:</td>
+							<td>$row[marGanancia3]</td>
+      					</tr>
+      					<tr>
+							<td>Almacen:</td>
+							<td>$alm[0]</td>
+      					</tr>
+      					<tr>
+      						<td>Fecha Reg:</td>
+							<td>$row[pro_fecRegistro]</td>
+      					</tr>
+      					<tr>
+      						<td>Personal:</td>
+							<td>$row[IDPersonal]</td>
+      					</tr>
+      					<tr>
+      						<td>Num Parte:</td>
+							<td>$row[parte]</td>
+      					</tr>
+      				</tbody>
+      			</table>
+
 			</div>
 		</div>
 	</div>

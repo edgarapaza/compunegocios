@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">
-				<form action="" method="POST">
+				<form action="" method="post">
 					<legend>Buscar por Serie del Producto</legend>
 
 					<div class="form-group">
@@ -23,10 +23,7 @@
 					</div>
 
 				</form>
-
-
-				<div id="result" class="alert alert-info"></div>
-
+				<div id="result"></div>
 			</div>
 		</div>
 	</div>

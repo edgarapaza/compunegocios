@@ -21,8 +21,7 @@ $personal = $_SESSION['administrador'];
 	$codigo = "CN-". $next;
 
 ?>
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css">
-	<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+
 	<script type="text/javascript">
 
 		$(document).ready(function(){
@@ -148,7 +147,7 @@ $personal = $_SESSION['administrador'];
 		});
 	</script>
 
-<div class="container">
+<div class="container-fluid">
 	<div id="row">
 		<div class="col-md-8">
 			<form action="" method="POST" class="form-horizontal" role="form" id="formulario">
