@@ -1,23 +1,26 @@
 <?php
-require_once "../Models/nuevaSubFamilia.class.php";
+require_once("../Models/nuevaFamilia.model.php");
 
+$idfamilia = $_POST['codigo'];
+$datos = explode("#",$idfamilia);
 
-$IDfamilia  = $_REQUEST['familia'];
-$codigo     = trim(ucfirst(strtolower($_REQUEST['codigosub'])));
-$subfamilia = trim(ucfirst(strtolower($_REQUEST['subfamilia'])));
+//echo $datos[1];
+$subfam = new Nuevafamilia();
+$lista = $subfam->MostrarSubfamilia($datos[1]);
 
-echo $IDfamilia;
-echo $codigo;
-echo $subfamilia;
+echo "<table class='table table-striped bg-info'>
+	<tr>
+		<th>Codigo</th>
+		<th>Sub Familia</th>
+	</tr>";
+	while ($fila = $lista->fetch_array(MYSQLI_ASSOC)) {
+		echo "
+		<tr>
+			<td>".$fila[codigo]."</td>
+			<td>".$fila[subfamilia]."</td>
+		</tr>";
+	}
+echo "</table>";
 
-$newsubfamilia = new NuevaSudFamilia();
-$res = $newsubfamilia->Duplicado($IDfamilia, $codigo, $subfamilia);
-
-
-
-if($res > 0){
-	header("Location: ../landing.php?msg=Duplicado");
-}else{
-	header("Location: ../landing.php?msg=Guardado exitosamente");
-}
 ?>
+

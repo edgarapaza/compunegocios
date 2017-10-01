@@ -1,26 +1,15 @@
 <?php
-require_once "Conexion.php";
-require_once "listadoProductos.class.php";
+require_once("../Models/listadoProductos.class.php");
 
 if(!isset($_POST['serie'])) exit('No se recibio el valor a buscar');
 
 function search()
 {
-	$conexion = new Conexion();
-	$listado1 = new ListadoProductos();
+      $serie = $_POST['serie'];
+      $listado1 = new ListadoProductos();
+      $dat = $listado1->listaxSerie($serie);
 
-	$link = $conexion->Conectarse();
-
-	$serie = $_POST['serie'];
-
-	$sql = "SELECT * FROM productos WHERE numserie = '". $serie ."' LIMIT 1";
-	$res = $link->query($sql);
-	$row = $res->fetch_array();
-
-	$mar = $listado1->ConvierteMarca($row['IDmarca']);
-
-	$alm = $listado1->ConvierteAlmace($row[IDAlmacen]);
-
+	$row = $dat->fetch_array(MYSQLI_ASSOC);
 
 	echo "
 	<style type='text/css'>
@@ -57,7 +46,7 @@ function search()
       					</tr>
       					<tr>
       						<td>Marca:</td>
-							<td>$mar[0]</td>
+							<td>$row[marca]</td>
       					</tr>
       					<tr>
 							<td>Modelo:</td>
@@ -73,15 +62,15 @@ function search()
       					</tr>
       					<tr>
 							<td>Precio1:</td>
-							<td>$row[precioVenta1]</td>
+							<td>S/. $row[precioVenta1]</td>
       					</tr>
       					<tr>
 							<td>Precio2:</td>
-							<td>$row[precioVenta2]</td>
+							<td>S/. $row[precioVenta2]</td>
       					</tr>
       					<tr>
 							<td>Precio3:</td>
-							<td>$row[precioVenta3]</td>
+							<td>S/. $row[precioVenta3]</td>
       					</tr>
       					<tr>
 							<td>Cantidad:</td>
@@ -126,7 +115,7 @@ function search()
       				<tbody>
       					<tr>
       						<td>Proveedor:</td>
-							<td>$row[IDproveedor]</td>
+							<td>$row[razonSocial]</td>
       					</tr>
       					<tr>
 							<td>Num. Factura:</td>
@@ -138,15 +127,15 @@ function search()
       					</tr>
       					<tr>
       						<td>Familia:</td>
-							<td>$row[IDFamilia]</td>
+							<td>$row[familia]</td>
       					</tr>
       					<tr>
 							<td>Sub Familia:</td>
-							<td>$row[IDSubFam]</td>
+							<td></td>
       					</tr>
       					<tr>
 							<td>Unidad:</td>
-							<td>$row[tipoUnidad]</td>
+							<td>$row[unidadMedida]</td>
       					</tr>
       					<tr>
 							<td>Articulo:</td>
@@ -154,27 +143,27 @@ function search()
       					</tr>
       					<tr>
 							<td>Margen 1:</td>
-							<td>$row[marGanancia1]</td>
+							<td>$row[marGanancia1] %</td>
       					</tr>
       					<tr>
 							<td>Margen 2:</td>
-							<td>$row[marGanancia2]</td>
+							<td>$row[marGanancia2] %</td>
       					</tr>
       					<tr>
 							<td>Margen 3:</td>
-							<td>$row[marGanancia3]</td>
+							<td>$row[marGanancia3] %</td>
       					</tr>
       					<tr>
 							<td>Almacen:</td>
-							<td>$alm[0]</td>
+							<td>$row[tienda]</td>
       					</tr>
       					<tr>
       						<td>Fecha Reg:</td>
-							<td>$row[pro_fecRegistro]</td>
+							<td></td>
       					</tr>
       					<tr>
       						<td>Personal:</td>
-							<td>$row[IDPersonal]</td>
+							<td>$row[empleado]</td>
       					</tr>
       					<tr>
       						<td>Num Parte:</td>

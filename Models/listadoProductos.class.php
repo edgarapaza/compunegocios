@@ -14,7 +14,7 @@ class ListadoProductos
 
 	public function Productos(){
 
-		$sql = "SELECT * FROM productos";
+		$sql = "SELECT p.IDproducto, p.codigo, p.producto, pv.razonSocial, p.numFactura, p.fecEmision,p.numserie,f.familia, m.marca, p.modelo, u.unidadMedida, p.tipArticulo, p.descripcion,p.preUnitario, p.marGanancia1, p.marGanancia2, p.marGanancia3, p.precioVenta1, p.precioVenta2, p.precioVenta3,p.cantidad, t.tienda, p.pro_color, p.pro_incluye, CONCAT(per.nombres,' ',per.paterno,' ',per.materno) as empleado,p.estadoActivo, p.obs, p.parte FROM productos as p, proveedor as pv, familia as f, marca as m, unidad as u, tienda as t, Personal as per WHERE p.IDproveedor = pv.idproveedor AND p.IDFamilia = f.IDfamilia AND p.IDmarca = m.idmarca AND p.tipoUnidad = u.idunidad AND p.IDPersonal = per.IDPersonal;";
 
 		if (!$this->con->query($sql)) {
  		  echo("Error description: " . mysqli_error($this->con));
@@ -29,70 +29,32 @@ class ListadoProductos
 
 	public function listaxSerie($serie){
 
-		$sql = "SELECT * FROM productos WHERE numserie = '". $serie ."'";
+		$sql = "SELECT p.IDproducto, p.codigo, p.producto, pv.razonSocial, p.numFactura, p.fecEmision,p.numserie,f.familia, m.marca, p.modelo, u.unidadMedida, p.tipArticulo, p.descripcion,p.preUnitario, p.marGanancia1, p.marGanancia2, p.marGanancia3, p.precioVenta1, p.precioVenta2, p.precioVenta3,p.cantidad, t.tienda, p.pro_color, p.pro_incluye, CONCAT(per.nombres,' ',per.paterno,' ',per.materno) as empleado,p.estadoActivo, p.obs, p.parte FROM productos as p, proveedor as pv, familia as f, marca as m, unidad as u, tienda as t, Personal as per WHERE p.IDproveedor = pv.idproveedor AND p.IDFamilia = f.IDfamilia AND p.IDmarca = m.idmarca AND p.tipoUnidad = u.idunidad AND p.IDPersonal = per.IDPersonal AND p.numserie = ". $serie ;
 
 		if (!$this->con->query($sql)) {
  		  echo("Error description: " . mysqli_error($this->con));
 		}
 
  		$data = $this->con->query($sql);
-		$this->con->close();
 		return $data;
-	}
-
-	public function ConvierteMarca($marca){
-
-		$sql = "SELECT marca FROM marca WHERE idmarca = " . $marca;
-
-		if (!$this->con->query($sql)) {
- 		  echo("Error description: " . mysqli_error($this->con));
-		}
-
- 		$data = $this->con->query($sql);
-		$valor = $data->fetch_array();
-
-		return $valor;
-
-		$this->con->close();
-	}
-
-	public function ConvierteAlmace($almacen){
-
-		$sql = "SELECT tienda FROM tienda WHERE idtienda =" . $almacen;
-
-		if (!$this->con->query($sql)) {
- 		  echo("Error description: " . mysqli_error($this->con));
-		}
-
- 		$data = $this->con->query($sql);
-		$valor = $data->fetch_array();
-
-		return $valor;
 		$this->con->close();
 	}
 }
 
 /*
 $listado1 = new ListadoProductos();
-$mar = $listado1->ConvierteMarca(11);
-echo $mar[0];
-$dat = $listado1->Productos();
+$dat = $listado1->listaxSerie('314654214');
 while ($fila = $dat->fetch_array(MYSQLI_ASSOC)) {
-	echo $fila['producto'];
-}
-$data = $listado1->listaxSerie('11');
-while ($fila = $data->fetch_array(MYSQLI_ASSOC)) {
 	echo $fila['IDproducto']."<br>";
 	echo $fila['producto']."<br>";
-	echo $fila['IDproveedor']."<br>";
+	echo $fila['razonSocial']."<br>";
 	echo $fila['numFactura']."<br>";
 	echo $fila['fecEmision']."<br>";
 	echo $fila['numserie']."<br>";
-	echo $fila['IDFamilia']."<br>";
-	echo $fila['IDSubFam']."<br>";
-	echo $fila['IDmarca']."<br>";
+	echo $fila['familia']."<br>";
+	echo $fila['marca']."<br>";
 	echo $fila['modelo']."<br>";
-	echo $fila['tipoUnidad']."<br>";
+	echo $fila['unidadMedida']."<br>";
 	echo $fila['tipArticulo']."<br>";
 	echo $fila['descripcion']."<br>";
 	echo $fila['preUnitario']."<br>";
@@ -103,15 +65,13 @@ while ($fila = $data->fetch_array(MYSQLI_ASSOC)) {
 	echo $fila['precioVenta2']."<br>";
 	echo $fila['precioVenta3']."<br>";
 	echo $fila['cantidad']."<br>";
-	echo $fila['IDAlmacen']."<br>";
+	echo $fila['tienda']."<br>";
 	echo $fila['pro_color']."<br>";
 	echo $fila['pro_incluye']."<br>";
-	echo $fila['pro_fecRegistro']."<br>";
-	echo $fila['IDPersonal']."<br>";
+	echo $fila['empleado']."<br>";
 	echo "Estado:".$fila['estadoActivo']."<br>";
 	echo $fila['obs']."<br>";
 	echo $fila['parte']."<br>";
 }
 */
-
 ?>

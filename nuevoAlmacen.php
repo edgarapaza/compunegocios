@@ -5,13 +5,6 @@ $usuario = $_SESSION['administrador'];
 ?>
 	<script type="text/javascript" src="js/funcionalidad.js"></script>
       <div class="container-fluid">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Registro</a>
-          </li>
-          <li class="breadcrumb-item active">Almacen</li>
-        </ol>
-
         <h1>Nuevo almacen</h1> <div id="respuesta" class="alert alert-info"></div>
 		<form action="" method="POST" class="form-horizontal" role="form">
 			<div class="form-group">

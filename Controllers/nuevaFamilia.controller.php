@@ -1,15 +1,10 @@
 <?php
-require_once "../Models/nuevaFamilia.class.php";
-$newFamilia = new NuevaFamilia();
+require_once "../Models/nuevaFamilia.model.php";
+$fam = new Nuevafamilia();
 
-$codigo  = trim(ucfirst(strtolower($_REQUEST['codigo'])));
-$familia = trim(ucfirst(strtolower($_REQUEST['familia'])));
+$codigo  = trim(strtoupper($_POST['codigo']));
+$familia = trim(strtoupper($_POST['familia']));
 
-$res = $newFamilia->Duplicado($codigo,$familia);
+$fam->AddFamilia($codigo,$familia);
 
-if($res > 0){
-	header("Location: ../landing.php?msg=Duplicado");
-}else{
-	header("Location: ../landing.php?msg=Guardado exitosamente");
-}
 ?>

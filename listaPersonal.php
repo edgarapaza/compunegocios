@@ -1,14 +1,14 @@
 <?php
-require_once "../public/Models/listadoPersonal.model.php";
+require_once "Models/listadoPersonal.model.php";
 $listaPersonal = new ListadoPersonal();
 $data = $listaPersonal->Personal();
 
 ?>
 <div class="container">
 	<div class='row'>
-	    <div class='col-sm-4 col-lg-12'>
+	    <div class='col-sm-12 col-md-11'>
 	    	<h2>Personal</h2>
-			<table class="table table-bordered table-hover table-striped">
+			<table class="table table-hover table-striped">
 				<thead>
 					<tr class="success">
 						<th>Cod. Per.</th>
@@ -33,7 +33,9 @@ $data = $listaPersonal->Personal();
 						<td><?php echo $fila[5]; ?></td>
 						<td><?php echo $fila[6]; ?></td>
 						<td><?php echo $fila[7]; ?></td>
-						<td><?php echo $fila[8]; ?></td>
+						<td>
+							<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+						</td>
 					</tr>
 					<?php } ?>
 				</tbody>

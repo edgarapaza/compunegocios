@@ -1,12 +1,12 @@
 <?php
-require_once "../public/Models/listadoProveedor.model.php";
+require_once "Models/listadoProveedor.model.php";
 $listaProveedor = new ListadoProveedor();
 $data = $listaProveedor->Proveedor();
 
 ?>
 <div class="container">
 	<div class='row'>
-	    <div class='col-sm-4 col-lg-12'>
+	    <div class='col-sm-12 col-md-11'>
 	    	<h2>Proveedor</h2>
 			<table class="table table-bordered table-hover table-striped">
 				<thead>

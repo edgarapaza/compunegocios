@@ -26,6 +26,25 @@ $personal = $_SESSION['administrador'];
 
 		$(document).ready(function(){
 
+			$("#inputFamilia").on("change",function(){
+				var codfamilia = $("#inputFamilia").val();
+
+				$.ajax({
+					data : {"codfamilia":codfamilia},
+					type : 'POST',
+					url  : 'Controllers/selectSubfamilia.controller.php',
+					beforeSend: function(){
+						$('#mio').html("<img src='./img/loading.gif'>");
+					},
+					success: function(response){
+						document.getElementById('mio').innerHTML = response;
+					},
+					error: function(){
+						$("#mio").html("Error en la Consulta a la tabla");
+					}
+				});
+			});
+
 			$("#btnCalcular").click(function(){
 				var precio = $("#inputPrecioUnitario").val();
 				var margen1 = $("#inputMargenGanancia1").val();
@@ -150,19 +169,11 @@ $personal = $_SESSION['administrador'];
 <div class="container-fluid">
 	<div id="row">
 		<div class="col-md-8">
+			<div id="resultado"></div>
 			<form action="" method="POST" class="form-horizontal" role="form" id="formulario">
-
 				<div class="form-group row">
-					<div class="col-sm-10">
-						<button type="button" id="btnRegistrar" class="btn btn-lg btn-primary">Guardar</button>
-						<a href="inicio.html">Cancelar</a>
-						<div id="resultado"></div>
-					</div>
+					<legend>Registro de Productos</legend>
 				</div>
-
-					<div class="form-group row">
-						<legend>Registro de Productos</legend>
-					</div>
 
 				<input type="hidden" name="idpersonal" id="idpersonal" value="1001">
 				<input type="text" readonly="readonly" name="codigo" id="idcodigo" value="<?php echo $codigo; ?>" >
@@ -209,12 +220,19 @@ $personal = $_SESSION['administrador'];
 						<input type="text" name="numparte" id="inputNumparte" class="form-control" required="required" placeholder="Parte">
 					</div>
 				</div>
+				<script type="text/javascript">
+					$(document).ready(function(){
+
+
+					});
+				</script>
+
 
 				<div class="form-group row">
 					<label for="inputFamilia" class="col-sm-3 col-form-label">*Familia:</label>
 					<div class="col-sm-8">
 						<select name="familia" id="inputFamilia" class="form-control" required="required">
-
+							<option value="0">Seleccione</option>
 							<?php while ($listafamilia = $familia->fetch_array(MYSQLI_ASSOC)) { ?>
 							<option value="<?php echo $listafamilia['IDfamilia'];?>"><?php echo $listafamilia['familia'];?></option>
 							<?php } ?>
@@ -226,10 +244,7 @@ $personal = $_SESSION['administrador'];
 				<div class="form-group row">
 					<label for="inputSubfamilia" class="col-sm-3 col-form-label">Subfamilia:</label>
 					<div class="col-sm-8">
-						<select name="subfamilia" id="inputSubfamilia" class="form-control" required="required">
-							<?php while ($listaSubFam = $subfam->fetch_array(MYSQLI_ASSOC)) { ?>
-							<option value="<?php  echo $listaSubFam['idsubfamilias'];?>"><?php  echo $listaSubFam['subfamilia'];?></option>
-							<?php } ?>
+							<div id="mio"></div>
 						</select>
 					</div>
 
@@ -356,6 +371,8 @@ $personal = $_SESSION['administrador'];
 						<input type="text" name="observaciones" id="inputObservaciones" class="form-control">
 					</div>
 				</div>
+
+				<button type="button" id="btnRegistrar" class="btn btn-lg btn-primary">Guardar</button>
 			</form>
 		</div>
 
