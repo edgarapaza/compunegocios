@@ -1,39 +1,43 @@
 $(document).ready(function(){
 
-	$("#btnalmacen").click(function(){
-		var personal = $("#idpersonal").val();
-		var tienda = $("#inputTienda").val();
+	$("#btnNuevocliente").click(function(e){
+		e.preventDefault();
+
+		var nombres   = $("#inputNombres").val();
+		var apellidos = $("#inputApellidos").val();
+		var dni       = $("#inputDni").val();
 		var direccion = $("#inputDireccion").val();
-		var ubicacion = $("#inputDescripcion").val();
-		var telefono = $("#inputTelefono").val();
-		if(personal == ""){
-			personal = '1001';
-		}
+		var telefono  = $("#inputTelefono").val();
+		var fecnac    = $("#inputFechaNac").val();
+		var email     = $("#inputEmail").val();
 
-		var lista = {
-			"personal" : personal,
-			"tienda"   : tienda,
-			"direccion": direccion,
-			"ubicacion": ubicacion,
-			"telefono" : telefono
+		var parametros = {
+			"nombres"	: nombres,
+			"apellidos" : apellidos,
+			"dni" 		: dni,
+			"direccion" : direccion,
+			"telefono" 	: telefono,
+			"fecnac" : fecnac,
+			"email" 	: email
 		};
-
 		$.ajax({
-			data: lista,
-			url: '../Controllers/nuevoAlmacen.controller.php',
-			type: 'POST',
+			data : parametros,
+			type : "POST",
+			url  : "../Controllers/cliente.controller.php",
 			beforeSend: function(){
-				$("#respuesta").html = "Procesando datos ... Espere";
+				$("#result").html("Cargando...");
 			},
-			success: function(response){
-				$("#respuesta").html(response);
+			success:  function(data){
+				$("#result").html(data);
+				document.getElementById("form-cliente")[0].reset();
 			},
 			error: function(response){
-				$("#respuesta").html("Error" + response);
+				$("#result").html("Error guardando" + response);
+				document.getElementById("form-cliente")[0].reset();
 			}
 		});
 
+		return false;
 	});
-
 
 });

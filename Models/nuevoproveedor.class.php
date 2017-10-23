@@ -1,8 +1,6 @@
 <?php
 require_once "Conexion.php";
-/**
-*
-*/
+
 class Proveedor{
 
 	private $con="";
@@ -39,10 +37,8 @@ class Proveedor{
 
 	public function Duplicado($data)
 	{
-
-		try {
-				$datos = unserialize(serialize($data));
-				#echo "Numero de RUC: ".$datos['numruc'];
+			$datos = unserialize(serialize($data));
+			#echo "Numero de RUC: ".$datos['numruc'];
 
 			$rpta = $this->con->query($sql);
 			$registros = $rpta->num_rows;
@@ -51,13 +47,6 @@ class Proveedor{
 			}else{
 				$this::AddProveedor($data);
 			}
-
-		} catch (Exception $e) {
-			throw $e;
-
-		}
 	}
 }
-
-
 ?>

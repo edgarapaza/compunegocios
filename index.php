@@ -1,8 +1,8 @@
 <?php include_once "header.php"; ?>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 				<form action="Controllers/login.controller.php" method="POST" class="form-horizontal" role="form">
 
@@ -26,7 +26,7 @@
 
 
 					<div class="form-group">
-						<div class="col-sm-10 col-sm-offset-2">
+						<div class="col-sm-10 col-sm-offset-2 ">
 							<button type="submit" class="btn btn-primary" id="btnIngreso">Ingresar</button>
 						</div>
 					</div>

@@ -16,4 +16,6 @@ $data = array(
 $proveedor = new Proveedor();
 $proveedor->Duplicado($data);
 
+header("Location: ../inicio.html");
+
 ?>

@@ -1,46 +1,56 @@
 <?php
 session_start();
 $usuario = $_SESSION['administrador'];
-
 ?>
-	<script type="text/javascript" src="js/funcionalidad.js"></script>
-      <div class="container-fluid">
-        <h1>Nuevo almacen</h1> <div id="respuesta" class="alert alert-info"></div>
-		<form action="" method="POST" class="form-horizontal" role="form">
-			<div class="form-group">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			<h1>Nuevo almacen</h1>
+			<div id="respuesta"></div>
+			<form action="Controllers/nuevoAlmacen.controller.php" method="POST" class="form-horizontal" role="form">
 
-			</div>
-			<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $usuario;?>">
-			<div class="form-group">
-				<label for="inputTienda" class="col-sm-2 control-label" required="required">Tienda:</label>
-				<div class="col-sm-8">
+				<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $usuario;?>">
+				<div class="form-group">
+					<div class="col-sm-1">
+					<label for="inputTienda">Tienda:</label>
+					</div>
+					<div class="col-sm-8">
 					<input type="text" name="tienda" id="inputTienda" class="form-control" required="required" placeholder="Nombre Tienda">
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<label for="inputDireccion" class="col-sm-2 control-label">Direccion:</label>
-				<div class="col-sm-8">
+				<div class="form-group">
+					<div class="col-sm-1">
+					<label for="">Direccion:</label>
+					</div>
+					<div class="col-sm-8">
 					<input type="text" name="direccion" id="inputDireccion" class="form-control" required="required" placeholder="Jr. Av. urb.">
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<label for="inputDescripcion" class="col-sm-2 control-label">Ubicación:</label>
-				<div class="col-sm-8">
+				<div class="form-group">
+					<div class="col-sm-1">
+					<label for="">Ubicacion:</label>
+					</div>
+
+					<div class="col-sm-8">
 					<input type="text" name="descripcion" id="inputDescripcion" class="form-control" required="required" placeholder="Lugar, Ubicacion, Descripcion">
+					</div>
 				</div>
-			</div>
 
 
-			<div class="form-group">
-				<label for="inputTelefono" class="col-sm-2 control-label">Telefono:</label>
-				<div class="col-sm-8">
+				<div class="form-group">
+					<div class="col-sm-1">
+					<label for="">Telefono:</label>
+					</div>
+
+					<div class="col-sm-8">
 					<input type="text" name="telefono" id="inputTelefono" class="form-control" required="required" placeholder="(051) - 9999999">
+					</div>
 				</div>
-			</div>
-			<button type="button" class="btn btn-primary" id="btnalmacen">Guardar</button>
+				<button type="submit" class="btn btn-primary" id="btnalmacen">Guardar</button>
+			</form>
+		</div>
+	</div>
 
-		</form>
-
-      </div>
+</div>
