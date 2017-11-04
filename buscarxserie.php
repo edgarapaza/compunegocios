@@ -8,7 +8,7 @@
 			display: none;
 		}
 	</style>
-	<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+
 	<script type="text/javascript" src="js/buscador.js"></script>
 
 	<div class="container">

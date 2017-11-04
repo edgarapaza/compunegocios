@@ -13,7 +13,7 @@ $precio = $_REQUEST['precio'];
 			type: 'POST',
 			url : 'Controllers/listadoCliente.controller.php',
 			beforeSend: function(){
-				$("#result").html("Buscando");
+				$("#result").html("<img src='img/load.gif'>");
 			},
 			success: function(response){
 				$("#result").html(response);

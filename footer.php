@@ -1,5 +1,5 @@
 <style type="text/css">
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+
 footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', sans-serif; }
 .footerleft { margin-top:50px; padding:0 36px; }
 .logofooter { margin-bottom:10px; font-size:25px; color:#fff; font-weight:700;}
@@ -20,9 +20,6 @@ footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', s
      -moz-transform: scale(1.1);
      -o-transform: scale(1.1);
  }
-
-
-
 
  .icon-ul { list-style-type:none !important; margin:0px; padding:0px;}
  .icon-ul li { line-height:75px; width:100%; float:left;}
@@ -46,7 +43,7 @@ footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', s
     <div class="row">
       <div class="col-md-4 col-sm-6 footerleft ">
         <div class="logofooter"> Compu Negocios</div>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+        <p></p>
         <p><i class="fa fa-map-pin"></i> Jr. Moquegua 195 Cercado de Puno -        Puno - Peru</p>
         <p><i class="fa fa-phone"></i> Telefono (Puno) : +91 999 878</p>
         <p><i class="fa fa-envelope"></i> E-mail : info@compunegocios.net</p>
@@ -102,19 +99,5 @@ footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', s
   </div>
 </div>
 
-
-        <script>window.jQuery || document.write('<script src="vendor/jquery/jquery.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
     </body>
 </html>

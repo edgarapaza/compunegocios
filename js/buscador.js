@@ -6,11 +6,12 @@ $(document).ready(function(){
 		var serie = $("#serie").val();
 
 		$.ajax({
-			data: {'serie': serie},
-			type: 'POST',
-			url: './Models/search.php',
+
+			data: {serie: serie},
+			type: "POST",
+			url: "./Models/search.php",
 			beforeSend: function(){
-				$('#result').html("<img src='./img/loading.gif'>");
+				$('#result').html("<img src='../img/load.gif'>");
 			},
 			success: function(response) {
 				$('#result').html(response);

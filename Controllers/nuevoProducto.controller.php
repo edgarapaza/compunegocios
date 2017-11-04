@@ -1,10 +1,7 @@
 <?php
 require_once "../Models/newproducto.class.php";
-require_once "../Models/nuevoProducto.class.php";
 
 $nuevopro = new NuevoProducto();
-
-
 
 $IDproveedor  = $_POST['provedor'];
 $numFactura   = trim(strtoupper($_POST['factura']));

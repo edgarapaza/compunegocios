@@ -25,15 +25,14 @@ $(document).ready(function(){
 			type : "POST",
 			url  : "../Controllers/cliente.controller.php",
 			beforeSend: function(){
-				$("#result").html("Cargando...");
+				$("#result").html("<img src='../img/load.gif'>");
 			},
 			success:  function(data){
 				$("#result").html(data);
-				document.getElementById("form-cliente")[0].reset();
+				$("#form-cliente")[0].reset();
 			},
 			error: function(response){
 				$("#result").html("Error guardando" + response);
-				document.getElementById("form-cliente")[0].reset();
 			}
 		});
 

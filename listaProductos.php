@@ -35,7 +35,7 @@ $data = $listado1->Productos();
 							<td><?php echo $fila['cantidad'];?></td>
 							<td><?php echo $fila['tienda'];?></td>
 							<td>
-								<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus-sign"></span></button>
+								<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
 								<button class="btn btn-info"><span class="glyphicon glyphicon-floppy-open"></span></button>
 							</td>
 						</tr>

@@ -14,7 +14,7 @@ class ListadoProductos
 
 	public function Productos(){
 
-		$sql = "SELECT p.IDproducto, p.codigo, p.producto, pv.razonSocial, p.numFactura, p.fecEmision,p.numserie,f.familia, m.marca, p.modelo, u.unidadMedida, p.tipArticulo, p.descripcion,p.preUnitario, p.marGanancia1, p.marGanancia2, p.marGanancia3, p.precioVenta1, p.precioVenta2, p.precioVenta3,p.cantidad, t.tienda, p.pro_color, p.pro_incluye, CONCAT(per.nombres,' ',per.paterno,' ',per.materno) as empleado,p.estadoActivo, p.obs, p.parte FROM productos as p, proveedor as pv, familia as f, marca as m, unidad as u, tienda as t, Personal as per WHERE p.IDproveedor = pv.idproveedor AND p.IDFamilia = f.IDfamilia AND p.IDmarca = m.idmarca AND p.tipoUnidad = u.idunidad AND p.IDPersonal = per.IDPersonal;";
+		$sql = "SELECT p.IDproducto, p.codigo, p.producto, pv.razonSocial, p.numFactura, p.fecEmision,p.numserie,f.familia, m.marca, p.modelo, u.unidadMedida, p.tipArticulo, p.descripcion,p.preUnitario, p.marGanancia1, p.marGanancia2, p.marGanancia3, p.precioVenta1, p.precioVenta2, p.precioVenta3,p.cantidad, t.tienda, p.pro_color, p.pro_incluye, CONCAT(per.nombres,' ',per.paterno,' ',per.materno) as empleado,p.estadoActivo, p.obs, p.parte FROM productos as p, proveedor as pv, familia as f, marca as m, unidad as u, tienda as t, Personal as per WHERE p.IDproveedor = pv.idproveedor AND p.IDFamilia = f.IDfamilia AND p.IDmarca = m.idmarca AND p.tipoUnidad = u.idunidad AND p.IDPersonal = per.IDPersonal AND p.IDAlmacen = t.idtienda;";
 
 		if (!$this->con->query($sql)) {
  		  echo("Error description: " . mysqli_error($this->con));

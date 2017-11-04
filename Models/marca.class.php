@@ -30,7 +30,7 @@ class Marca extends Conexion
 		echo $sql;
 		$res = $this->con->query($sql);
 		$num = $res->fetch_array();
-		echo "Numeor: ". $num[0];
+		echo "Numero: ". $num[0];
 
 		$devolver = "";
 

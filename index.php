@@ -1,14 +1,13 @@
 <?php include_once "header.php"; ?>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
 
 				<form action="Controllers/login.controller.php" method="POST" class="form-horizontal" role="form">
 
-					<div class="form-group">
-						<legend>Ingreso al sistema</legend>
-					</div>
+				<legend>Ingreso al sistema</legend>
 
 					<div class="form-group">
 						<label for="inputUsuario" class="col-sm-2 control-label">Usuario:</label>
@@ -33,7 +32,7 @@
 				</form>
 			</div>
 		</div>
-	</div>
-
+</div>
+<br><br><br><br><br><br><br><br>
 
 <?php include_once "footer.php"; ?>

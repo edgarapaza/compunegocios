@@ -14,6 +14,7 @@ class Almacen
 	public function AddAlmacen($tienda, $descripcion, $direccion, $telefono, $idpersonal)
 	{
 		$duplicado = "SELECT idtienda FROM tienda WHERE tienda = '$tienda' AND descripcion = '$descripcion' AND direccion = '$direccion'";
+
 		if($res = $this->con->query($duplicado))
 		{
 			$num = $res->num_rows;
@@ -26,7 +27,7 @@ class Almacen
 				$valor_final = $last->fetch_array();
 				$next = $valor_final[0] + 1;
 
-				$sql ="INSERT INTO tienda VALUES ('$next','$tienda','$descripcion','$direccion','$telefono','$idpersonal');";
+				$sql ="INSERT INTO tienda VALUES ('$next','$tienda','$descripcion','$direccion','$telefono','1001');";
 
 				if (!$this->con->query($sql)) {
 		 		  echo("Error description: " . mysqli_error($this->con));

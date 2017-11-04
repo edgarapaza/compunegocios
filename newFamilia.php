@@ -15,7 +15,7 @@ $datos2 = $nf->ListaFamilias();
 				url : 'Controllers/nuevaSubFamilia.controller.php',
 				type: 'POST',
 				beforeSend: function(){
-					$('#result').html("<img src='img/loading.gif'>");
+					$('#result').html("<img src='img/load.gif'>");
 				},
 				success: function(response) {
 					$('#result').html(response);
@@ -39,7 +39,7 @@ $datos2 = $nf->ListaFamilias();
 				type : 'POST',
 				url  : 'Controllers/nuevaFamilia.controller.php',
 				beforeSend: function(){
-					$("#result").html("Espere ...");
+					$("#result").html("<img src='img/load.gif'>");
 				},
 				success: function(response){
 					$("#result").html(response);
@@ -66,7 +66,7 @@ $datos2 = $nf->ListaFamilias();
 				url  : 'Controllers/nuevaSubfamilia2.controller.php',
 				type : 'POST',
 				beforeSend: function(){
-					$("#result").html("Espere ...");
+					$("#result").html("<img src='img/load.gif'>");
 				},
 				success: function(response){
 					$("#result").html(response);

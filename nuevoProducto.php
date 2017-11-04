@@ -1,3 +1,4 @@
+<img src="img/load.gif">
 <?php
 session_start();
 $personal = $_SESSION['administrador'];
@@ -34,7 +35,7 @@ $personal = $_SESSION['administrador'];
 					type : 'POST',
 					url  : 'Controllers/selectSubfamilia.controller.php',
 					beforeSend: function(){
-						$('#mio').html("<img src='./img/loading.gif'>");
+						$('#mio').html("<img src='img/load.gif'>");
 					},
 					success: function(response){
 						document.getElementById('mio').innerHTML = response;
@@ -86,29 +87,29 @@ $personal = $_SESSION['administrador'];
 				var provedor   = $("#inputProvedor").val();
 				var idfamilia  = $("#inputFamilia").val();
 				var subfamilia = $("#inputSubfamilia").val();
-				var mimarca  = $("#inputMimarca").val();
-				var tipuni   = $("#inputTipoUnidad").val();
-				var tipart   = $("#inputTipoArticulo").val();
-				var almacen  = $("#inputAlmacen").val();
-				var numfact  = $("#inputnumFactura").val();
-				var fechaemi = $("#inputFechaEmision").val();
-				var producto = $("#inputproducto").val();
-				var partee  = $("#inputNumparte").val();
-				var descr   = $("#inputDescripcion").val();
-				var model   = $("#inputModelo").val();
-				var preuni  = $("#inputPrecioUnitario").val();
-				var marge1  = $("#inputMargenGanancia1").val();
-				var marge2  = $("#inputMargenGanancia2").val();
-				var marge3  = $("#inputMargenGanancia3").val();
-				var preven1 = $("#inputPrecioVenta1").val();
-				var preven2 = $("#inputPrecioVenta2").val();
-				var preven3 = $("#inputPrecioVenta3").val();
-				var cantida = $("#inputCantidad").val();
-				var color   = $("#inputColor").val();
-				var inclu   = $("#inputIncluye").val();
-				var obser   = $("#inputObservaciones").val();
-				var idpers  = $("#idpersonal").val();
-				var cod     = $("#idcodigo").val();
+				var mimarca    = $("#inputMimarca").val();
+				var tipuni     = $("#inputTipoUnidad").val();
+				var tipart     = $("#inputTipoArticulo").val();
+				var almacen    = $("#inputAlmacen").val();
+				var numfact    = $("#inputnumFactura").val();
+				var fechaemi   = $("#inputFechaEmision").val();
+				var producto   = $("#inputproducto").val();
+				var partee     = $("#inputNumparte").val();
+				var descr      = $("#inputDescripcion").val();
+				var model      = $("#inputModelo").val();
+				var preuni     = $("#inputPrecioUnitario").val();
+				var marge1     = $("#inputMargenGanancia1").val();
+				var marge2     = $("#inputMargenGanancia2").val();
+				var marge3     = $("#inputMargenGanancia3").val();
+				var preven1    = $("#inputPrecioVenta1").val();
+				var preven2    = $("#inputPrecioVenta2").val();
+				var preven3    = $("#inputPrecioVenta3").val();
+				var cantida    = $("#inputCantidad").val();
+				var color      = $("#inputColor").val();
+				var inclu      = $("#inputIncluye").val();
+				var obser      = $("#inputObservaciones").val();
+				var idpers     = $("#idpersonal").val();
+				var cod        = $("#idcodigo").val();
 
 				for (var i = 0; i <= cantida -1 ; i++) {
 
@@ -152,11 +153,14 @@ $personal = $_SESSION['administrador'];
 		                type : 'POST',
 		                beforeSend: function () {
 		                    //alert(varserie.value);
-		                    $("#resultado").html("Procesando, espere por favor...");
+		                    $("#resultado").html("<img src='img/load.gif'>");
 		                },
 		                success:  function (data) {
-
 		                    $("#resultado").html(data);
+		                    $("#formulario").reset();
+		                },
+		                error: function(res){
+		                	$("#resultado").html(res);
 		                }
 			        });
 				}
@@ -176,7 +180,7 @@ $personal = $_SESSION['administrador'];
 				</div>
 
 				<input type="hidden" name="idpersonal" id="idpersonal" value="1001">
-				<input type="text" readonly="readonly" name="codigo" id="idcodigo" value="<?php echo $codigo; ?>" >
+				<input type="hidden" readonly="readonly" name="codigo" id="idcodigo" value="<?php echo $codigo; ?>" >
 
 				<div class="form-group row">
 					<label for="inputProvedor" class="col-sm-3 col-form-label">*Provedor:</label>
