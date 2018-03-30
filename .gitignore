@@ -7,3 +7,4 @@ vendor
 build
 docs/_build
 *.swp
+/nbproject/private/

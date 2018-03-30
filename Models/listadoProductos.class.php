@@ -42,7 +42,7 @@ class ListadoProductos
 
 	public function ProductoSolo($idproducto)
 	{
-		$sql = "SELECT idproducto, descripcion, stocktotal, precventa3 FROM productos WHERE idproducto = " . $idproducto;
+		$sql = "SELECT idproducto, descripcion, stocktotal, precventa3,codigo FROM productos WHERE idproducto = " . $idproducto;
 		if (!$this->con->query($sql)) {
  		  echo("Error description: " . mysqli_error($this->con));
 		}

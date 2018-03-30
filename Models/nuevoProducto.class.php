@@ -29,13 +29,13 @@ class Producto{
             mysqli_close($this->con);
 	}
 
-	public function Proveedor()
+	public function Proveedor($codigo)
 	{
-
-            $sql= "SELECT idproveedor, razonSocial FROM proveedor;";
-            $rpta = $this->con->query($sql);
-            return $rpta;
-            mysqli_close($this->con);
+		$sql= "SELECT idproveedor, razonSocial FROM proveedor WHERE idproveedor = " . $codigo ;
+    $rpta = $this->con->query($sql);
+    $res = $rpta->fetch_array();
+    return $res;
+    mysqli_close($this->con);
 	}
 
 	public function Marca()

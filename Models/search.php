@@ -23,7 +23,7 @@ function search()
 	<div class='container'>
     	<div class='row'>
       		<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
-				<h3>Buscador</h3>
+				<a href='Views/venta2.php?idprod=52' class='btn btn-success' style='float:right;'>Vender producto</a>
       		</div>
       	</div>
 
@@ -97,7 +97,7 @@ function search()
 					});
 				});
 			</script>
-			<button type='button' class='btn btn-success' id='mostrar'>Mostrar Adicionales</button>
+			<button type='button' class='btn btn-info' id='mostrar'>Mostrar Adicionales</button>
 			<button type='button' class='btn btn-danger' id='ocultar'>Ocultar Adicionales</button>
 			<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6 ' id='target'>
 				<table class='table table-striped'>

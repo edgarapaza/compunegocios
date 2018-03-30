@@ -1,7 +1,7 @@
 <?php
 require_once "Conexion.php";
 
-class Marca extends Conexion
+class Marca
 {
 
 	private $con="";
@@ -17,9 +17,13 @@ class Marca extends Conexion
 	{
 
 		$sql = "SELECT idmarca, codigo, marca FROM marca ORDER BY marca";
-		$dat = $this->con->query($sql);
+		if(!$dat = $this->con->query($sql))
+		{
+			echo "Error. " . mysqli_error($this->con);
+		}
+
 		return $dat;
-		mysqli_close($this->con);
+		mysqli::close($this->con);
 	}
 
 	public function Duplicado($codigo, $marca1)
@@ -27,7 +31,11 @@ class Marca extends Conexion
 		
 		$sql = "SELECT * FROM marca WHERE marca = '$marca1'";
 		
-		$res = $this->con->query($sql);
+		if(!$res = $this->con->query($sql))
+		{
+			echo "Error. " .mysqli_error($this->con);
+		}
+
 		$num = $res->fetch_array();
 				
 		if($num[0] == 0){

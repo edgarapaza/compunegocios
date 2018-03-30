@@ -11,12 +11,15 @@ class Cliente{
 		return $this->conn;
 	}
 
-	public function AddCliente($nombres, $apellidos, $dni, $direccion, $telefono, $fecNacimiento,$email){
+	public function AddCliente($nombres, $apellidos, $dni, $direccion, $telefono, $fecNacimiento,$email)
+	{
 
-		$dupli = "SELECT * FROM clientes WHERE dni = '$dni' AND nombres = '$nombres' AND apellidos= '$apellidos' AND fecNacimiento = '$fecNacimiento';";
+		$dupli = "SELECT IDClientes FROM clientes WHERE dni = '$dni' AND nombres = '$nombres' AND apellidos= '$apellidos' AND fecNacimiento = '$fecNacimiento';";
 
-		if ($result = $this->conn->query($dupli))
+		if (!$result = $this->conn->query($dupli))
 		{
+			echo "Error description: " . mysqli_error($this->conn);
+		}
 		    /* determinar el número de filas del resultado */
 		    $row_cnt = $result->num_rows;
 
@@ -29,16 +32,11 @@ class Cliente{
 		    		echo "Error Description: " . mysqli_error($this->conn);
 		    		exit;
 		    	}
+		    	
 		    	echo "<span class='alert alert-success'>Guardado!!.</span>";
 		    }else{
 		    	echo "<span class='alert alert-danger'>Advertencia!!! Este Nombre y DNI esta duplicado.</span>";
 		    }
-
-		    /* cerrar el resultset */
-		    $result->close();
-		}else{
-			echo "Error description: " . mysqli_error($this->conn);
-		}
 
 		/* cerrar la conexión */
 		mysqli_close($this->con);

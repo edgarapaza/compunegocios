@@ -8,7 +8,7 @@ class ListadoAlmacen{
 		$conexion = new Conexion();
 		$mysqli = $conexion->Conectarse();
 
-			$sql = "SELECT idtienda, tienda, direccion, telefono FROM tienda;";
+			$sql = "SELECT idalmacen, almacen, descripcion, direccion, telefono FROM almacen";
 			$data = $mysqli->query($sql);
 			return $data;
 		mysqli_close($mysqli);

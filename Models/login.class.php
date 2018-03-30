@@ -10,8 +10,10 @@ class Login
 			$sql ="SELECT estado, nivel, IDpersonal FROM login WHERE usuario = '$user' AND passwd = '$pass'";
 
 			$rpta = $mysqli->query($sql);
-			return $rpta;
-		mysqli_close($mysqli);
+			$dat = $rpta->fetch_array(MYSQLI_ASSOC);
+			return $dat;
+
+			mysqli_close($mysqli);
 	}
 }
 ?>

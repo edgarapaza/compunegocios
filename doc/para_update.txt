@@ -1,0 +1,2 @@
+/*para quitar las multiples actualizaciones en Mysql*/
+SET SQL_SAFE_UPDATES = 0;

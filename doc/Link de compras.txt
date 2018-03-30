@@ -1,0 +1,30 @@
+Link de compras
+  ---|
+     ---> stock
+
+    1. visulaizar la lista de proveedores
+    2. selecciono al proveedor
+    	2.1 Listado de los productos registrados
+    		codigo, descripcion, almacen, cantidad, costo, total
+    	2.2 Agregar productos:
+    		Buscar x codigo y mostrar un listado, solo jala el codigo y nombre del producto
+    		combo del almancen,  Cantidad, costo, dscto, iGV, total
+    		La pagina del nuevo producto, debe mostrar un sidebar al lado izquierdo para mostrar las familias, en la parte central debe mostrar todos los productos con el numero de precio de venta y el stock
+
+    		tabla a mostrar
+   ASIDE	|   codigo  |     FAM   | SubFam |  Descripcion  |   PVP1   |  pvp2  | Stock_Total
+   		|
+ debe buscar
+ por familia
+ y filtar x
+ familia  			
+
+ 		Seleccionar producto y enviarla con el precio de PVP1 a la ventana de actualizacion
+
+ 			En otra ventana solo registra el:
+ 			Codigo   |  almacen  |   Cantidad   | costo | total
+
+ 			Muestra el coste ultimo con el total 
+
+    		Crear nuevo registro:  ver tabla:  productogolobal
+    		

@@ -11,7 +11,7 @@ class GuardarVenta
 		return $this->con;
 	}
 
-	public function Guardar($idproducto,$precio,$cantidad,$total)
+	public function Guardar($idproducto,$precio,$cantidad,$total,$codprodgen)
 	{
 		
 		$sqlup1 = "SELECT stocktotal from productos WHERE idproducto = " . $idproducto;
@@ -36,12 +36,17 @@ class GuardarVenta
 		 		  echo("Error description 1: " . mysqli_error($this->con));
 				}
 
-				$sqlup2 = "UPDATE productos SET stocktotal = '". $nuevostock ."' WHERE idproducto = " . $idproducto;
+				$sqlup2 = "UPDATE productos SET stocktotal = '". $nuevostock ."' WHERE codigo = '". $codprodgen. "'";
 
 				if (!$this->con->query($sqlup2)) {
 		 		  echo("Error description 2: " . mysqli_error($this->con));
 				}
-				
+
+				$sqlcomprove = "UPDATE compraprovedor SET cantidad = '". $nuevostock ."' WHERE codigo = '". $codprodgen ."'";
+				if (!$this->con->query($sqlcomprove)) {
+		 		  echo("Error description 2: " . mysqli_error($this->con));
+				}
+
 				//echo " Stock Actualizado " . $nuevostock;
 				echo "<div class='alert alert-success'><strong>Guardado!</strong> con exito....</div>";
 			}

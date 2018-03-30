@@ -1,0 +1,17 @@
+create table traspasos
+codproduc
+codalmaen
+fechatras
+codpersonal
+
+
+
+create table devoluciones
+codpersonal
+codproduct
+fechadevol
+descrip
+
+
+reportes
+producto

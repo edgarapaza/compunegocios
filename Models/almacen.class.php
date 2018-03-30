@@ -13,7 +13,7 @@ class Almacen
 
 	public function AddAlmacen($tienda, $descripcion, $direccion, $telefono, $idpersonal)
 	{
-		$duplicado = "SELECT idtienda FROM tienda WHERE tienda = '$tienda' AND descripcion = '$descripcion' AND direccion = '$direccion'";
+		$duplicado = "SELECT idalmacen FROM almacen WHERE almacen = '".$tienda."'";
 
 		if($res = $this->con->query($duplicado))
 		{
@@ -21,16 +21,16 @@ class Almacen
 
 			if($num == 0){
 
-				$sql_ultimo = "SELECT idtienda FROM tienda order by idtienda desc limit 1";
+				$sql_ultimo = "SELECT idalmacen FROM almacen order by idalmacen desc limit 1";
 
 				$last = $this->con->query($sql_ultimo);
 				$valor_final = $last->fetch_array();
 				$next = $valor_final[0] + 1;
 
-				$sql ="INSERT INTO tienda VALUES ('$next','$tienda','$descripcion','$direccion','$telefono','1001');";
+				$sql ="INSERT INTO almacen (idalmacen,almacen,descripcion,direccion,telefono,IDpersonal) VALUES ('$next','$tienda','$descripcion','$direccion','$telefono','1002')";
 
 				if (!$this->con->query($sql)) {
-		 		  echo("Error description: " . mysqli_error($this->con));
+		 		  echo("Error description insert: " . mysqli_error($this->con));
 		 		  exit;
 				}
 
@@ -42,7 +42,7 @@ class Almacen
 			$res->close();
 
 		}else{
-			echo("Error description: " . mysqli_error($this->con));
+			echo("Error description final: " . mysqli_error($this->con));
 		}
 
 		mysqli_close($this->con);
