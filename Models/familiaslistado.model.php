@@ -1,7 +1,8 @@
 <?php 
 require_once "Conexion.php";
 
-class FamiliasLista{
+class FamiliasLista
+{
 
 	private $conn;
 	function __construct()
@@ -15,16 +16,15 @@ class FamiliasLista{
 
 		$sql = "SELECT IDfamilia, codigo, familia FROM familia";
 
-		if ($result = $this->conn->query($sql)){
-			return $result;
-		}else{
+		if(!$result = $this->conn->query($sql))
+		{
 			echo "Error Description: " . mysqli_error($this->conn);
 		}
 
+		return $result;
 		mysqli_close($this->con);
 	}
 
 }
-
 
 ?>

@@ -1,6 +1,7 @@
 <?php 
 include "header.php"; 
 $codprovedor = $_REQUEST['codigo'];
+$idregistro = $_REQUEST['idregistro'];
 
 include "../Models/Conexion.php";
 include "../Models/compras.model.php";
@@ -30,7 +31,7 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor);
 					<thead>
 						<tr>
 							<th>Codigo del Proveedor:</th>
-							<td><?php echo $codprovedor; ?>
+							<td><?php echo $codprovedor; echo "IdRegistro: ".$idregistro; ?>
 								<input type="hidden" name="codprovedor" value="<?php echo $codprovedor; ?>">
 							</td>
 							<th>Razon Social:</th>
@@ -53,7 +54,7 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor);
 				</table>
 			</form>
 			
-			<a href="nuevoProductoProveedor.php?idproveedor=<?php echo $codprovedor; ?>" class="btn btn-warning"><span class="glyphicon glyphicon-file"> </span>Nuevo Producto</a>
+			<a href="nuevoProductoProveedor.php?idproveedor=<?php echo $codprovedor; ?>&idregistro=<?php echo $idregistro; ?>" class="btn btn-warning"><span class="glyphicon glyphicon-file"> </span>Nuevo Producto</a>
 
 			<button type="button" class="btn btn-primary btn-lg" onClick="window.location.reload()"><span class="glyphicon glyphicon-refresh"></span> Actualizar / Refresh Page</button>
 			

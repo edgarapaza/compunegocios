@@ -46,7 +46,10 @@ class Proveedor
 
        	mysqli_close($this->con);
 	}
-
 }
 
+/*
+$prov = new Proveedor();
+$nom = $prov->NombreProveedor(102);
+ */
 ?>

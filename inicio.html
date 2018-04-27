@@ -9,7 +9,7 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="style4.css">
+        <link rel="stylesheet" href="css/style4.css">
         <style type="text/css">
             body{
                 padding-top: 80px;
@@ -81,7 +81,7 @@
                             <li><a href="#" id="proveedor">Proveedor</a></li>
                             <li><a href="#" id="almacen">Nuevo Almacen</a></li>
                             <li><a href="#" id="familias">Familias</a></li>
-                            
+
                             <li><a href="#" id="clientes">Clientes</a></li>
                         </ul>
                     </li>
@@ -91,8 +91,10 @@
                             Venta de productos
                         </a>
                         <ul class="collapse list-unstyled" id="Almacen">
-                            <li><a href="Views/productos_listado.php" id="productos_listado">Ventas</a></li>
+                            <li><a href="Views/productos_listado.php" id="ventas">Ventas</a></li>
+                            <li><a href="Views/moveralmacen.php" id="ventas">Mover a Almacen</a></li>
                         </ul>
+                        
                     </li>
                     <li>
                       <a href="#compras" data-toggle="collapse" aria-expanded="false">
@@ -100,7 +102,7 @@
                             Compras
                       </a>
                       <ul class="collapse list-unstyled" id="compras">
-                        <li><a href="Views/stock.php">Actualizar Stock</a></li>
+                        <li><a href="Views/stock.php">Entradas</a></li>
                       </ul>
                     </li>
                     <li>
@@ -109,7 +111,7 @@
                             Buscador
                         </a>
                         <ul class="collapse list-unstyled" id="searchmenu">
-                            <li><a href="#" id="buscarserie">Buscar por Serie</a></li>
+                            <li><a href="Views/productos_listado.php" id="buscarserie">Buscardor completo</a></li>
                         </ul>
                     </li>
                     <li>
@@ -132,7 +134,7 @@
                         <ul class="collapse list-unstyled" id="reportes">
                             <li><a href="Views/listaVentas.php" target="_blank" id="reporte1">Lista Ventas General</a></li>
                             <li><a href="Views/listaVentasFechas.php" target="_blank" id="reporte1">Lista Ventas x Fecha</a></li>
-                            
+
                             <li><a href="reportes/reporte1.php" target="_blank" id="reporte1">R1-Rep por Familias</a></li>
                             <li><a href="reportes/reporte2.php" target="_blank" id="reporte2">R2-Producto y Stock</a></li>
                             <li><a href="reportes/reporte2.php" target="_blank" id="reporte2">R3-Ingresos diarios</a></li>

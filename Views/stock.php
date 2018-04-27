@@ -33,7 +33,7 @@
 						<td><?php echo $fila[2]; ?></td>
 						<td><?php echo $fila[3]; ?></td>
 						<td>
-							<a href="stock1.php?codigo=<?php echo $fila[0]; ?>" class="btn btn-success">Seleccionar</a>
+							<a href="facturas.php?codigo=<?php echo $fila[0]; ?>" class="btn btn-success">Seleccionar</a>
 						</td>
 					</tr>
 				<?php } ?>

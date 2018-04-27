@@ -1,32 +1,33 @@
 <?php
 require_once "Conexion.php";
 
-class Producto{
+class Producto
+{
 
 	private $con="";
 
 	function __construct(){
-            $conexion = new Conexion();
-            $this->con = $conexion->Conectarse();
-            return $this->con;
+    $conexion = new Conexion();
+    $this->con = $conexion->Conectarse();
+    return $this->con;
 	}
 
 	public function Familias()
 	{
 
-            $sql = "SELECT IDfamilia, familia FROM familia";
-            $rpta = $this->con->query($sql);
-            return $rpta;
-            mysqli_close($this->con);
+    $sql = "SELECT IDfamilia, familia FROM familia";
+    $rpta = $this->con->query($sql);
+    return $rpta;
+    mysqli_close($this->con);
 	}
 
 	public function SubFamilias()
 	{
 
-            $sql = "SELECT idsubfamilias, subfamilia FROM subfamilias;";
-            $rpta = $this->con->query($sql);
-            return $rpta;
-            mysqli_close($this->con);
+    $sql = "SELECT idsubfamilias, subfamilia FROM subfamilias;";
+    $rpta = $this->con->query($sql);
+    return $rpta;
+    mysqli_close($this->con);
 	}
 
 	public function Proveedor($codigo)
@@ -41,19 +42,19 @@ class Producto{
 	public function Marca()
 	{
 
-            $sql= "SELECT idmarca, marca FROM marca;";
-            $rpta = $this->con->query($sql);
-            #$data = $rpta->fetch_array();
-            return $rpta;
-            mysqli_close($this->con);
+    $sql= "SELECT idmarca, marca FROM marca;";
+    $rpta = $this->con->query($sql);
+    #$data = $rpta->fetch_array();
+    return $rpta;
+    mysqli_close($this->con);
 	}
 
 	public function Unidades()
 	{
-            $sql = "SELECT idunidad, unidadMedida FROM unidad;";
-            $rpta = $this->con->query($sql);
-            return $rpta;
-            mysqli_close($this->con);
+    $sql = "SELECT idunidad, unidadMedida FROM unidad;";
+    $rpta = $this->con->query($sql);
+    return $rpta;
+    mysqli_close($this->con);
 	}
 
 	public function Almacen()
@@ -77,5 +78,7 @@ class Producto{
 		return $dato;
 		
 	}
+
+	
 
 }

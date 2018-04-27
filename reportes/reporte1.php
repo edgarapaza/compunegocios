@@ -50,11 +50,15 @@ class PDF extends FPDF
 $pdf = new PDF();
 // Títulos de las columnas
 //AQUÍ VAN TUS COLUMNAS QUE NECESITAS;
-
 $header = array('Codigo','Familia','Descripcion','Cantidad','Notas');
+
 // Carga de datos
 //AQUÍ VA TU VARIABLE
 //$data = $_POST[‘tu variable’];
+//$data1 = $_POST['fecha'];
+//echo "La fecha enviada es: ". $fechauno;
+
+
 $todayh = getdate();
     $d = $todayh['mday'];
     $m = $todayh['mon'];
@@ -64,11 +68,18 @@ $todayh = getdate();
     $s = $todayh['seconds'];
 $fecha = $d."/".$m."/".$y;
 $hora = $h.":".$n.":".$s;
+
 $pdf->AddPage();
+$pdf->SetTitle("Reporte por Fechas", true);
+$pdf->SetAuthor("Edgar Apaza",true);
 $pdf->SetFont('Arial','B',14);
-$pdf->Cell(190,10,'Reporte 1 - Reporte por Fechas y Familias',1,1,'C');
-$pdf->SetFont('Arial','B',10);
-$pdf->Cell(50,5,"Fecha: ".$fecha . " Hora ". $hora,1,1);
+$pdf->Text(55,15,'Reporte 1 - Reporte por Fechas y Familias');
+
+$pdf->SetFont('Arial','',10);
+$pdf->Write(20,"Reporte extraido el");
+$pdf->Ln();
+$pdf->Cell(80,10,"Fecha: ".$fecha . " Hora ". $hora,1,1);
+
 //AQUÍ LLAMAMOS LA FUNCION:
 $pdf->SetFont('Arial','',8);
 $pdf->FancyTable($header,$data);

@@ -53,6 +53,10 @@ class ListadoProductos
 
 		mysqli_close($this->con);
 	}
-}
 
+}
+/*
+$list1 = new ListadoProductos();
+$data = $list1->BuscarxNombre($nombre);
+*/
 ?>

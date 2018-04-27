@@ -23,7 +23,7 @@ function search()
 	<div class='container'>
     	<div class='row'>
       		<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
-				<a href='Views/venta2.php?idprod=52' class='btn btn-success' style='float:right;'>Vender producto</a>
+				<a href='Views/venta2.php?idprod=$row[idproducto]' class='btn btn-success' style='float:right;'>Vender producto</a>
       		</div>
       	</div>
 
@@ -108,7 +108,7 @@ function search()
       				<tbody>
       					<tr>
       						<td>Proveedor:</td>
-							<td>$row[razonSocial]</td>
+							<td></td>
       					</tr>
       					
       					<tr>

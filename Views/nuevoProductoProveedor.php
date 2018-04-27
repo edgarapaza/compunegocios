@@ -4,7 +4,9 @@ session_start();
 #@$personal = $_SESSION['administrador'];
 $personal = "1002";
 
-$idprove = $_REQUEST['idproveedor'];
+$idprove    = $_REQUEST['idproveedor'];
+$idregistro = $_REQUEST['idregistro'];
+
 //echo "Codigo del Proveedor: " . $idprove;
 
 
@@ -29,6 +31,59 @@ $idprove = $_REQUEST['idproveedor'];
 	#echo "Codigo Generador: " . $codigo;
 
 ?>
+
+<style type="text/css">
+	
+	#popup {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+}
+
+.content-popup {
+    margin:0px auto;
+    margin-top:120px;
+    position:relative;
+    padding:10px;
+    width:500px;
+    min-height:250px;
+    border-radius:4px;
+    background-color:#FFFFFF;
+    box-shadow: 0 2px 5px #666666;
+}
+
+.content-popup h2 {
+    color:#48484B;
+    border-bottom: 1px solid #48484B;
+    margin-top: 0;
+    padding-bottom: 4px;
+}
+
+.popup-overlay {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    display:none;
+    background-color: #777777;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+}
+.centrar
+	{
+		display: table-cell;
+		vertical-align: middle;
+	}
+</style>
+
 	<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src= "../js/series.js"></script>
@@ -38,6 +93,7 @@ $idprove = $_REQUEST['idproveedor'];
 	<script type="text/javascript">
 		window.addEventListener('load',carga, false);
 
+
 		function carga(){
 
 			$("#btnmostrar").trigger('click');
@@ -45,6 +101,13 @@ $idprove = $_REQUEST['idproveedor'];
 		}
 
 		$(document).ready(function(){
+
+			$("#refresh").click(function(){
+				window.location.reload(true);
+				$('#popup').fadeOut('slow');
+        $('.popup-overlay').fadeOut('slow');
+        return false;
+			});
 			
 
 			$("#btnmostrar").click(function(){
@@ -178,6 +241,7 @@ $idprove = $_REQUEST['idproveedor'];
 				var total	      = pvp * stock;
 				var factura     = $("#inputFactura").val();
 				var feccompra   = $("#inputFechaCompra").val();
+				var idregistro  = $("#idregistro").val();
 
 
 
@@ -211,7 +275,8 @@ $idprove = $_REQUEST['idproveedor'];
 						"cod"     : cod,
 						"total"   : total,
 						"factura" : factura,
-						"feccompra": feccompra
+						"feccompra": feccompra,
+						"idregistro": idregistro
 
 			        };
 
@@ -224,11 +289,18 @@ $idprove = $_REQUEST['idproveedor'];
 		                    $("#resultado").html("<img src='img/load.gif'>");
 		                },
 		                success: function (data) {
+
+		                		$('#popup').fadeIn('slow');
+								        $('.popup-overlay').fadeIn('slow');
+								        $('.popup-overlay').height($(window).height());
+		                    
 		                    $("#resultado").html(data);
-		                    $("#formulario")[0].reset();
+								        return false;
+		                    
 		                },
 		                error: function(res){
 		                	$("#resultado").html(res);
+		                	window.location.reload(true);
 		                }
 			        });
 				}
@@ -244,7 +316,7 @@ $idprove = $_REQUEST['idproveedor'];
 	<div class="row">
 
 		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-			<div id="resultado"></div>
+			
 			<form action="" method="POST" class="form-horizontal" role="form" id="formulario">
 				<div class="form-group">
 					<legend>
@@ -252,9 +324,10 @@ $idprove = $_REQUEST['idproveedor'];
 					</legend>
 				</div>
 
-				<input type="text" name="idproveedor" readonly="readonly" id="idproveedor" value="<?php echo $idprove; ?>">
-				<input type="text" name="idpersonal" readonly="readonly" id="idpersonal" value="<?php echo $personal; ?>">
-				<input type="text" name="codigo" readonly="readonly" id="idcodigo" value="<?php echo $codigo; ?>" >
+				<input type="hidden" name="idproveedor" readonly="readonly" id="idproveedor" value="<?php echo $idprove; ?>">
+				<input type="hidden" name="idpersonal" readonly="readonly" id="idpersonal" value="<?php echo $personal; ?>">
+				<input type="hidden" name="codigo" readonly="readonly" id="idcodigo" value="<?php echo $codigo; ?>" >
+				<input type="hidden" name="idregistro" readonly="readonly" id="idregistro" value="<?php echo $idregistro; ?>" >
 
 				<div class="form-group row">
 					<label for="inputProducto" class="col-sm-2 col-form-label">*Producto:</label>
@@ -431,6 +504,8 @@ $idprove = $_REQUEST['idproveedor'];
 				</div>
 
 				<button type="button" id="btnRegistrar" class="btn btn-lg btn-primary">Guardar</button>
+
+				
 			</form>
 		</div>
 
@@ -489,3 +564,16 @@ $idprove = $_REQUEST['idproveedor'];
 	</div>
 </div>
 				
+<div id="popup" style="display: none;" class="centrar">
+    <div class="content-popup">
+        <div>
+        	<br>
+          <h2>Mensaje de apoyo</h2>
+          <div class="alert alert-info">
+          	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          		<div id="resultado"></div>
+          </div>
+          <button type="button" id="refresh" class="btn btn-success">Cerrar</button>
+        </div>
+    </div>
+</div>
