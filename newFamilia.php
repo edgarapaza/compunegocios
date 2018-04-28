@@ -1,4 +1,5 @@
 <?php
+include "header4.html";
 require_once("Models/nuevaFamilia.model.php");
 $nf = new Nuevafamilia();
 $datos = $nf->ListaFamilias();
@@ -159,3 +160,5 @@ $datos2 = $nf->ListaFamilias();
 		</div>
 	</div>
 </div>
+
+<?php include "footer4.html"; ?>

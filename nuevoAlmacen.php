@@ -1,4 +1,5 @@
 <?php
+include "header4.html";
 session_start();
 $usuario = $_SESSION['administrador'];
 ?>
@@ -55,3 +56,5 @@ $usuario = $_SESSION['administrador'];
 	</div>
 
 </div>
+
+<?php include "footer4.html"; ?>
