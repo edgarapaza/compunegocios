@@ -15,7 +15,7 @@ include "header.php";
 		}
 
 		$("#btnmostrar").click(function(){
-				
+
 				$.ajax({
 					type : 'POST',
 					url  : '../Controllers/listafamilia.controller.php',
@@ -28,7 +28,7 @@ include "header.php";
 					error: function(){
 						$("#fam-lista").html("Error Cargando Listado de Familias");
 					}
-				});				
+				});
 		});
 
 		$("#btnBusFamilia").click(function(){
@@ -149,15 +149,17 @@ include "header.php";
 
 			<form action="" method="POST" class="form-inline" role="form" name="search_datos">
 
-				<div class="form-inline">
-
-						<label for="inputFamilias" class="col-sm-1 control-label">Familias:</label>
-
-						<div id="fam-lista"></div>
-						<button type="button" class="" name="btnmostrar" id="btnmostrar"></button>
-						<button type="button" class="btn btn-danger" name="btnBusFamilia" id="btnBusFamilia">Buscar x Familia</button>
+							<button type="button" name="btnmostrar" id="btnmostrar"></button>
+				<div class="form-group">
+						<label for="inputFamilias" class="col-sm-2 control-label">Buscar Familias:</label>
+						<div class="col-sm-7">
+							<div id="fam-lista"></div>
+						</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-danger" name="btnBusFamilia" id="btnBusFamilia">Buscar x Familia</button>
+						</div>
 				</div>
-	
+
 				<div class="form-inline">
 						<input type="text" class="form-control" name="xnombre" id="xnombre" placeholder="Busca x Nombre">
 						<input type="text" class="form-control" name="xserie" id="xserie" placeholder="Buscar x Serie">
