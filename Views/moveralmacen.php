@@ -2,8 +2,8 @@
 include "header.php"; 
 
 ?>
+<script type="text/javascript" src="../js/"></script>
 <script type="text/javascript" src="../js/comboalmacen.js"></script>
-<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 
 <div class="container">
 	<div class="row">

@@ -4,7 +4,7 @@ $viejoalmacen = $_REQUEST['idalmacen'];
 $idproducto = $_REQUEST['idproducto'];
 
 echo "IdAlmacen enviado : " . $viejoalmacen;
-echo "Idproducto enviado : " . $idproducto;
+echo " ----- Idproducto enviado : " . $idproducto;
 
 
 ?>
