@@ -4,11 +4,11 @@ require_once("../Models/nuevaFamilia.model.php");
 $idfamilia = $_POST['codigo'];
 $datos = explode("#",$idfamilia);
 
-//echo $datos[1];
+echo $datos[1];
 $subfam = new Nuevafamilia();
 $lista = $subfam->MostrarSubfamilia($datos[1]);
 
-echo "<table class='table table-striped bg-info'>
+echo "<table class='table table-striped'>
 	<tr>
 		<th>Codigo</th>
 		<th>Sub Familia</th>

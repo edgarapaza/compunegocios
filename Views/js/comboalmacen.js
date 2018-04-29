@@ -12,7 +12,7 @@ $(document).ready(function(){
 	$("#btnMostrarCombo").click(function(){
 		//Mostrar el combo solamente
 		$.ajax({
-			url: '../Controllers/almacenes.controller.php',
+			url: '../../Controllers/almacenes.controller.php',
 			type: 'POST',
 			
 			success: function(res){
@@ -34,7 +34,7 @@ $(document).ready(function(){
 		{
 					
 			$.ajax({
-			url: '../Controllers/almacenLista1.controller.php',
+			url: '../../Controllers/almacenLista1.controller.php',
 			type: 'POST',
 			
 			success: function(res){
@@ -49,7 +49,7 @@ $(document).ready(function(){
 		if(dato > 0)
 		{
 			$.ajax({
-			url: '../Controllers/almacenLista2.controller.php',
+			url:'../../Controllers/almacenLista2.controller.php',
 			type: 'POST',
 			data: {cod: dato},
 			success: function(res){

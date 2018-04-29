@@ -82,5 +82,4 @@ while ($fila = $todo->fetch_array()) {
 	echo $fila[1];
 	echo $fila[2];
 	echo $fila[3];
-}
-?>
+}*/	

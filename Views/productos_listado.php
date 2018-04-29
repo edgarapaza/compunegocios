@@ -1,7 +1,7 @@
-<?php
-include "header.php";
-?>
+<?php include "header4.html"; ?>
 
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -147,11 +147,12 @@ include "header.php";
 
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
+				
+			<label for="inputFamilias" class="control-label">Buscar por Familias:</label>
+				<button type="button" name="btnmostrar" id="btnmostrar"></button>
 			<form action="" method="POST" class="form-inline" role="form" name="search_datos">
 
-							<button type="button" name="btnmostrar" id="btnmostrar"></button>
 				<div class="form-group">
-						<label for="inputFamilias" class="col-sm-2 control-label">Buscar Familias:</label>
 						<div class="col-sm-7">
 							<div id="fam-lista"></div>
 						</div>
@@ -159,7 +160,7 @@ include "header.php";
 							<button type="button" class="btn btn-danger" name="btnBusFamilia" id="btnBusFamilia">Buscar x Familia</button>
 						</div>
 				</div>
-
+				
 				<div class="form-inline">
 						<input type="text" class="form-control" name="xnombre" id="xnombre" placeholder="Busca x Nombre">
 						<input type="text" class="form-control" name="xserie" id="xserie" placeholder="Buscar x Serie">
@@ -179,7 +180,9 @@ include "header.php";
 	<!-- Fila para Tabla de Resultados -->
 	<div class="row">
 
-		<div id="respuesta">Esperando Datos para la busqueda. <img src="../img/loading.gif" alt="">	</div>
+		<div id="respuesta">Esperando Datos para la busqueda.	</div>
 
 	</div>
 </div>
+
+<?php include "footer4.html"; ?>

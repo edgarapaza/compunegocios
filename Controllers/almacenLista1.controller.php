@@ -6,7 +6,7 @@ $todo = $mover->MostrarTodo();
 
 echo "<table class='table table-hover'>
 				<thead>
-					<tr>
+					<tr class='thead-dark'>
 						<th>Cod. Prod.</th>
 						<th>Producto</th>
 						<th>Almacen</th>

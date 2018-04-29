@@ -1,5 +1,5 @@
 <?php 
-
+include "header4.html";
 $viejoalmacen = $_REQUEST['idalmacen'];
 $idproducto = $_REQUEST['idproducto'];
 
@@ -8,29 +8,35 @@ echo "Idproducto enviado : " . $idproducto;
 
 
 ?>
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/comboalmacen.js"></script>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/comboalmacen.js"></script>
 
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<p>Almacen Anterior: <?php echo $viejoalmacen; ?>  ---> Mover a: </p>
 				<h3>Cambiar a Nuevo almacen</h3>
-					<button type="button" class="btn btn-success" id="btnMostrarCombo">M</button>
-			<div class="form-group">
-				<label for="inputAlmacen" class="col-sm-1 control-label">Almacen:</label>
-				<div class="col-sm-2">
-					<p>Almacen Anterior: <?php echo $viejoalmacen; ?>  ---> Mover a: </p>
-				</div>
-				<div class="col-sm-2">
-					<div id="combo1"></div>
-				</div>
-				<div class="col-sm-4">
+
+
+				<form action="" method="POST" class="form-inline" role="form">
+				
+					<div class="form-group">
+						
+						
+						
+						<div class="col-sm-2">
+								<div id="combo1"></div>
+						</div>
+						
+					</div>
+				
 					<button type="button" class="btn btn-success" id="btnMoverProducto">Mover a Nuevo Almacen</button>
-				</div>
-			</div>
-			<br>
+				
+				</form>
+
+				<button type="button" id="btnMostrarCombo"></button>
 						
 		</div>
 	</div>
+
+<?php include "footer4.html"; ?>
