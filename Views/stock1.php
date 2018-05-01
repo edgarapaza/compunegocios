@@ -1,5 +1,5 @@
 <?php 
-include "header.php"; 
+include "header4.html"; 
 $codprovedor = $_REQUEST['codigo'];
 $idregistro = $_REQUEST['idregistro'];
 
@@ -123,3 +123,5 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor);
 		});
 	});
 </script>
+
+<?php include "footer4.html"; ?>

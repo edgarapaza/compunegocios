@@ -16,9 +16,9 @@ $data = "";
 if($codigo == 1){
 		$dat = $articulo->ListaArticulosNombres($nombre);
 		echo "
-		<table class='table table-hover table-responsive'>
+		<table class='table table-hover'>
 				<thead>
-					<tr class='bg-danger'>
+					<tr class='thead-dark'>
 						<th>Codigo</th>
 						<th>Serie</th>
 						<th>Fam.</th>
@@ -65,9 +65,9 @@ if($codigo == 2)
 {
 	$dat = $articulo->ListaArticulosSerie($serie);
 	echo "
-		<table class='table table-hover table-responsive'>
+		<table class='table table-hover'>
 				<thead>
-					<tr class='bg-danger'>
+					<tr class='thead-dark'>
 						<th>Codigo</th>
 						<th>Serie</th>
 						<th>Fam.</th>
@@ -114,9 +114,9 @@ if($codigo == 3)
 {
 	$dat = $articulo->ListaArticulosFamilias($combo);
 	echo "
-		<table class='table table-hover table-responsive'>
+		<table class='table table-hover'>
 				<thead>
-					<tr class='bg-danger'>
+					<tr class='thead-dark'>
 						<th>Codigo</th>
 						<th>Serie</th>
 						<th>Fam.</th>

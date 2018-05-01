@@ -1,4 +1,4 @@
-<?php include "header.php"; include '../Models/listadoProveedor.model.php';?>
+<?php include "header4.html"; include '../Models/listadoProveedor.model.php';?>
 
 <div class="container">
 	<div class="row">
@@ -9,7 +9,7 @@
 
 			<table class="table table-hover">
 				<thead>
-					<tr class="bg-success">
+					<tr class="thead-dark">
 						<th>Codigo</th>
 						<th>Fecha</th>
 						<th>Nombre Proveedor</th>
@@ -44,3 +44,4 @@
 	</div>
 </div>
 
+<?php include "footer4.html"; ?>

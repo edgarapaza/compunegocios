@@ -1,5 +1,6 @@
 <?php
-require_once "Models/listadoProveedor.model.php";
+include "header4.html";
+require_once "../Models/listadoProveedor.model.php";
 $listaProveedor = new ListadoProveedor();
 $data = $listaProveedor->Proveedor();
 
@@ -42,3 +43,5 @@ $data = $listaProveedor->Proveedor();
 	    </div>
 	</div>
 </div>
+
+<?php include "footer4.html"; ?>

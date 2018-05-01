@@ -1,5 +1,5 @@
 <?php 
-include "header.php"; 
+include "header4.html"; 
 require "../Models/listadoProductos.class.php";
 
 $idprod = $_REQUEST['idprod'];
@@ -83,4 +83,4 @@ $datos = $listprod->ProductoSolo($idprod);
 	</div>
 </div>
 
-
+<?php include "footer4.html"; ?>

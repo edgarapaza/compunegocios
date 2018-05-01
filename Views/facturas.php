@@ -1,4 +1,5 @@
-<?php include "header.php"; 
+<?php
+include "header4.html";
 $idprov = $_REQUEST['codigo'];
 
 require_once "../Models/registroprovprod.model.php";
@@ -17,7 +18,7 @@ $nom = $reg->NombreProveedor($idprov);
 				
 				<table class="table table-hover">
 					<thead>
-						<tr>
+						<tr class="thead-dark">
 							<th>Codigo</th>
 							<th><input type="hidden" name="idproveedor" id="idproveedor" value="<?php echo $idprov;?>"></th>
 							<th>Fecha</th>
@@ -46,3 +47,4 @@ $nom = $reg->NombreProveedor($idprov);
 		</div>
 	</div>
 </div>
+<?php include "footer4.html"; ?>

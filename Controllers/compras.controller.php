@@ -35,5 +35,5 @@ echo $numfactura."<br>";
 */
 $guar = $compra->GuardarCompra($idcompra, $cantidad, $pvp, $idproducto, $mg1, $mg2, $mg3, $pv1, $pv2, $pv3, $numfactura, $idproveedor, $codgen);
 
-header("Location: ../Views/confirmacion.html");
+header("Location: ../Views/confirmacion.php");
 ?>

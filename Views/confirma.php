@@ -1,4 +1,5 @@
-<?php include "header.php";
+<?php
+include "header4.html";
 echo $msg = $_REQUEST['msg'];
 
 ?>
@@ -12,3 +13,4 @@ echo $msg = $_REQUEST['msg'];
 	</div>
 </div>
 
+<?php include "footer4.html"; ?>

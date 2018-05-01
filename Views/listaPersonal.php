@@ -1,5 +1,6 @@
 <?php
-require_once "Models/listadoPersonal.model.php";
+include "header4.html";
+require_once "../Models/listadoPersonal.model.php";
 $listaPersonal = new ListadoPersonal();
 $data = $listaPersonal->Personal();
 
@@ -43,3 +44,5 @@ $data = $listaPersonal->Personal();
 	    </div>
 	</div>
 </div>
+
+<?php include "footer4.html"; ?>

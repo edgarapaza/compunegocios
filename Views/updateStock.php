@@ -1,14 +1,13 @@
 <?php 
+include "header4.html";
 $codprove = $_REQUEST['codprove'];
 $codprod  = $_REQUEST['codprod'];
 $idcompra  = $_REQUEST['idcompra'];
 $codprodgen = $_REQUEST['codgen'];
 
  ?>
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 
-<br>
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
 		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 			<div class="form-group">
@@ -17,7 +16,7 @@ $codprodgen = $_REQUEST['codgen'];
 
 
 			<form action="../Controllers/compras.controller.php" method="post">
-				<table class="table table-bordered table-hover">
+				<table class="table table-hover">
 					<tr>
 						<th width="200">Codigo Proveedor:</th>
 						<td width="500"><?php echo $codprove; ?>
@@ -80,7 +79,7 @@ $codprodgen = $_REQUEST['codgen'];
 						<td><input type="text" name="numfactura" id="numfactura" placeholder="000"></td>
 					</tr>
 					<tr>
-						<td><a href="" class="btn btn-danger">Cancelar</a></td>
+						<td><button type="reset" class="btn btn-danger">Cancelar</button></td>
 						<td><button type="submit" class="btn btn-success">Guardar Compra</button></td>
 					</tr>
 				</table>
@@ -91,8 +90,8 @@ $codprodgen = $_REQUEST['codgen'];
 	</div>
 </div>
 
-<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -117,3 +116,5 @@ $codprodgen = $_REQUEST['codgen'];
 			});
 	});
 </script>
+
+<?php include "footer4.html"; ?>

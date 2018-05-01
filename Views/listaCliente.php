@@ -1,18 +1,7 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-		$.ajax({
-			type: 'POST',
-			url : 'Controllers/listadoCliente.controller.php',
-			beforeSend: function(){
-				$("#result").html("Buscando");
-			},
-			success: function(response){
-				$("#result").html(response);
-			}
-		});
-	});
+<?php
+include "header4.html";
 
-</script>
+?>
 
 <div class="container">
 	<div class='row'>
@@ -28,3 +17,5 @@
 		</div>
 	</div>
 </div>
+
+<?php include "footer4.html"; ?>
