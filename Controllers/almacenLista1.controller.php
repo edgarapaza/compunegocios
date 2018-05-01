@@ -24,7 +24,7 @@ while ($fila = $todo->fetch_array()) {
 	echo "<td>". $fila[3] ."</td>";
 	echo "<td>
 				
-						<a href='nuevoAlmacenx.php?idproducto=". $fila[0] ."&idalmacen=". $fila[2] ."' class='btn btn-danger'>Mover a</a>
+						<a href='nuevoAlmacenx.php?idproducto=". $fila[0] ."&idalmacen=". $fila[4] ."&almacen=". $fila[2] ."' class='btn btn-danger'>Mover a</a>
  				</td></tr>";
 	
 }

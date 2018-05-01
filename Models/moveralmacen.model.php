@@ -14,7 +14,7 @@ class MoverAlmacen
 	public function MostrarTodo()
 	{
 		
-		$sql = "SELECT p.idproducto, p.descripcion, a.almacen, p.stocktotal FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen";
+		$sql = "SELECT p.idproducto, p.descripcion, a.almacen, p.stocktotal,a.idalmacen FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen";
 
 		if (!$data = $this->con->query($sql)) {
  		  	echo("Error description 1: " . mysqli_error($this->con));

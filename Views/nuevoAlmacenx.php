@@ -1,11 +1,8 @@
 <?php 
 include "header4.html";
-$viejoalmacen = $_REQUEST['idalmacen'];
 $idproducto = $_REQUEST['idproducto'];
-
-echo "IdAlmacen enviado : " . $viejoalmacen;
-echo "Idproducto enviado : " . $idproducto;
-
+$idalmacenanterior = $_REQUEST['idalmacen'];
+$nom_almacen = $_REQUEST['almacen'];
 
 ?>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
@@ -13,28 +10,30 @@ echo "Idproducto enviado : " . $idproducto;
 
 <div class="container">
 	<div class="row">
+		<button type="button" id="btnMostrarCombo"></button>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<p>Almacen Anterior: <?php echo $viejoalmacen; ?>  ---> Mover a: </p>
-				<h3>Cambiar a Nuevo almacen</h3>
 
+			<h3>Cambiar a Nuevo almacen</h3>
 
-				<form action="" method="POST" class="form-inline" role="form">
-				
-					<div class="form-group">
-						
-						
-						
-						<div class="col-sm-2">
-								<div id="combo1"></div>
-						</div>
-						
-					</div>
-				
-					<button type="button" class="btn btn-success" id="btnMoverProducto">Mover a Nuevo Almacen</button>
-				
-				</form>
+			<form action="" method="POST" class="form-inline" role="form">
+				<table class="table table-striped table-hover">
+					<thead class="thead-dark">
+						<tr>
+							<th>Almacen Actual</th>
+							<th>Mover a</th>
+							<th>Confirmar</th>
 
-				<button type="button" id="btnMostrarCombo"></button>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><?php echo $nom_almacen; ?></td>
+							<td><div id="combo1"></div></td>
+							<td><button type="button" class="btn btn-success" id="btnMoverProducto">Mover a Nuevo Almacen</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
 						
 		</div>
 	</div>
