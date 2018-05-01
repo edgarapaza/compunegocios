@@ -1,4 +1,0 @@
-AuthName "Acceso solo usuarios autorizados"
-AuthType Basic
-AuthUserFile /etc/apache2/.htpasswd
-require valid-user

@@ -8,3 +8,5 @@ build
 docs/_build
 *.swp
 /nbproject/private/
+/doc
+/docs
