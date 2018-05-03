@@ -5,7 +5,7 @@ require_once "../Models/login.class.php";
 $log = new Login();
 
 $user = trim(strtolower($_REQUEST['user']));
-$pass = trim($_REQUEST['clave']);
+$pass = md5(trim($_REQUEST['clave']));
 
 $fila = $log->Ingreso($user,$pass);
 
@@ -19,19 +19,19 @@ $fila = $log->Ingreso($user,$pass);
 				$_SESSION['administrador'] = $fila['IDpersonal'];
 				$_SESSION['estado'] = 1;
 
-				header("location: ../inicio.html");
+				header("location: ../Views/index.html");
 				break;
 
 			case 2: //Empleado
 
 				$_SESSION['trabajador'] = $fila['IDpersonal'];
 				$_SESSION['estado'] = 2;
-				header("location: ../landing.php");
+				header("location: ../Views/landing.html");
 				break;
 		}
 
 	}else{
-		header("Location: ../index.php");
+		header("Location: ../index.html");
 	}
 
 ?>

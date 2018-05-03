@@ -1,8 +1,10 @@
 <?php 
 include "header4.html";
-$idproducto = $_REQUEST['idproducto'];
+
+$idproducto        = $_REQUEST['idproducto'];
 $idalmacenanterior = $_REQUEST['idalmacen'];
-$nom_almacen = $_REQUEST['almacen'];
+$nom_almacen       = $_REQUEST['almacen'];
+
 
 ?>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
@@ -15,7 +17,9 @@ $nom_almacen = $_REQUEST['almacen'];
 
 			<h3>Cambiar a Nuevo almacen</h3>
 
-			<form action="" method="POST" class="form-inline" role="form">
+			<form action="../Controllers/nuevoalmacen.controller.php" method="POST" class="form-inline" role="form">
+				<input type="text" name="idalmacenanterior" value="<?php echo $idalmacenanterior; ?>">
+				<input type="text" name="idproducto" value="<?php echo $idproducto; ?>">
 				<table class="table table-striped table-hover">
 					<thead class="thead-dark">
 						<tr>
@@ -29,7 +33,7 @@ $nom_almacen = $_REQUEST['almacen'];
 						<tr>
 							<td><?php echo $nom_almacen; ?></td>
 							<td><div id="combo1"></div></td>
-							<td><button type="button" class="btn btn-success" id="btnMoverProducto">Mover a Nuevo Almacen</button></td>
+							<td><button type="submit" class="btn btn-success" id="btnMoverProducto">Mover a Nuevo Almacen</button></td>
 						</tr>
 					</tbody>
 				</table>

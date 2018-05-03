@@ -21,7 +21,7 @@
 					type : 'POST',
 					url  : '../Controllers/listafamilia.controller.php',
 					beforeSend: function(){
-						$('#fam-lista').html("<img src='../img/load.gif'>");
+						$('#fam-lista').html("<img src='img/load.gif'>");
 					},
 					success: function(res){
 						document.getElementById('fam-lista').innerHTML = res;

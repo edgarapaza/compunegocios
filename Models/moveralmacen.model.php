@@ -27,7 +27,7 @@ class MoverAlmacen
 
 	public function MostrarxAlmacen($idalmacen)
 	{
-		$sql = "SELECT p.idproducto, p.descripcion, a.almacen, p.stocktotal FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen AND p.idalmacen = " . $idalmacen;
+		$sql = "SELECT p.idproducto, p.descripcion, a.almacen, p.stocktotal,a.idalmacen FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen AND p.idalmacen = " . $idalmacen;
 
 		if (!$data = $this->con->query($sql)) 
 		{
@@ -39,9 +39,25 @@ class MoverAlmacen
 		mysqli_close($this->con);
 	}
 
-	public function MoveraNuevoAlmacen()
+	public function MoveraNuevoAlmacen($ida_ant, $ida_nue,$idproducto, $idpersonal)
 	{
 
+    $sql_update = "UPDATE productos SET idalmacen = $ida_nue WHERE idproducto = $idproducto;";
+    
+    if(!$this->con->query($sql_update))
+    {
+    	echo "Error 1. " . mysqli_error($this->con);
+    }
+    
+
+    $sql_registro = "INSERT INTO cambioalmacen (idca,idalma_anterior,idalma_nuevo,fechacambio,idpersonal,idproducto) VALUES (NULL, $ida_ant,$ida_nue,now(),$idpersonal,$idproducto);";
+
+		if(!$this->con->query($sql_registro)){
+			echo "Error 2. " . mysqli_error($this->con);
+		} else{
+			echo "bien";
+    }
+    mysqli_close($this->con);
 	}
 
 	public function Almacenes()
@@ -73,7 +89,8 @@ class MoverAlmacen
 	}
 }
 
-/*$mover = new MoverAlmacen();
+/*
+$mover = new MoverAlmacen();
 //$todo = $mover->MostrarxAlmacen(6);
 $todo = $mover->Almacenes();
 
@@ -82,4 +99,5 @@ while ($fila = $todo->fetch_array()) {
 	echo $fila[1];
 	echo $fila[2];
 	echo $fila[3];
-}*/	
+}
+*/

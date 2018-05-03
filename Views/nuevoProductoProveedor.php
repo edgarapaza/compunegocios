@@ -1,5 +1,5 @@
 <?php
-include "header.php";
+include "header4.html";
 session_start();
 #@$personal = $_SESSION['administrador'];
 $personal = "1002";
@@ -84,10 +84,8 @@ $idregistro = $_REQUEST['idregistro'];
 	}
 </style>
 
-	<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src= "../js/series.js"></script>
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src= "js/series.js"></script>
 
 
 	<script type="text/javascript">
@@ -116,7 +114,7 @@ $idregistro = $_REQUEST['idregistro'];
 					type : 'POST',
 					url  : '../Controllers/selectMarca.controller.php',
 					beforeSend: function(){
-						$('#listaMarca').html("<img src='../img/load.gif'>");
+						$('#listaMarca').html("<img src='img/load.gif'>");
 					},
 					success: function(res){
 						document.getElementById('listaMarca').innerHTML = res;
@@ -322,6 +320,7 @@ $idregistro = $_REQUEST['idregistro'];
 					<legend>
 						Registro de Productos - <span class="alert-danger">Proveedor: "<?php echo $proveed[1]; ?>"</span>
 					</legend>
+					<button type="button" id="btnRegistrar" class="btn btn-lg btn-primary">Guardar</button>
 				</div>
 
 				<input type="hidden" name="idproveedor" readonly="readonly" id="idproveedor" value="<?php echo $idprove; ?>">
@@ -503,7 +502,7 @@ $idregistro = $_REQUEST['idregistro'];
 					</div>
 				</div>
 
-				<button type="button" id="btnRegistrar" class="btn btn-lg btn-primary">Guardar</button>
+				
 
 				
 			</form>
@@ -577,3 +576,6 @@ $idregistro = $_REQUEST['idregistro'];
         </div>
     </div>
 </div>
+
+
+<?php include "footer4.html"; ?>
