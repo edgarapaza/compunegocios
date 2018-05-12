@@ -14,5 +14,5 @@ $website  = $_REQUEST['website'];
 $prove = new Proveedor();
 $prove->AddProveedor($nomprove,$razonsocial,$numRUC,$direccion,$telfFijo,$celular,$email,$website);
 
-header("Location: ../inicio.html");
+header("Location: ../index.html");
 ?>

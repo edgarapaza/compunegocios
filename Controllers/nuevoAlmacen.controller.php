@@ -9,5 +9,5 @@ $idpersonal  = $_SESSION['administrador'];
 
 $almacen = new Almacen();
 $almacen->AddAlmacen($tienda,$descripcion,$direccion,$telefono,$idpersonal);
-header("Location: ../inicio.html");
+header("Location: ../Views/index.html");
 ?>

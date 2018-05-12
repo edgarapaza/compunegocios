@@ -69,7 +69,7 @@ $datos = $listprod->ProductoSolo($idprod);
 								S/. <input type="text" name="precio" id="precio" value="<?php echo $datos['precventa3']; ?>">
 							</td>
 							<td>
-								<input type="number" name="cantidad" id="cantidad" value="1" min="{0"} max="{99"} step="1" required="required">
+								<input type="number" name="cantidad" id="cantidad" value="1" min="1" max="99" step="1" required="required">
 							</td>
 							<td>
 								<input type="submit" name="btnuno" id="btnuno" class="btn btn-success" value="Confirmar Venta">

@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-xs-10 col-sm-12 col-md-10 col-lg-10">
 
-			<form action="Controllers/nuevoProveedor.controller.php" method="POST" class="form-horizontal" role="form">
+			<form action="../Controllers/nuevoProveedor.controller.php" method="POST" class="form-horizontal" role="form">
 				<div class="form-group">
 					<legend>Nuevo Proveedor</legend>
 

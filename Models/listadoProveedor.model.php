@@ -8,7 +8,7 @@ class ListadoProveedor
 	{
 		$conexion = new Conexion();
 		$mysqli = $conexion->Conectarse();
-		$sql = "SELECT idproveedor as codigo, nomprove, razonsocial, email, fecalta FROM proveedor";
+		$sql = "SELECT idproveedor as codigo, nomprove, razonsocial, direccion, telfFijo, celular, email, website FROM proveedor";
 		$data = $mysqli->query($sql);
 		return $data;
 

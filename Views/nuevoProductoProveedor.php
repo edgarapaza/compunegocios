@@ -33,7 +33,7 @@ $idregistro = $_REQUEST['idregistro'];
 ?>
 
 <style type="text/css">
-	
+
 	#popup {
     left: 0;
     position: absolute;
@@ -106,10 +106,10 @@ $idregistro = $_REQUEST['idregistro'];
         $('.popup-overlay').fadeOut('slow');
         return false;
 			});
-			
+
 
 			$("#btnmostrar").click(function(){
-				
+
 				$.ajax({
 					type : 'POST',
 					url  : '../Controllers/selectMarca.controller.php',
@@ -122,12 +122,12 @@ $idregistro = $_REQUEST['idregistro'];
 					error: function(){
 						$("#listaMarca").html("Error Cargando Listado de Marcas");
 					}
-				});				
+				});
 			});
 
 
 			$("#btnNuevaMarca").click(function(){
-												
+
 				var codigomarca = $("#inputCodigoM").val();
 				var otramarca   = $("#nuevamarca1").val();
 
@@ -212,7 +212,7 @@ $idregistro = $_REQUEST['idregistro'];
 
 
 			$("#btnRegistrar").click(function(){
-				
+
 				var idproveedor = $("#idproveedor").val();
 				var idfamilia   = $("#inputFamilia").val();
 				var subfamilia  = $("#inputSubfamilia").val();
@@ -291,10 +291,10 @@ $idregistro = $_REQUEST['idregistro'];
 		                		$('#popup').fadeIn('slow');
 								        $('.popup-overlay').fadeIn('slow');
 								        $('.popup-overlay').height($(window).height());
-		                    
+
 		                    $("#resultado").html(data);
 								        return false;
-		                    
+
 		                },
 		                error: function(res){
 		                	$("#resultado").html(res);
@@ -314,7 +314,7 @@ $idregistro = $_REQUEST['idregistro'];
 	<div class="row">
 
 		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-			
+
 			<form action="" method="POST" class="form-horizontal" role="form" id="formulario">
 				<div class="form-group">
 					<legend>
@@ -467,7 +467,7 @@ $idregistro = $_REQUEST['idregistro'];
 						<select name="idalmacen" id="inputAlmacen" class="form-control" required="required">
 							<option>[Seleccionar]</option>
 							<?php while ($listaalmacen = $almacen->fetch_array(MYSQLI_ASSOC)) { ?>
-								<option value="<?php echo $listaalmacen['idalmacen']; ?>"><?php  echo $listaalmacen['descripcion'];?></option>
+								<option value="<?php echo $listaalmacen['idalmacen']; ?>"><?php  echo $listaalmacen['almacen'];?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -502,9 +502,9 @@ $idregistro = $_REQUEST['idregistro'];
 					</div>
 				</div>
 
-				
 
-				
+
+
 			</form>
 		</div>
 
@@ -562,7 +562,7 @@ $idregistro = $_REQUEST['idregistro'];
 		</div>
 	</div>
 </div>
-				
+
 <div id="popup" style="display: none;" class="centrar">
     <div class="content-popup">
         <div>

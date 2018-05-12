@@ -23,7 +23,7 @@ class RegistroProveedorProducto
  		  echo("Error description: " . mysqli_error($this->con));
 		}
 		echo "Guardado";
-		
+
 		$dato = RegistroProveedorProducto::UltimoRegistro();
 		return $dato;
 		mysqli_close($this->con);
@@ -35,9 +35,9 @@ class RegistroProveedorProducto
 
 		if(!$res = $this->con->query($sql))
 		{
-			echo("Error Mostrar: " . mysqli_error($this->con));	
+			echo("Error Mostrar: " . mysqli_error($this->con));
 		}
-		
+
 		return $res;
 		mysqli_close($this->con);
 	}
@@ -48,7 +48,7 @@ class RegistroProveedorProducto
 
 		if(!$result = $this->con->query($sql))
 		{
-			echo("Error Ultimo: " . mysqli_error($this->con));	
+			echo("Error Ultimo: " . mysqli_error($this->con));
 		}
 
 		$ultimo = $result->fetch_array();
@@ -58,15 +58,15 @@ class RegistroProveedorProducto
 
 	public function NombreProveedor($idproveedor)
 	{
-		$sql = "SELECT nomprove FROM proveedor WHERE idproveedor = " . $idproveedor;
-        
+		$sql = "SELECT razonsocial FROM proveedor WHERE idproveedor = " . $idproveedor;
+
 	  if(!$res1 = $this->con->query($sql))
 	  {
 	  	echo "Error Nombre. " . mysqli_error($this->con);
 	  }
 
 	  $fila = $res1->fetch_array(MYSQLI_ASSOC);
-    
+
     return $fila;
     mysqli_close($this->con);
 	}

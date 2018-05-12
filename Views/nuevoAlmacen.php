@@ -8,10 +8,10 @@ $usuario = $_SESSION['administrador'];
 		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 			<h1>Nuevo Almacen</h1>
 			<div id="respuesta"></div>
-			<form action="Controllers/nuevoAlmacen.controller.php" method="POST" class="form-horizontal" role="form">
+			<form action="../Controllers/nuevoAlmacen.controller.php" method="POST" class="form-horizontal" role="form">
 
 				<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $usuario;?>">
-				
+
 				<div class="form-group">
 					<div class="col-sm-1">
 					<label for="inputTienda">Almacen:</label>

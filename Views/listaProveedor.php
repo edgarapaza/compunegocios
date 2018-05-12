@@ -18,8 +18,8 @@ $data = $listaProveedor->Proveedor();
 						<th>Direccion</th>
 						<th>Telefono1</th>
 						<th>Telefono2</th>
-						<th>Obs</th>
-						<th>Creacion</th>
+						<th>Email</th>
+						<th>Website</th>
 						<th>Opciones</th>
 					</tr>
 				</thead>
