@@ -11,10 +11,10 @@ class Compras
 		return $this->con;
 	}
 
-	public function ListadoComprasProveedor($codigo)
+	public function ListadoComprasProveedor($codigo,$idregistro)
 	{
 		
-		$sql = "SELECT * FROM compraprovedor WHERE idproveedor = " . $codigo;
+		$sql = "SELECT * FROM compraprovedor WHERE idproveedor = $codigo AND idregistro = $idregistro";
 
 		if (!$data = $this->con->query($sql)) {
  		  	echo("Error description 1: " . mysqli_error($this->con));
@@ -24,6 +24,22 @@ class Compras
 		
 		mysqli_close($this->con);
 	}
+
+	public function AgregardeListado($idproducto,$codigo,$idproveedor,$cantidad,$pvp,$numfact,$idpersonal,$idregistro)
+	{
+		
+		$sql = "INSERT INTO compraprovedor VALUES (NULL,idproducto,codigo,idproveedor,cantidad,pvp,numfact,now(),idpersonal,idregistro)";
+
+		if (!$data = $this->con->query($sql)) {
+ 		  	echo("Error description 1: " . mysqli_error($this->con));
+		}
+
+		return $data;
+		
+		mysqli_close($this->con);
+	}
+
+	
 
 	public function DatosProducto($idproducto)
 	{

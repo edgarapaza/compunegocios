@@ -50,8 +50,8 @@ class NuevoProducto
 									INGRESO DE COMPRA PROVEEDRO
 				*************************************************************************/
 
-				$sql2 = "INSERT INTO compraprovedor (idcompra,idproducto,codigo, idproveedor,cantidad,pvp,numfactura,feccompra,idpersonal)
-					VALUES (NULL,'$ultimo_cod[0]','$codigo','$idproveedor','$stocktotal','$PVP','$factura','$feccompra','$idpersonal')";
+				$sql2 = "INSERT INTO compraprovedor (idcompra,idproducto,codigo, idproveedor,cantidad,pvp,numfactura,feccompra,idpersonal, idregistro)
+					VALUES (NULL,'$ultimo_cod[0]','$codigo','$idproveedor','$stocktotal','$PVP','$factura','$feccompra','$idpersonal','$idregistro')";
 
 				if(!$mysqli->query($sql2)){
 					echo("Error Insertando compraVendedor: " . mysqli_error($mysqli));

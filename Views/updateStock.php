@@ -1,5 +1,5 @@
 <?php 
-include "header4.html";
+include "header4.php";
 $codprove = $_REQUEST['codprove'];
 $codprod  = $_REQUEST['codprod'];
 $idcompra  = $_REQUEST['idcompra'];
@@ -34,7 +34,7 @@ $codprodgen = $_REQUEST['codgen'];
 					<tr>
 						<th>Cantidad:</th>
 						<td>
-						<input type="number" name="stocktotal" id="inputStocktotal" value="1" min="{1"} max="{99"} step="1" required="required">
+						<input type="number" name="stocktotal" id="inputStocktotal" value="1" min="1" max="99" step="1" required="required">
 						</td>
 					</tr>
 					<tr>

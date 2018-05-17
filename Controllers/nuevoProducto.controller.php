@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../Models/newproducto.class.php";
 
 $nuevopro = new NuevoProducto();
@@ -29,8 +30,7 @@ $total        = trim($_POST['total']);
 $factura      = trim($_POST['factura']);
 $feccompra    = trim($_POST['feccompra']);
 $idregistro   = trim($_POST['idregistro']);
-
-$idpersonal   = trim($_POST['idpers']);
+$idpersonal  = $_SESSION['administrador'];
 $stockmin     = 10;
 
 $fecAlta      = date('Y-m-d H:m:s');

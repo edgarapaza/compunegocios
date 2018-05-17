@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require "../Models/moveralmacen.model.php";
 
 $mover = new MoverAlmacen();
@@ -7,7 +7,8 @@ $mover = new MoverAlmacen();
 $idalmacen_anterior = $_REQUEST['idalmacenanterior'];
 $idalmacen_nuevo    = $_REQUEST['nuevoalmacen'];
 $idproducto         = $_REQUEST['idproducto'];
-$idpersonal         = 1002;
+
+$idpersonal         = $_SESSION['administrador'];
 
 printf("Cod Almacen Anterio: %d - Cod Nuevo almacen: %d - producto: %d", $idalmacen_anterior, $idalmacen_nuevo, $idproducto);
 

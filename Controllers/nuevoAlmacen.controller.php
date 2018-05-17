@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require "../Models/almacen.class.php";
 
 $tienda      = ucfirst(strtolower($_POST['almacen']));

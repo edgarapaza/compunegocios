@@ -1,5 +1,5 @@
 <?php
-include "header4.html";
+include "header4.php";
 require_once "../Models/listadoPersonal.model.php";
 $listaPersonal = new ListadoPersonal();
 $data = $listaPersonal->Personal();
@@ -18,9 +18,8 @@ $data = $listaPersonal->Personal();
 						<th>Direccion</th>
 						<th>Telefono1</th>
 						<th>Telefono2</th>
-						<th>Obs</th>
-						<th>Creacion</th>
-						<th>Opciones</th>
+						<th>Cargp</th>
+						<th>Foto</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,9 +32,10 @@ $data = $listaPersonal->Personal();
 						<td><?php echo $fila[4]; ?></td>
 						<td><?php echo $fila[5]; ?></td>
 						<td><?php echo $fila[6]; ?></td>
-						<td><?php echo $fila[7]; ?></td>
+						<td><img src="<?php echo $fila[7]; ?>" alt="Foto">
+							</td>
 						<td>
-							<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+							<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
 						</td>
 					</tr>
 					<?php } ?>

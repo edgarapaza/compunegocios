@@ -1,5 +1,5 @@
 <?php 
-include "header4.html"; 
+include "header4.php"; 
 require "../Models/listadoProductos.class.php";
 
 $idprod = $_REQUEST['idprod'];

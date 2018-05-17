@@ -1,5 +1,5 @@
 <?php
-include "header4.html";
+include "header4.php";
 echo $msg = $_REQUEST['msg'];
 
 ?>

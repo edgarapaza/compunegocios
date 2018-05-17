@@ -1,13 +1,14 @@
 <?php
-include "header4.html";
 session_start();
-#@$personal = $_SESSION['administrador'];
-$personal = "1002";
+include "header4.php";
+
+$idpersonal = $_SESSION['administrador'];
 
 $idprove    = $_REQUEST['idproveedor'];
 $idregistro = $_REQUEST['idregistro'];
 
-//echo "Codigo del Proveedor: " . $idprove;
+#echo "Codigo del Proveedor: " . $idprove;
+#echo "Codigo del Registro: " . $idregistro;
 
 
 	require_once "../Models/nuevoProducto.class.php";
@@ -324,7 +325,7 @@ $idregistro = $_REQUEST['idregistro'];
 				</div>
 
 				<input type="hidden" name="idproveedor" readonly="readonly" id="idproveedor" value="<?php echo $idprove; ?>">
-				<input type="hidden" name="idpersonal" readonly="readonly" id="idpersonal" value="<?php echo $personal; ?>">
+				<input type="hidden" name="idpersonal" readonly="readonly" id="idpersonal" value="<?php echo $idpersonal; ?>">
 				<input type="hidden" name="codigo" readonly="readonly" id="idcodigo" value="<?php echo $codigo; ?>" >
 				<input type="hidden" name="idregistro" readonly="readonly" id="idregistro" value="<?php echo $idregistro; ?>" >
 
@@ -442,7 +443,7 @@ $idregistro = $_REQUEST['idregistro'];
 				<div class="form-group row">
 					<label for="inputCantidad" class="col-sm-2 col-form-label">Cantidad:</label>
 					<div class="col-sm-4">
-						<input type="number" name="cantidad" id="inputCantidad" class="form-control" required="required" placeholder="Num">
+						<input type="number" name="cantidad" min="1" max="99" step="1" id="inputCantidad" class="form-control" required="required" placeholder="Num" value="1">
 					</div>
 				</div>
 

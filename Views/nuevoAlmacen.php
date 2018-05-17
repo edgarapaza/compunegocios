@@ -1,7 +1,7 @@
 <?php
-include "header4.html";
 session_start();
-$usuario = $_SESSION['administrador'];
+include "header4.php";
+$idpersonal = $_SESSION['administrador'];
 ?>
 <div class="container">
 	<div class="row">
@@ -10,7 +10,7 @@ $usuario = $_SESSION['administrador'];
 			<div id="respuesta"></div>
 			<form action="../Controllers/nuevoAlmacen.controller.php" method="POST" class="form-horizontal" role="form">
 
-				<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $usuario;?>">
+				<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $idpersonal;?>">
 
 				<div class="form-group">
 					<div class="col-sm-1">

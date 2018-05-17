@@ -1,69 +1,121 @@
 <?php
 session_start();
-$usuario = $_SESSION['administrador'];
+if(isset($_SESSION['administrador']))
+{
+	$idpersonal = $_SESSION['administrador'];
+	include "header4.php";
 ?>
-<form action="Controllers/nuevoPersonal.php" method="POST" class="form-horizontal" role="form">
-	<div class="form-group">
-		<legend>Nuevo Personal</legend>
-	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				
+				<form action="../Controllers/nuevoPersonal.controller.php" method="POST" class="form-horizontal" role="form">
+					<input type="text" name="idpersonal" id="idpersonal" value="<?php echo $idpersonal;?>">
+					<div class="form-group">
+						<legend>Nuevo Personal</legend>
+					</div>
 
-	<div class="form-group">
-		<label for="inputNombres" class="col-sm-2 control-label">Nombres:</label>
-		<div class="col-sm-8">
-			<input type="text" name="nombres" id="inputNombres" class="form-control" required="required">
+					<div class="form-group">
+						<div class="col-sm-6">
+							<input type="text" name="nombres" id="inputNombres" class="form-control" required="required" placeholder="Nombre">
+						</div>
+					</div>
+
+					<div class="form-group">
+
+						<div class="col-sm-6">
+							<input type="text" name="paterno" id="inputPaterno" class="form-control" required="required" placeholder="Apellido paterno">
+						</div>
+					</div>
+
+					<div class="form-group">
+						
+						<div class="col-sm-6">
+							<input type="text" name="materno" id="inputMaterno" class="form-control" required="required" placeholder="Apellido materno">
+						</div>
+					</div>
+
+					<div class="form-group">
+						
+						<div class="col-sm-6">
+							<input type="text" name="dni" id="inputDni" class="form-control" required="required" placeholder="Numero DNI">
+						</div>
+					</div>
+
+					<div class="form-group">
+						
+						<div class="col-sm-6">
+							<input type="text" name="direccion" id="inputDireccion" class="form-control" required="required" placeholder="Direccion">
+						</div>
+					</div>
+
+					<div class="form-group">
+						
+						<div class="col-sm-6">
+							<input type="text" name="telefono1" id="inputTelefono1" class="form-control" required="required" placeholder="Telefono 1">
+						</div>
+					</div>
+
+					<div class="form-group">
+						
+						<div class="col-sm-6">
+							<input type="text" name="telefono2" id="inputTelefono2" class="form-control" placeholder="Telefono 2">
+						</div>
+					</div>
+					<hr>
+
+					<div class="form-group">
+						
+						<div class="col-sm-6">
+							<input type="text" name="inputUsuario" id="inputUsuario" class="form-control" required="required" placeholder="Nombre de usuario">
+						</div>
+					</div>
+
+					<div class="form-group">
+						
+						<div class="col-sm-6">
+							<input type="password" name="inputPassword" id="inputPassword" class="form-control" required="required" placeholder="Contraseña">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputNivel" class="col-sm-2 control-label">Nivel:</label>
+						<div class="col-sm-6">
+							<select name="nivel" id="inputNivel" class="form-control">
+								<option value="">-- Seleccione Uno --</option>
+								<option value="1">Administrador</option>
+								<option value="2">Trabajador</option>
+								<option value="3">Solo Visualizar</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputEstado" class="col-sm-2 control-label">Estado:</label>
+						<div class="col-sm-6">
+							<select name="estado" id="inputEstado" class="form-control">
+								<option value="1">Activo</option>
+								<option value="2" disabled="disabled">Temporal</option>
+							</select>
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-lg btn-primary">Guardar</button>
+
+				</form>
+
+			</div>
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label for="inputPaterno" class="col-sm-2 control-label">Paterno:</label>
-		<div class="col-sm-8">
-			<input type="text" name="paterno" id="inputPaterno" class="form-control" required="required">
-		</div>
-	</div>
+	
 
-	<div class="form-group">
-		<label for="inputMaterno" class="col-sm-2 control-label">Materno:</label>
-		<div class="col-sm-8">
-			<input type="text" name="materno" id="inputMaterno" class="form-control" required="required">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="inputDni" class="col-sm-2 control-label">Dni:</label>
-		<div class="col-sm-8">
-			<input type="text" name="dni" id="inputDni" class="form-control" required="required">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="inputDireccion" class="col-sm-2 control-label">Direccion:</label>
-		<div class="col-sm-8">
-			<input type="text" name="direccion" id="inputDireccion" class="form-control" required="required">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="inputTelefono1" class="col-sm-2 control-label">Telefono1:</label>
-		<div class="col-sm-8">
-			<input type="text" name="telefono1" id="inputTelefono1" class="form-control" required="required">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="inputTelefono2" class="col-sm-2 control-label">Telefono2:</label>
-		<div class="col-sm-8">
-			<input type="text" name="telefono2" id="inputTelefono2" class="form-control">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="inputObs" class="col-sm-2 control-label">Obs:</label>
-		<div class="col-sm-8">
-			<input type="text" name="obs" id="inputObs" class="form-control">
-		</div>
-	</div>
-	<input type="text" name="idpersonal" id="idpersonal" value="<?php echo $usuario;?>">
-
-	<button type="submit" class="btn btn-lg btn-primary">Guardar</button>
-
-</form>
+<?php 
+	include "footer4.html";
+}
+else{
+  echo "Error: 404.  Consulte al administrador del sistema";
+  header("Location: ../index.html");
+} 
+ ?>

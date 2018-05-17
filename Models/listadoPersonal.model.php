@@ -7,7 +7,7 @@ class ListadoPersonal{
 	{
 		$conexion = new Conexion();
 		$mysqli = $conexion->Conectarse();
-			$sql = "SELECT IDPersonal,CONCAT(nombres,' ', paterno,' ', materno) AS nombre,dni,direccion,telefono1,telefono2,obs,fecCreacion FROM Personal";
+			$sql = "SELECT IDPersonal,CONCAT(nombres,' ', paterno,' ', materno) AS nombre,dni,direccion,telefono1,telefono2,cargo,foto FROM Personal";
 			$data = $mysqli->query($sql);
 			return $data;
 		mysqli_close($mysqli);

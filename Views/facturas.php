@@ -1,5 +1,5 @@
 <?php
-include "header4.html";
+include "header4.php";
 $idprov = $_REQUEST['codigo'];
 
 require_once "../Models/registroprovprod.model.php";
@@ -14,7 +14,8 @@ $nom = $reg->NombreProveedor($idprov);
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a href="../Controllers/facturas.controller.php?codigo=<?php echo $idprov;?>" class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> Crear Nuevo Registro de Compras</a>
+				<a href="../Controllers/facturas.controller.php?codigo=<?php echo $idprov;?>" class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> Crear Nuevo Registro</a>
+				<hr>
 
 				<table class="table table-hover">
 					<thead>
@@ -23,7 +24,6 @@ $nom = $reg->NombreProveedor($idprov);
 							<th><input type="hidden" name="idproveedor" id="idproveedor" value="<?php echo $idprov;?>"></th>
 							<th>Fecha</th>
 							<th>Add producto</th>
-
 						</tr>
 					</thead>
 					<tbody>
@@ -33,6 +33,7 @@ $nom = $reg->NombreProveedor($idprov);
 							<td><?php echo $nom['razonsocial']; ?></td>
 							<td><?php echo $fila[2]; ?></td>
 							<td>
+								<a href="stock1.php?codigo=<?php echo $idprov;?>&idregistro=<?php echo $fila[0]; ?>" class="btn btn-info">Agregar Ventas</a>
 								<a href="stock1.php?codigo=<?php echo $idprov;?>&idregistro=<?php echo $fila[0]; ?>" class="btn btn-success">Ver Detalles</a>
 
 							</td>

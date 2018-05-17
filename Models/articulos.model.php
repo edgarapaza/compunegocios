@@ -35,6 +35,18 @@ class ArticulosAlmacen
     mysqli_close($this->con);
   }
 
+  public function ListaArticulosNombresforCompra($nombre)
+  {
+
+      $sql = "SELECT p.idproducto, p.numserie, f.codigo, p.descripcion, p.marca, p.modelo, p.PVP, p.stocktotal, p.codigo FROM productos as p,  familia as f WHERE p.idfamilia = f.IDfamilia AND p.descripcion LIKE '%". $nombre ."%'";
+
+        $data = $this->con->query($sql);
+       
+   
+    return $data;
+    mysqli_close($this->con);
+  }
+
 
   public function ListaArticulosSerie($serie)
     {

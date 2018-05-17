@@ -19,14 +19,13 @@ $fila = $log->Ingreso($user,$pass);
 				$_SESSION['administrador'] = $fila['IDpersonal'];
 				$_SESSION['estado'] = 1;
 
-				header("location: ../Views/index.html");
+				header("location: ../Views/index.php");
 				break;
 
-			case 2: //Empleado
+			case 2: //Trabajador
 
 				$_SESSION['trabajador'] = $fila['IDpersonal'];
-				$_SESSION['estado'] = 2;
-				header("location: ../Views/landing.html");
+				header("location: ../tienda/index.php");
 				break;
 		}
 

@@ -14,6 +14,6 @@ $total    = $precio * $cantidad;
 
 $guardar = new GuardarVenta();
 $guardar->Guardar($codigo,$precio,$cantidad,$total,$codprodgen);
-header("Location: ../Views/confirma.php");
+header("Location: ../tienda/confirma.php");
 
 ?>
