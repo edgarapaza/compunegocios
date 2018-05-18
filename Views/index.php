@@ -1653,5 +1653,5 @@ include_once "footer4.html";
 else{
   echo "Error: 404.  Consulte al administrador del sistema";
   header("Location: ../index.html");
-} 
+}
 ?>
