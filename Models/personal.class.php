@@ -13,21 +13,26 @@ class Personal{
 
 	public function AddPersonal($nombres,$paterno,$materno,$dni,$direccion,$telefono1,$telefono2,$idpersonal,$cargo,$usuario,$passwd,$nivel,$estado)
 	{
+		echo $nombres."<br>";
+		echo $paterno."<br>";
+		echo $materno."<br>";
 
-		$sql_duplicado = "SELECT IDpersonal FROM Personal WHERE nombres = '$nombres' AND paterno ='$paterno' AND materno = '$materno' AND dni ='$dni'";
+		$sql_duplicado = "SELECT IDpersonal FROM Personal WHERE nombres = '$nombres' AND paterno ='$paterno' AND materno = '$materno' AND dni ='$dni' LIMIT 1;";
 		
 		if(!$res = $this->con->query($sql_duplicado)){
 			echo ("Error consulta Duplicado " . mysqli_error($this->con));
 		}
 		
-		$num = $res->num_rows;
-		echo $num;
-
-		if($num > 0)
-		{ $msg = "Dato Duplicado";
+		$num = $res->fetch_array();
+		echo "Numero de resultado NUEVO: ". $num[0];
+		
+		if($num[0] > 0)
+		{ 
+			$msg = "Dato Duplicado";
+			echo $msg;
 			return $msg;
 		}else{
-			$sql ="INSERT INTO Personal VALUES (NULL,'$nombres','$paterno','$materno','$dni','$direccion','$telefono1','$telefono2',now(),'$idpersonal','$cargo'.'./img/faces/24.jpg');";
+			$sql ="INSERT INTO Personal VALUES (NULL,'$nombres','$paterno','$materno','$dni','$direccion','$telefono1','$telefono2',now(),'$idpersonal','$cargo','./img/faces/avatar.png');";
 		
 			if(!$this->con->query($sql))
 			{
@@ -49,6 +54,8 @@ class Personal{
 			}
 
 			return 0;
+
+
 		}
 		
 		
@@ -73,3 +80,8 @@ class Personal{
 		mysqli_close($this->con);
 	}
 }
+
+//$pers = new Personal();
+//$pers->AddPersonal('Patricia','Luque','Tello','12345679');
+
+?>

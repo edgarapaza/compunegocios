@@ -62,7 +62,7 @@ class MoverAlmacen
 
 	public function Almacenes()
 	{
-		$sql = "SELECT idalmacen, almacen FROM almacen";
+		$sql = "SELECT idalmacen, almacen FROM almacen;";
 
 		if (!$data = $this->con->query($sql)) 
 		{

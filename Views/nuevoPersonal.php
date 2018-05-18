@@ -11,7 +11,7 @@ if(isset($_SESSION['administrador']))
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				
 				<form action="../Controllers/nuevoPersonal.controller.php" method="POST" class="form-horizontal" role="form">
-					<input type="text" name="idpersonal" id="idpersonal" value="<?php echo $idpersonal;?>">
+					<input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $idpersonal;?>">
 					<div class="form-group">
 						<legend>Nuevo Personal</legend>
 					</div>
