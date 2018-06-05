@@ -30,7 +30,8 @@
 						<td><?php echo $fila[1]; ?></td>
 						<td><?php echo $fila[2]; ?></td>
 						<td><?php echo $fila[3]; ?></td>
-						<td><?php echo $fila[7]; ?></td>
+						<td><a href="http://<?php echo $fila[7]; ?>" target="_blank"> <?php echo $fila[7]; ?> </a>
+							</td>
 						<td><?php echo $fila[4]; ?></td>
 						<td><?php echo $fila[5]; ?></td>
 						<td>

@@ -60,11 +60,14 @@ class Compras
 	public function GuardarCompra($idcompra, $cantidad, $pvp, $idproducto, $mg1, $mg2, $mg3, $pv1, $pv2, $pv3,$numfactura, $idproveedor, $codgen)
 	{
 		// primero resiva la cantidad de stcok en la tabla productos
-		$sql1 = "SELECT stocktotal FROM productos WHERE idproducto = ".  $idproducto;
+
+		$sql1 = "SELECT stocktotal FROM productos WHERE idproducto =  '$idproducto';";
 		
 		if(!$this->con->query($sql1))
 		{
 			echo ("Error 1 arriba. " . mysqli_error($this->con));
+			$msg = ("Error 1 arriba. " . mysqli_error($this->con));
+
 		}
 			
 			$res1 = $this->con->query($sql1);	
@@ -79,13 +82,15 @@ class Compras
 				
 				if(!$this->con->query($sql2))
 					{
-						echo ("Error 1 arriba. " . mysqli_error($this->con));
+						echo ("Error 2 arriba. " . mysqli_error($this->con));
+						$msg = ("Error 2 arriba. " . mysqli_error($this->con));
 					}
 
 				
 				if(!$this->con->query($sqlprod))
 					{
-						echo ("Error 1 arriba. " . mysqli_error($this->con));
+						echo ("Error 3 arriba. " . mysqli_error($this->con));
+						$msg = ("Error 3 arriba. " . mysqli_error($this->con));
 					}
 
 			}else{
@@ -93,32 +98,30 @@ class Compras
 				echo "Stock Actual: ".$stockactual[0];
 				$nuevostock = $stockactual[0] + $cantidad;
 
-				$sql = "UPDATE compraprovedor SET cantidad = $nuevostock, pvp = $pvp , feccompra = now() WHERE codigo = '".$codgen."'";
+				$sql = "UPDATE compraprovedor SET cantidad = '$nuevostock', pvp = '$pvp' , feccompra = now() WHERE codigo = '$codgen';";
 
-				$sqlprod2 = "UPDATE productos SET stocktotal = $nuevostock, PVP = $pvp, marGanancia1 = $mg1, marGanancia2 = $mg2, marGanancia3 = $mg3, precventa1 = $pv1, precventa2= $pv2, precventa3 = $pv3 WHERE codigo = '".$codgen."'";
+				$sqlprod2 = "UPDATE productos SET stocktotal = '$nuevostock', PVP = '$pvp', marGanancia1 = '$mg1', marGanancia2 = $mg2, marGanancia3 = $mg3, precventa1 = $pv1, precventa2= $pv2, precventa3 = $pv3 WHERE codigo = '$codgen';";
 
 				
 				if(!$this->con->query($sql))
 					{
-						echo ("Error 1 arriba. " . mysqli_error($this->con));
+						echo ("Error 4 arriba. " . mysqli_error($this->con));
+						$msg = ("Error 4 arriba. " . mysqli_error($this->con));
 					}
 
 				if(!$this->con->query($sqlprod2))
 					{
-						echo ("Error 1 arriba. " . mysqli_error($this->con));
+						echo ("Error 5 arriba. " . mysqli_error($this->con));
+						$msg =  ("Error 5 arriba. " . mysqli_error($this->con));
 					}
 				
 			}
 		
-
+		return $msg;
 		mysqli_close($this->con);
 
 	}
 		
 }
-/*
-$compra = new Compras();
-$guar = $compra->GuardarCompra(9,2,12.99,50);
-echo $guar;
-*/
+
 ?>

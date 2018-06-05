@@ -53,7 +53,7 @@ if(isset($_SESSION['trabajador']))
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="./index.html">
-                <img src="img/solotexto200x61.png" class="header-brand-img" alt="tabler logo">
+                <img src="img/solotexto200x61.png" class="header-brand-img" alt="compunegocios logo">
               </a>
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="nav-item d-none d-md-flex">

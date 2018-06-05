@@ -1,10 +1,10 @@
 <?php 
-include "header4.php";
-$codprove = $_REQUEST['codprove'];
-$codprod  = $_REQUEST['codprod'];
-$idcompra  = $_REQUEST['idcompra'];
+require_once "header4.php";
+$codprove   = $_REQUEST['codprove'];
+$codprod    = $_REQUEST['codprod'];
+$idcompra   = $_REQUEST['idcompra'];
 $codprodgen = $_REQUEST['codgen'];
-
+$idregistro = $_REQUEST['idregistro'];
  ?>
 
 <div class="container">
@@ -22,6 +22,7 @@ $codprodgen = $_REQUEST['codgen'];
 						<td width="500"><?php echo $codprove; ?>
 							<input type="hidden" name="idproveedor" id="idproveedor" value="<?php echo $codprove; ?>">
 							<input type="hidden" name="idcompra" id="idcompra" value="<?php echo $idcompra; ?>">
+							<input type="hidden" name="idregistro" id="idregistro" value="<?php echo $idregistro; ?>">
 						</td>
 					</tr>
 					<tr>

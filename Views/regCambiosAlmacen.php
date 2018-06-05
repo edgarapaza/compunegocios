@@ -1,5 +1,5 @@
 <?php
-include "header4.php";
+require_once "header4.php";
 
 require_once "../Models/movalmNombres.model.php";
 

@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION['administrador']))
 {
 	$idpersonal = $_SESSION['administrador'];
-	include "header4.php";
+	require_once "header4.php";
 ?>
 	
 	<div class="container">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "header4.php";
+require_once "header4.php";
 $idpersonal = $_SESSION['administrador'];
 ?>
 <div class="container">

@@ -27,24 +27,26 @@ if(isset($_SESSION['administrador']))
     <!-- Generated: 2018-04-06 16:27:42 +0200 -->
     <title>CompuNegocios.net</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-    <script src="./assets/js/require.min.js"></script>
+    <script src="assets/js/require.min.js"></script>
     <script>
       requirejs.config({
           baseUrl: '.'
       });
     </script>
     <!-- Dashboard Core -->
-    <link href="./assets/css/dashboard.css" rel="stylesheet" />
-    <script src="./assets/js/dashboard.js"></script>
+    <link href="assets/css/dashboard.css" rel="stylesheet" />
+    
+    <script src="assets/js/dashboard.js"></script>
     <!-- c3.js Charts Plugin -->
-    <link href="./assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
-    <script src="./assets/plugins/charts-c3/plugin.js"></script>
+    <link href="assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
+    <script src="assets/plugins/charts-c3/plugin.js"></script>
     <!-- Google Maps Plugin -->
-    <link href="./assets/plugins/maps-google/plugin.css" rel="stylesheet" />
-    <script src="./assets/plugins/maps-google/plugin.js"></script>
+    <link href="assets/plugins/maps-google/plugin.css" rel="stylesheet" />
+    <script src="assets/plugins/maps-google/plugin.js"></script>
     <!-- Input Mask Plugin -->
-    <script src="./assets/plugins/input-mask/plugin.js"></script>
+    <script src="assets/plugins/input-mask/plugin.js"></script>
   </head>
   <body class="">
     <div class="page">
@@ -53,7 +55,7 @@ if(isset($_SESSION['administrador']))
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="./index.html">
-                <img src="img/solotexto200x61.png" class="header-brand-img" alt="tabler logo">
+                <img src="img/solotexto200x61.png" class="header-brand-img" alt="compunegocios logo">
               </a>
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="nav-item d-none d-md-flex">
@@ -66,21 +68,21 @@ if(isset($_SESSION['administrador']))
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                     <a href="#" class="dropdown-item d-flex">
-                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
+                      <span class="avatar mr-3 align-self-center" style="background-image: url()"></span>
                       <div>
                         <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
                         <div class="small text-muted">10 minutes ago</div>
                       </div>
                     </a>
                     <a href="#" class="dropdown-item d-flex">
-                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
+                      <span class="avatar mr-3 align-self-center" style="background-image: url()"></span>
                       <div>
                         <strong>Alice</strong> started new task: Tabler UI design.
                         <div class="small text-muted">1 hour ago</div>
                       </div>
                     </a>
                     <a href="#" class="dropdown-item d-flex">
-                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
+                      <span class="avatar mr-3 align-self-center" style="background-image: url()"></span>
                       <div>
                         <strong>Rose</strong> deployed new version of NodeJS REST Api V3
                         <div class="small text-muted">2 hours ago</div>
@@ -155,10 +157,11 @@ if(isset($_SESSION['administrador']))
                   <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-calendar"></i> Ventas</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="./productos_listado.php" class="dropdown-item ">Ventas</a>
+                      <a href="./productos_listado.php" class="dropdown-item "> Ventas</a>
                       <a href="./moveralmacen.php" class="dropdown-item ">Mover Almacen</a>
                       <a href="./regCambiosAlmacen.php" class="dropdown-item ">Reg. Cambios de Almacen</a>
-                      
+                      <div class="dropdown-divider"></div>
+                      <a href="./paquetes.php" class="dropdown-item ">Paquetes</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -180,10 +183,9 @@ if(isset($_SESSION['administrador']))
                   <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-file"></i> Reportes</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="../reportes/reporte1.php" target="_blank" class="dropdown-item ">Ventas General</a>
-                      <a href="../reportes/reporte2.php" target="_blank" class="dropdown-item ">Ventas x Fecha</a>
+                      <a href="../reportes/reporte1.php" target="_blank" class="dropdown-item ">Stock General</a>
+                      <a href="../reportes/reporte2.php" target="_blank" class="dropdown-item ">Sotck por Almacen</a>
                       <a href="../reportes/reporte3.php" target="_blank" class="dropdown-item ">Reporte Ventas del Dia</a>
-                      
                       <div class="dropdown-divider"></div>
                       <a href="personalizarReport.php" target="_blank" class="dropdown-item ">Personalizar Reportes</a>
 
@@ -194,6 +196,7 @@ if(isset($_SESSION['administrador']))
                       <div class="dropdown-menu dropdown-menu-arrow">
                         <a href="./nuevoPersonal.php" class="dropdown-item ">Nuevo Personal</a>
                         <a href="./listaPersonal.php" class="dropdown-item ">Listado de Personal</a>
+                        <a href="./productosVendidos.php" class="dropdown-item ">Busqueda Productos Vendidos</a>
                       </div>
                     </li>
                 </ul>

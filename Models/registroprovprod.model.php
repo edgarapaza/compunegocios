@@ -14,9 +14,7 @@ class RegistroProveedorProducto
 
 	public function RegistroProveProd($idproveedor, $idproducto=0)
 	{
-		echo "Proveedor".$idproveedor;
-		echo " ---- id Producto".$idproducto;
-
+	
 		$sql = "INSERT INTO registroprovprod (idregistro,idproveedor,fecregistro) VALUES (NULL,". $idproveedor .", now());";
 
 		if (!$this->con->query($sql)) {
@@ -71,4 +69,3 @@ class RegistroProveedorProducto
     mysqli_close($this->con);
 	}
 }
-?>

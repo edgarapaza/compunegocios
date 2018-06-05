@@ -1,10 +1,10 @@
 <?php 
-include "header4.php"; 
+require_once "header4.php";
+require_once "../Models/Conexion.php";
+require_once "../Models/compras.model.php";
+
 $codprovedor = $_REQUEST['codigo'];
 $idregistro = $_REQUEST['idregistro'];
-
-include "../Models/Conexion.php";
-include "../Models/compras.model.php";
 
 		/* PARA LOS DATOS DEL PROVVEDOR */
 				$link = new Conexion();
@@ -30,8 +30,8 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>Codigo del Proveedor:</th>
-							<td><?php #echo $codprovedor; echo "IdRegistro: ".$idregistro; ?>
+							<th>Registro de Compra:</th>
+							<td><?php echo $idregistro; ?>
 								<input type="hidden" name="codprovedor" value="<?php echo $codprovedor; ?>">
 							</td>
 							<th>Razon Social:</th>
@@ -41,9 +41,11 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 							<th>Nombre del Proveedor: </th>
 							<td><?php echo $fila[1]; ?></td>
 							<th>Email:</th>
-							<td><?php echo $fila[3]; ?></td>
+							<td><a href="mailto:<?php echo $fila[3]; ?>"><?php echo $fila[3]; ?></a>
+								</td>
 							<th>WebSite:</th>
-							<td><?php echo $fila[4]; ?></td>
+							<td><a href="http://<?php echo $fila[4]; ?>" target="_blank"><?php echo $fila[4]; ?></a>
+								</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,11 +60,11 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 
 			
 			
-
-			<a href="./listadoforCompras.php?idproveedor=<?php echo $codprovedor; ?>&idregistro=<?php echo $idregistro; ?>" target="_blank" onClick="window.open(this.href, this.target, 'width=1024,height=500'); return false;" class="btn btn-success"><span class="glyphicon glyphicon-file"> </span>Listado de Productos</a>
+			<!--
+			<a href="./listadoforCompras.php?idproveedor=<?php echo $codprovedor; ?>&idregistro=<?php echo $idregistro; ?>" target="_blank" onClick="window.open(this.href, this.target, 'width=1024,height=500'); return false;" class="btn btn-success"><span class="glyphicon glyphicon-file"> </span>Listado de Productos</a> -->
 
 			<button type="button" class="btn btn-primary btn-lg" onClick="window.location.reload()"><span class="glyphicon glyphicon-refresh"></span> Actualizar / Refresh Page</button>
-			
+			<a href="facturas.php?codigo=<?php echo $codprovedor;?>">Regresar</a>
 		</div>
 	</div>
 
@@ -107,7 +109,7 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 						
 						<td><?php echo $row['cantidad']; ?></td>
 						<td>
-							<a href="updateStock.php?codprove=<?php echo $codprovedor; ?>&idcompra=<?php  echo $row['idcompra'];?>&codprod=<?php echo $row['idproducto']; ?>&codgen=<?php echo $row['codigo']; ?>" rel="pop-up" class="btn btn-info"> <span class="glyphicon glyphicon-plus"></span> Add Compras</a>
+							<a href="updateStock.php?codprove=<?php echo $codprovedor; ?>&idcompra=<?php  echo $row['idcompra'];?>&codprod=<?php echo $row['idproducto']; ?>&codgen=<?php echo $row['codigo']; ?>&idregistro=<?php echo $idregistro; ?>" rel="pop-up" class="btn btn-info"> <span class="glyphicon glyphicon-plus"></span> Add Compras</a>
 							
 							<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button>
 						</td>

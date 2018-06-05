@@ -1,6 +1,6 @@
 <?php 
-include "../Models/ventas_listado.model.php";
-include "header.php"; 
+require_once "../Models/ventas_listado.model.php";
+require_once "header4.php"; 
 
 $fecha = $_REQUEST['fecha'];
 //echo "La fecha escogida es: " . $fecha;

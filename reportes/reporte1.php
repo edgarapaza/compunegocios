@@ -14,7 +14,7 @@ class PDF extends FPDF
         $this->SetFont('','B');
         // Cabecera
 
-        $w = array(15, 15, 70, 60,30);
+        $w = array(15, 70, 30, 15, 60);
         for($i=0;$i<count($header);$i++){
             $this->Cell($w[$i],7,$header[$i],1,0,'C',true);
         }
@@ -30,15 +30,15 @@ class PDF extends FPDF
         $conexion = new Conexion();
         $mysqli = $conexion->Conectarse();
 
-        $sql="SELECT p.codigo, f.codigo, p.descripcion, p.stocktotal FROM productos AS p, familia AS f WHERE f.IDfamilia = p.IDFamilia";
+        $sql="SELECT p.codigo, p.descripcion,p.modelo, p.stocktotal, a.almacen FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen;";
         $res=$mysqli->query($sql);
             while ($row = $res->fetch_array()){
             //AQUÍ VAN LAS CANTIDADES DE COLUMNAS REQUERIDAS AGREGA ROW’S A MEDIDA QUE NECESITES
             $this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
             $this->Cell($w[1],6,$row[1],'LR',0,'L',$fill);
             $this->Cell($w[2],6,$row[2],'LR',0,'L',$fill);
-            $this->Cell($w[3],6,$row[3],'LR',0,'L',$fill);
-            $this->Cell($w[4],6,$row[4],'LR',0,'C',$fill);
+            $this->Cell($w[3],6,$row[3],'LR',0,'C',$fill);
+            $this->Cell($w[4],6,$row[4],'LR',0,'L',$fill);
             $this->Ln();
             $fill = !$fill;
             }
@@ -50,7 +50,7 @@ class PDF extends FPDF
 $pdf = new PDF();
 // Títulos de las columnas
 //AQUÍ VAN TUS COLUMNAS QUE NECESITAS;
-$header = array('Codigo','Familia','Descripcion','Cantidad','Notas');
+$header = array('Codigo','Descripcion','Modelo','Stock','Almacen');
 
 // Carga de datos
 //AQUÍ VA TU VARIABLE
@@ -70,15 +70,15 @@ $fecha = $d."/".$m."/".$y;
 $hora = $h.":".$n.":".$s;
 
 $pdf->AddPage();
-$pdf->SetTitle("Reporte por Fechas", true);
+$pdf->SetTitle("Reporte General", true);
 $pdf->SetAuthor("Edgar Apaza",true);
 $pdf->SetFont('Arial','B',14);
-$pdf->Text(55,15,'Reporte 1 - Reporte por Fechas y Familias');
+$pdf->Text(55,15,'Reporte 1 - Reporte General, toda la Tienda');
 
 $pdf->SetFont('Arial','',10);
 $pdf->Write(20,"Reporte extraido el");
 $pdf->Ln();
-$pdf->Cell(80,10,"Fecha: ".$fecha . " Hora ". $hora,1,1);
+$pdf->Text(10,25,"Fecha: ".$fecha . " Hora ". $hora,1,1);
 
 //AQUÍ LLAMAMOS LA FUNCION:
 $pdf->SetFont('Arial','',8);

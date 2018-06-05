@@ -1,4 +1,4 @@
-<?php include "header4.php"; ?>
+<?php require_once "header4.php"; ?>
 
 
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
@@ -150,7 +150,7 @@
 
 				
 			<label for="inputFamilias" class="control-label">Buscar por Familias:</label>
-				<button type="button" name="btnmostrar" id="btnmostrar"></button>
+				<button type="button" name="btnmostrar" id="btnmostrar">Mostrar combo</button>
 			<form action="" method="POST" class="form-inline" role="form" name="search_datos">
 
 				<div class="form-group">

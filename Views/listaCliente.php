@@ -1,5 +1,5 @@
 <?php
-include "header4.php";
+require_once "header4.php";
 
 ?>
 
@@ -18,4 +18,4 @@ include "header4.php";
 	</div>
 </div>
 
-<?php include "footer4.html"; ?>
+<?php require_once "footer4.html"; ?>

@@ -1,4 +1,4 @@
-<?php include "header4.php"; ?>
+<?php require_once "header4.php"; ?>
 
 <div class="container">
 	<div class="row">

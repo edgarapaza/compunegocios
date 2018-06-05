@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "header4.php";
+require_once "header4.php";
 
 $idpersonal = $_SESSION['administrador'];
 
@@ -41,44 +41,44 @@ $idregistro = $_REQUEST['idregistro'];
     top: 0;
     width: 100%;
     z-index: 1001;
-}
+	}
 
-.content-popup {
-    margin:0px auto;
-    margin-top:120px;
-    position:relative;
-    padding:10px;
-    width:500px;
-    min-height:250px;
-    border-radius:4px;
-    background-color:#FFFFFF;
-    box-shadow: 0 2px 5px #666666;
-}
+	.content-popup {
+	    margin:0px auto;
+	    margin-top:120px;
+	    position:relative;
+	    padding:10px;
+	    width:500px;
+	    min-height:250px;
+	    border-radius:4px;
+	    background-color:#FFFFFF;
+	    box-shadow: 0 2px 5px #666666;
+	}
 
-.content-popup h2 {
-    color:#48484B;
-    border-bottom: 1px solid #48484B;
-    margin-top: 0;
-    padding-bottom: 4px;
-}
+	.content-popup h2 {
+	    color:#48484B;
+	    border-bottom: 1px solid #48484B;
+	    margin-top: 0;
+	    padding-bottom: 4px;
+	}
 
-.popup-overlay {
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-    display:none;
-    background-color: #777777;
-    cursor: pointer;
-    opacity: 0.7;
-}
+	.popup-overlay {
+	    left: 0;
+	    position: absolute;
+	    top: 0;
+	    width: 100%;
+	    z-index: 999;
+	    display:none;
+	    background-color: #777777;
+	    cursor: pointer;
+	    opacity: 0.7;
+	}
 
-.close {
-    position: absolute;
-    right: 15px;
-}
-.centrar
+	.close {
+	    position: absolute;
+	    right: 15px;
+	}
+	.centrar
 	{
 		display: table-cell;
 		vertical-align: middle;
@@ -242,7 +242,11 @@ $idregistro = $_REQUEST['idregistro'];
 				var feccompra   = $("#inputFechaCompra").val();
 				var idregistro  = $("#idregistro").val();
 
-
+				if(pvp < 0)
+				{
+					alert('El precio introducido es negativo. Corregir');
+					exit();
+				}
 
 				for (var i = 0; i <= stock ; i++) {
 
@@ -315,13 +319,14 @@ $idregistro = $_REQUEST['idregistro'];
 	<div class="row">
 
 		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-
 			<form action="" method="POST" class="form-horizontal" role="form" id="formulario">
 				<div class="form-group">
 					<legend>
-						Registro de Productos - <span class="alert-danger">Proveedor: "<?php echo $proveed[1]; ?>"</span>
-					</legend>
+						Nuevo Producto - <span class="alert-danger">Proveedor: "<?php echo $proveed[1]; ?>"</span>
+						  | 
 					<button type="button" id="btnRegistrar" class="btn btn-lg btn-primary">Guardar</button>
+					<a href="stock1.php?codigo=<?php echo $idprove; ?>&idregistro=<?php echo $idregistro; ?>">Regresar al Listado</a>
+					</legend>
 				</div>
 
 				<input type="hidden" name="idproveedor" readonly="readonly" id="idproveedor" value="<?php echo $idprove; ?>">
@@ -365,12 +370,12 @@ $idregistro = $_REQUEST['idregistro'];
 
 				</div>
 
-				<div class="form-group row">
+				<div class="form-group row inline">
 					<label for="inputMimarca" class="col-sm-2 col-form-label">Marca:</label>
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div id="listaMarca"></div>
 					</div>
-					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 						<button type="button" class="btn btn-success" id="btnmostrar" name="btnmostrar">Load/Refresh</button>
 						<a class="btn btn-primary" data-toggle="modal" href='#nueva-marca'>Nueva Marca</a>
 					</div>
@@ -409,7 +414,7 @@ $idregistro = $_REQUEST['idregistro'];
 				<div class="form-group row">
 					<label for="inputPrecioUnitario" class="col-sm-2 col-form-label">PrecioUnitario:</label>
 					<div class="col-sm-5">
-						<input type="text" name="precioUnitario" id="inputPrecioUnitario" class="form-control" required="required" placeholder="0.00">
+						<input type="number" name="precioUnitario" id="inputPrecioUnitario" class="form-control" required="required" placeholder="0.00" min="0" max="99999999">
 					</div>
 				</div>
 

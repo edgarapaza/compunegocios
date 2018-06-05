@@ -1,6 +1,6 @@
 <?php 
-include "header4.php"; 
-require "../Models/listadoProductos.class.php";
+require_once "header4.php"; 
+require_once "../Models/listadoProductos.class.php";
 
 $idprod = $_REQUEST['idprod'];
 

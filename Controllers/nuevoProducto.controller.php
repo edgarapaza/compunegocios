@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once "../Models/newproducto.class.php";
 
 $nuevopro = new NuevoProducto();
@@ -30,11 +31,10 @@ $total        = trim($_POST['total']);
 $factura      = trim($_POST['factura']);
 $feccompra    = trim($_POST['feccompra']);
 $idregistro   = trim($_POST['idregistro']);
-$idpersonal  = $_SESSION['administrador'];
+$idpersonal   = $_SESSION['administrador'];
 $stockmin     = 10;
 
 $fecAlta      = date('Y-m-d H:m:s');
-#$estado       = 1;
 
 $nuevopro->AddProducto($codigo,$descripcion,$numserie,$marca,$modelo,$tipoUnidad,$tipArticulo,$PVP,$marGanancia1,$marGanancia2,$marGanancia3,$precventa1,$precventa2,$precventa3,$stocktotal,$stockmin,$color,$incluye,$fecAlta,$idfamilia,$idalmacen,$parte,$idsubfamilia,$total,$idpersonal,$idproveedor, $factura, $feccompra,$idregistro);
 

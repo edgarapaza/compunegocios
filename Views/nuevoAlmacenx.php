@@ -1,5 +1,5 @@
 <?php 
-include "header4.php";
+require_once "header4.php";
 
 $idproducto        = $_REQUEST['idproducto'];
 $idalmacenanterior = $_REQUEST['idalmacen'];
