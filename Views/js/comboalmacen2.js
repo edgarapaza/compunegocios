@@ -11,11 +11,11 @@ $(document).ready(function(){
 
 	$("#btnMostrarCombo").click(function(){
 		//Mostrar el combo solamente
-		
+
 		$.ajax({
 			url: './../Controllers/almacenes.controller.php',
 			type: 'POST',
-			
+
 			success: function(res){
 						document.getElementById('combo1').innerHTML = res;
 					},
@@ -23,21 +23,21 @@ $(document).ready(function(){
 						$("#combo1").html("Error 1");
 					}
 		})
-		
+
 	});
 
 	$("#btnConsulta").click(function(){
-		
+
 		var dato = $("#inputAlmacen").val();
-			
+
 
 		if(dato == "all")
 		{
-					
+
 			$.ajax({
 			url: './../Controllers/almacenLista1.controller.php',
 			type: 'POST',
-			
+
 			success: function(res){
 						document.getElementById('tablaDatos').innerHTML = res;
 					},
@@ -131,7 +131,7 @@ $(document).ready(function(){
 					"serie"  : text2
 					};
 					$.ajax({
-						url: './../Controllers/buscarxnombre.controller.php',
+						url: './../Controllers/buscarxnombreMover2.controller.php',
 						type: 'POST',
 						data: lista2,
 						success: function(res){
@@ -159,7 +159,7 @@ $(document).ready(function(){
 					"nombre" : text1
 				};
 				$.ajax({
-					url: './../Controllers/buscarxnombre.controller.php',
+					url: './../Controllers/buscarxnombreMover2.controller.php',
 					type: 'POST',
 					data: lista,
 					success: function(res){
@@ -189,4 +189,3 @@ $(document).ready(function(){
 		var text2 = $("#xserie").val("");
 		$("#xnombre").focus();
 	}
-

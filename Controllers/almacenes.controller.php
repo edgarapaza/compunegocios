@@ -2,7 +2,6 @@
 require_once'../Models/moveralmacen.model.php';
 
 $mover = new MoverAlmacen();
-//$todo = $mover->MostrarxAlmacen(6);
 $todo = $mover->Almacenes();
 
 echo "<select name='nuevoalmacen' id='inputAlmacen' class='form-control' required='required'>

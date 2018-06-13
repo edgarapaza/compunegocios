@@ -26,9 +26,9 @@ if($codigo == 1){
 
 					</tr>
 				</thead>";
-
+				
 				while ($fila = $dat->fetch_array(MYSQLI_ASSOC)) {
-
+				
 				echo "
 				<tbody>
 					<tr>
@@ -36,13 +36,14 @@ if($codigo == 1){
 						<td>".$fila['descripcion']."</td>
 						<td>".$fila['almacen']."</td>
 						<td>".$fila['stocktotal']."</td>
+
 						<td>
 
 						</td>
 
 						<td>
-
 							<a href='./nuevoAlmacenx.php?idproducto=". $fila['idproducto'] ."&idalmacen=". $fila['idalmacen'] ."&almacen=". $fila['almacen'] ."' class='btn btn-danger'>Mover a</a>
+							
 						</td>
 					</tr>
 				</tbody>";
@@ -63,12 +64,11 @@ if($codigo == 2)
 						<th>Producto</th>
 						<th>Almacen</th>
 						<th>Cantidad</th>
-
 					</tr>
 				</thead>";
-
+				
 				while ($fila = $dat->fetch_array(MYSQLI_ASSOC)) {
-
+				
 				echo "
 				<tbody>
 					<tr>
@@ -76,13 +76,12 @@ if($codigo == 2)
 						<td>".$fila['descripcion']."</td>
 						<td>".$fila['almacen']."</td>
 						<td>".$fila['stocktotal']."</td>
-
 						<td>
 
 						</td>
 
 						<td>
-
+							
 							<a href='./nuevoAlmacenx.php?idproducto=". $fila['idproducto'] ."&idalmacen=". $fila['idalmacen'] ."&almacen=". $fila['almacen'] ."' class='btn btn-danger'>Mover a</a>
 						</td>
 					</tr>
@@ -107,9 +106,9 @@ if($codigo == 3)
 
 					</tr>
 				</thead>";
-
+				
 				while ($fila = $dat->fetch_array(MYSQLI_ASSOC)) {
-
+				
 				echo "
 				<tbody>
 					<tr>
@@ -117,13 +116,12 @@ if($codigo == 3)
 						<td>".$fila['descripcion']."</td>
 						<td>".$fila['almacen']."</td>
 						<td>".$fila['stocktotal']."</td>
-
 						<td>
 
 						</td>
 
 						<td>
-
+							
 							<a href='./nuevoAlmacenx.php?idproducto=". $fila['idproducto'] ."&idalmacen=". $fila['idalmacen'] ."&almacen=". $fila['almacen'] ."' class='btn btn-danger'>Mover a</a>
 						</td>
 					</tr>

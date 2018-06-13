@@ -27,8 +27,9 @@ if(isset($_SESSION['administrador']))
     <!-- Generated: 2018-04-06 16:27:42 +0200 -->
     <title>CompuNegocios.net</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="">
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/require.min.js"></script>
     <script>
       requirejs.config({

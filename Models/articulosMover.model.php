@@ -13,12 +13,12 @@ class ArticulosAlmacenMover
 
   public function Todos()
   {
-      $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.stocktotal <> 0";
+      $sql = "SELECT p.idproducto, p.descripcion, a.idalmacen, a.almacen, p.stocktotal FROM productos as p, almacen as a WHERE p.stocktotal <> 0 AND p.idalmacen = a.idalmacen;";
 
       if(!$data = $this->con->query($sql)){
         echo "Error todos". mysqli_error($this->con);
       }
-       
+
       return $data;
       mysqli_close($this->con);
   }
@@ -26,11 +26,11 @@ class ArticulosAlmacenMover
   public function ListaArticulosNombres($nombre)
   {
 
-      $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.descripcion LIKE '%". $nombre ."%' AND p.stocktotal <> 0";
+      $sql = "SELECT p.idproducto, p.descripcion, a.idalmacen, a.almacen, p.stocktotal FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen AND p.descripcion LIKE '%$nombre%' AND p.stocktotal <> 0";
 
         $data = $this->con->query($sql);
-       
-   
+
+
     return $data;
     mysqli_close($this->con);
   }
@@ -38,11 +38,11 @@ class ArticulosAlmacenMover
   public function ListaArticulosNombresforCompra($nombre)
   {
 
-      $sql = "SELECT p.idproducto, p.numserie, f.codigo, p.descripcion, p.marca, p.modelo, p.PVP, p.stocktotal, p.codigo FROM productos as p,  familia as f WHERE p.idfamilia = f.IDfamilia AND p.descripcion LIKE '%". $nombre ."%'";
+      $sql = "SELECT p.idproducto, p.descripcion, a.idalmacen, a.almacen, p.stocktotal FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen AND p.descripcion LIKE '%$nombre%' AND p.stocktotal <> 0";
 
         $data = $this->con->query($sql);
-       
-   
+
+
     return $data;
     mysqli_close($this->con);
   }
@@ -51,12 +51,12 @@ class ArticulosAlmacenMover
   public function ListaArticulosSerie($serie)
     {
 
-      
-        $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal, p.numserie FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.numserie = '". $serie ."' AND p.stocktotal <> 0";
+
+        $sql = "SELECT p.idproducto, p.descripcion, a.idalmacen, a.almacen, p.stocktotal FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen AND p.numserie = '$serie' AND p.stocktotal <> 0";
 
           $data = $this->con->query($sql);
-      
-      
+
+
 
     return $data;
     mysqli_close($this->con);
@@ -71,12 +71,12 @@ class ArticulosAlmacenMover
 
     if($idfamilia === 'all'){
 
-      $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal, p.numserie FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.stocktotal <> 0";
+      $sql = "SELECT p.idproducto, p.descripcion, a.idalmacen, a.almacen, p.stocktotal FROM productos as p, almacen as a, familia as f WHERE p.stocktotal <> 0 AND p.idalmacen = a.idalmacen AND p.idfamilia = f.IDfamilia AND p.stocktotal <> 0";
 
         $data = $this->con->query($sql);
         #return $data;
     }else{
-      $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal, p.numserie FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.idfamilia = $idfamilia AND p.stocktotal <> 0";
+      $sql = "SELECT p.idproducto, p.descripcion, a.idalmacen, a.almacen, p.stocktotal FROM productos as p, almacen as a, familia as f WHERE p.stocktotal <> 0 AND p.idalmacen = a.idalmacen AND p.idfamilia = f.IDfamilia AND p.idfamilia = '$idfamilia' AND p.stocktotal <> 0";
 
         $data = $this->con->query($sql);
         #return $data;
