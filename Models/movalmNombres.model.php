@@ -56,7 +56,9 @@ class ReemplazarNombres
 
   public function AllRegistros()
   {
-     $sql = "SELECT idproducto,idalma_anterior, idalma_nuevo,fechacambio,idpersonal  FROM cambioalmacen;";
+     $sql = "SELECT c.idproducto,c.idalma_anterior, c.idalma_nuevo,c.fechacambio,c.idpersonal, p.stocktotal, p.numserie
+FROM cambioalmacen as c, productos as p
+WHERE c.idproducto = p.idproducto";
 
       if(!$data = $this->con->query($sql)){
         echo "Error Listado". mysqli_error($this->con);

@@ -1,5 +1,4 @@
-<?php require_once "header4.php"; ?>
-
+<?php include "header4.php"; ?>
 
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 
@@ -150,27 +149,42 @@
 
 				
 			<label for="inputFamilias" class="control-label">Buscar por Familias:</label>
-				<button type="button" name="btnmostrar" id="btnmostrar">Mostrar combo</button>
-			<form action="" method="POST" class="form-inline" role="form" name="search_datos">
-
-				<div class="form-group">
-						<div class="col-sm-7">
-							<div id="fam-lista"></div>
-						</div>
-						<div class="col-sm-2">
-							<button type="button" class="btn btn-danger" name="btnBusFamilia" id="btnBusFamilia">Buscar x Familia</button>
-						</div>
-				</div>
 				
-				<div class="form-inline">
-						<input type="text" class="form-control" name="xnombre" id="xnombre" placeholder="Busca x Nombre">
-						<input type="text" class="form-control" name="xserie" id="xserie" placeholder="Buscar x Serie">
+			<form action="" method="POST" class="form-inline" role="form" name="search_datos">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Familias
+								<button type="button" name="btnmostrar" id="btnmostrar">Mostrar Familias</button>
+							</th>
+							<th>
+								Otras Formas
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div class="form-inline">
+									<div id="fam-lista"></div>
+									<button type="button" class="btn btn-danger" name="btnBusFamilia" id="btnBusFamilia">Buscar x Familia</button>
+								</div>
 
-						<button type="button" class="btn btn-success" name="btnBuscar" id="btnBuscar">Buscar</button>
-						<button type="button" class="btn btn-primary" name="btnLimpiar" id="btnLimpiar">Limpiar</button>
+							</td>
 
-				</div>
+							<td>
+								<div class="form-inline">
+										<input type="text" class="form-control" name="xnombre" id="xnombre" placeholder="Busca x Nombre">
+										<input type="text" class="form-control" name="xserie" id="xserie" placeholder="Buscar x Serie">
 
+										<button type="button" class="btn btn-success" name="btnBuscar" id="btnBuscar">Buscar</button>
+										<button type="button" class="btn btn-primary" name="btnLimpiar" id="btnLimpiar">Limpiar</button>
+
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</form>
 		</div>
 	</div>

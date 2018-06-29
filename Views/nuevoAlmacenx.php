@@ -1,11 +1,17 @@
 <?php 
 require_once "header4.php";
+require_once "../Models/articulos.model.php";
 
 $idproducto        = $_REQUEST['idproducto'];
 $idalmacenanterior = $_REQUEST['idalmacen'];
 $nom_almacen       = $_REQUEST['almacen'];
 
+$articulo = new ArticulosAlmacen();
+$dat = $articulo->ListaArticulosIdProducto($idproducto);
 
+$fila = $dat->fetch_array();
+  echo $fila[0]."<br>";
+  
 ?>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/comboalmacen2.js"></script>
@@ -17,17 +23,70 @@ $nom_almacen       = $_REQUEST['almacen'];
 
 			<h3>Cambiar a Nuevo almacen</h3>
 
-			
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#btnMoverProducto").click(function(){
+						
+						var cboalmacen = $("#inputAlmacen").val();
+						
+						if(cboalmacen == null){
+							alert("Debe elegir el almacen al que debe mover el producto \n Persione al boton amarillo Mostrar Lista de Almacenes. Gracias");
+						}else{
+							if(cboalmacen == 0){
+								alert("Debe Seleccionar por lo menos una una nueva ubicación de almacen");
+							}
+							else{
+								
+								var cantAlmacen = $("#stock").val();
+								var cant_a_Mover = $("#stockMover").val();
+
+								if(cant_a_Mover < 0){
+
+									alert("No se permiten numero Negativos");
+
+								}else{
+
+									if(cant_a_Mover <= cantAlmacen){
+
+										alert("Pasa");
+										
+												$.ajax({
+									            type: 'POST',
+									            url : '',
+									            data: $(this).serialize(),
+									            success: function(data) {
+									                location.reload(true);
+									          	}
+								        		});
+								        		return false;
+
+									}else{
+										alert("La cantidad excede a la cantidad en Almacen para mover.  Corriga");
+											return false;
+									}
+
+								}
+
+							}
+						}
 
 
-			<form action="../Controllers/nuevoalmacen.controller.php" method="POST" class="form-inline" role="form">
+					});
+				});
+			</script>
+
+
+			<form method="POST" class="form-inline" role="form">
 				<input type="hidden" name="idalmacenanterior" value="<?php echo $idalmacenanterior; ?>">
 				<input type="hidden" name="idproducto" value="<?php echo $idproducto; ?>">
 				<table class="table table-striped table-hover">
 					<thead class="thead-dark">
 						<tr>
 							<th>Almacen Actual</th>
+							<th>Producto</th>
+							<th>Cantidad Stock</th>
 							<th>Mover a <button type="button" id="btnMostrarCombo" class="btn-warning">Mostrar Lista de Almacenes</button></th>
+							<th>Cantidad Mover</th>
 							<th>Confirmar</th>
 
 						</tr>
@@ -35,8 +94,14 @@ $nom_almacen       = $_REQUEST['almacen'];
 					<tbody>
 						<tr>
 							<td><?php echo $nom_almacen; ?></td>
+							<td><?php echo $fila[1]." | " . $fila[2]; ?></td>
+							<td>
+								<?php echo $fila[3]; ?>
+								<input type="hidden" name="stock" id="stock" value="<?php echo $fila[3]; ?>" required="required">
+							</td>
 							<td><div id="combo1"></div></td>
-							<td><button type="submit" class="btn btn-success" id="btnMoverProducto" onclick="Verificar();">Mover a Nuevo Almacen</button></td>
+							<td><input type="number" name="stockMover" id="stockMover" size="2" min="1" max="999" value="1"></td>
+							<td><button type="submit" class="btn btn-success" id="btnMoverProducto">Mover a Nuevo Almacen</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -45,12 +110,5 @@ $nom_almacen       = $_REQUEST['almacen'];
 		</div>
 	</div>
 
-	<script type="text/javascript">
-		function Verificar(){
-			
-			var combo = document.getElementById('inputAlmacen');
-			alert(combo.val());
-		}
-	</script>
 
 <?php include "footer4.html"; ?>

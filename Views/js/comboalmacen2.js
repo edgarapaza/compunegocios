@@ -2,12 +2,17 @@ $(document).ready(function(){
 
 	window.addEventListener('load',carga, false);
 
-		function carga(){
+	function carga(){
 
 			$("#btnMostrarCombo").trigger('click');
 
-		}
+	}
 
+	function Limpiar() {
+		var text1 = $("#xnombre").val("");
+		var text2 = $("#xserie").val("");
+		$("#xnombre").focus();
+	}
 
 	$("#btnMostrarCombo").click(function(){
 		//Mostrar el combo solamente
@@ -61,8 +66,6 @@ $(document).ready(function(){
 					}
 			})
 		}
-
-
 	});
 
 	$("#btnmostrar").click(function(){
@@ -80,7 +83,7 @@ $(document).ready(function(){
 						$("#fam-lista").html("Error Cargando Listado de Familias");
 					}
 				});
-		});
+	});
 
 	$("#btnBusFamilia").click(function(){
 
@@ -106,7 +109,6 @@ $(document).ready(function(){
 					Limpiar();
 					return false;
 			}
-
 	});
 
 	$("#btnBuscar").click(function(){
@@ -174,18 +176,10 @@ $(document).ready(function(){
 				return false;
 
 			}
-
 	});
 
 	$("#btnLimpiar").click(function(){
 			Limpiar();
 	});
 
-
 });
-
-	function Limpiar() {
-		var text1 = $("#xnombre").val("");
-		var text2 = $("#xserie").val("");
-		$("#xnombre").focus();
-	}

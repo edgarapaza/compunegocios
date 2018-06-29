@@ -21,6 +21,8 @@ $data = $change->AllRegistros();
 						<th>Almacen Anterior</th>
 						<th>Almacen Actual</th>
 						<th>Fecha de Cambio</th>
+						<th>Cantidad</th>
+						<th>Num. Serie</th>
 						<th>Realizado por:</th>
 					</tr>
 				</thead>
@@ -40,6 +42,9 @@ $data = $change->AllRegistros();
 						echo $almacen2[0];
 						?></td>
 						<td><?php echo $fila[3]; ?></td>
+						<td><?php echo $fila[5]; ?></td>
+						<td><?php echo $fila[6]; ?></td>
+
 						<td><?php
 						$pe = $change->Persona($fila[4]);
 						echo $pe[0];

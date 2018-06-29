@@ -23,5 +23,5 @@ $subtotal = $precio * $cantidad;
 #echo "Sub total" . $subtotal;
 
 $paq->InsertPaqueteTemporal($fecalta,$idproducto,$producto,$modelo, $precio, $cantidad, $subtotal, $cod_temp);
-header("Location: ../Views/paquetes.php");
+header("Location: ../Views/paquetesAgregados.php");
 ?>

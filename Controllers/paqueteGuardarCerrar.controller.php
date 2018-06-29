@@ -4,10 +4,12 @@ require_once "../Models/paquete.model.php";
 
 $idpaquete = $_REQUEST['next_paquete'];
 $total     = $_REQUEST['total1'];
+$id_producto = $_REQUEST['id_producto'];
 
-echo $idpaquete;
-echo "<br>";
-echo $total;
+#echo $idpaquete;
+#echo "<br>";
+#echo $total;
+#
 $paq = new Paquete();
 $paq->GuardarCerrar($idpaquete, $total);
 

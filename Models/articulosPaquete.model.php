@@ -111,18 +111,6 @@ class ArticulosAlmacen
     return $res1;
     mysqli_close($this->con);
   }
-
-  public function ListaArticulosIdProducto($idproducto)
-  {
-
-      $sql = "SELECT p.idproducto, p.codigo, p.descripcion, p.stocktotal FROM productos as p WHERE p.idproducto ='$idproducto' AND p.stocktotal <> 0";
-
-        $data = $this->con->query($sql);
-       
-   
-      return $data;
-      mysqli_close($this->con);
-  }
 }
 
 /*

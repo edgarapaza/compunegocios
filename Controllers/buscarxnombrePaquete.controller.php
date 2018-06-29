@@ -1,9 +1,7 @@
 <?php
-require_once "../Models/articulos.model.php";
+require_once "../Models/articulosPaquete.model.php";
 
 $articulo = new ArticulosAlmacen();
-
-
 
 $codigo = $_POST['codigo'];
 $nombre = $_POST['nombre'];
@@ -50,7 +48,15 @@ if($codigo == 1){
 						</td>
 
 						<td>
-							<a href='venta2.php?idprod=".$fila['idproducto']."' class='btn btn-success'>Vender</a>
+							<!-- PARTE 1111111111111111111111111111111 DE LA BUSQUEDA PÓR NOMBRE DEL PRODUCTO     -->
+							<a href='../Controllers/paquete.controller.php?id=".$fila['idproducto']."' style='text-decoration: none;' id='ELEMENTO' >
+								<input type='hidden' id='idprod' value='".$fila['idproducto']."'>
+								
+								<div class='display_box' align='left'>
+									<div style='margin-right:6px;' class='btn btn-success'><b>Agregar</b></div>
+								</div>
+							</a>
+
 						</td>
 					</tr>
 				</tbody>";
@@ -98,7 +104,14 @@ if($codigo == 2)
 						</td>
 
 						<td>
-							<a href='venta2.php?idprod=".$fila['idproducto']."' class='btn btn-success'>Vender</a>
+							<!-- PARTE 222222222222222222222 DE LA BUSQUEDA por SERIE   -->
+							<a href='../Controllers/paquete.controller.php?id=".$fila['idproducto']."' style='text-decoration: none;' id='ELEMENTO' >
+								<input type='hidden' id='idprod' value='".$fila['idproducto']."'>
+								
+								<div class='display_box' align='left'>
+									<div style='margin-right:6px;' class='btn btn-info'><b>Agregar</b></div>
+								</div>
+							</a>
 
 						</td>
 					</tr>
@@ -109,6 +122,7 @@ if($codigo == 2)
 		";
 }
 
+#  CODIGO DE BUSQUEDA POR FAMILIA
 if($codigo == 3)
 {
 	$dat = $articulo->ListaArticulosFamilias($combo);
@@ -147,7 +161,17 @@ if($codigo == 3)
 						</td>
 
 						<td>
-							<a href='venta2.php?idprod=".$fila['idproducto']."' class='btn btn-success'>Vender</a>
+							<!-- PARTE 33333333333333333333333333 DE LA BUSQUEDA POR FAMILIA  -->
+
+							<a href='../Controllers/paquete.controller.php?id=".$fila['idproducto']."' style='text-decoration: none;' id='ELEMENTO' >
+								<input type='hidden' id='idprod' value='".$fila['idproducto']."'>
+								
+								<div class='display_box' align='left'>
+									<div style='margin-right:6px;'><b>Agregar</b></div>
+
+								</div>
+							</a>
+
 						</td>
 					</tr>
 				</tbody>";
