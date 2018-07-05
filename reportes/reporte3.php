@@ -16,7 +16,7 @@ class PDF extends FPDF
         $this->SetFont('','B');
         // Cabecera
 
-        $w = array(15, 100, 15,15,15,30);
+        $w = array(15,70,30, 15,15,15,30);
         for($i=0;$i<count($header);$i++){
             $this->Cell($w[$i],7,$header[$i],1,0,'C',true);
         }
@@ -32,8 +32,8 @@ class PDF extends FPDF
         $conexion = new Conexion();
         $mysqli = $conexion->Conectarse();
 
-        $sql = "SELECT v.idventas, p.descripcion, v.precio, v.cantidad, v.total, concat(per.paterno,' ',per.materno) as trabajador
-        FROM ventas as v, productos as p, Personal as per
+        $sql = "SELECT v.idventas, p.descripcion, p.numserie, v.precio, v.cantidad, v.total, concat(per.paterno,' ',per.materno) as trabajador
+        FROM ventas as v, productosVendidos as p, Personal as per
         WHERE v.idproducto = p.idproducto AND v.IDPersonal = per.IDPersonal AND v.fecRegisto LIKE '$fecha2%'";
 
         $sqltotal = "SELECT ROUND(SUM(total),2) as Total FROM ventas WHERE fecRegisto LIKE '$fecha2%'";
@@ -45,10 +45,11 @@ class PDF extends FPDF
             //AQUÍ VAN LAS CANTIDADES DE COLUMNAS REQUERIDAS AGREGA ROW’S A MEDIDA QUE NECESITES
             $this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
             $this->Cell($w[1],6,$row[1],'LR',0,'L',$fill);
-            $this->Cell($w[2],6,$row[2],'LR',0,'R',$fill);
-            $this->Cell($w[3],6,$row[3],'LR',0,'C',$fill);
+            $this->Cell($w[2],6,$row[2],'LR',0,'L',$fill);
+            $this->Cell($w[3],6,$row[3],'LR',0,'R',$fill);
             $this->Cell($w[4],6,$row[4],'LR',0,'C',$fill);
             $this->Cell($w[5],6,$row[5],'LR',0,'C',$fill);
+            $this->Cell($w[6],6,$row[6],'LR',0,'C',$fill);
             $this->Ln();
             $fill = !$fill;
             }
@@ -67,7 +68,7 @@ $pdf = new PDF();
 // Títulos de las columnas
 //AQUÍ VAN TUS COLUMNAS QUE NECESITAS;
 
-$header = array('Codigo','Descripcion','Precio','Cantidad','Total','Trabajador');
+$header = array('Codigo','Descripcion','Serie','Precio','Cantidad','Total','Trabajador');
 // Carga de datos
 //AQUÍ VA TU VARIABLE
 //$data = $_POST[‘tu variable’];

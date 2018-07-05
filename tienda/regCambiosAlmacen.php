@@ -18,6 +18,7 @@ $data = $change->AllRegistros();
 				<thead>
 					<tr class="thead-dark">
 						<th>Producto</th>
+						<th>Modelo</th>
 						<th>Almacen Anterior</th>
 						<th>Almacen Actual</th>
 						<th>Fecha de Cambio</th>

@@ -39,24 +39,32 @@ class MoverAlmacen
 		mysqli_close($this->con);
 	}
 
-	public function MoveraNuevoAlmacen($ida_ant, $ida_nue,$idproducto, $idpersonal)
+	public function MoveraNuevoAlmacen($ida_ant, $ida_nue,$idproducto, $idpersonal, $stockmover, $resta)
 	{
-
-    $sql_update = "UPDATE productos SET idalmacen = $ida_nue WHERE idproducto = $idproducto;";
+		$flag = true;
+    
+    $sql_update = "UPDATE productos SET stocktotal = '$resta' WHERE idproducto = $idproducto;";
     
     if(!$this->con->query($sql_update))
     {
-    	echo "Error 1. " . mysqli_error($this->con);
+    	$msg =  "Error Actualizando Stock. " . mysqli_error($this->con);
+    	$flag = false;
     }
     
+    $sql_registro = "INSERT INTO cambioalmacen (idca,idalma_anterior,idalma_nuevo,fechacambio,idpersonal,idproducto,cantidad) VALUES (NULL,'$ida_ant','$ida_nue',now(),'$idpersonal','$idproducto','$stockmover');";
 
-    $sql_registro = "INSERT INTO cambioalmacen (idca,idalma_anterior,idalma_nuevo,fechacambio,idpersonal,idproducto) VALUES (NULL, $ida_ant,$ida_nue,now(),$idpersonal,$idproducto);";
+    
+		if(!$this->con->query($sql_registro )){
+			$msg = "Error Insertando Cambio almacen. " . mysqli_error($this->con);
+			$flag = false;
+		} 
 
-		if(!$this->con->query($sql_registro)){
-			echo "Error 2. " . mysqli_error($this->con);
-		} else{
-			echo "bien";
-    }
+		if($flag == true){
+			return 0;
+		}else{
+			return $msg;
+		}
+
     mysqli_close($this->con);
 	}
 

@@ -14,7 +14,7 @@ class PDF extends FPDF
         $this->SetFont('','B');
         // Cabecera
 
-        $w = array(15, 70, 30, 15, 60);
+        $w = array(15, 65, 30, 25, 15,30);
         for($i=0;$i<count($header);$i++){
             $this->Cell($w[$i],7,$header[$i],1,0,'C',true);
         }
@@ -30,15 +30,16 @@ class PDF extends FPDF
         $conexion = new Conexion();
         $mysqli = $conexion->Conectarse();
 
-        $sql="SELECT p.codigo, p.descripcion,p.modelo, p.stocktotal, a.almacen FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen;";
+        $sql="SELECT p.codigo, p.descripcion,p.modelo,p.numserie, p.stocktotal, a.almacen FROM productos as p, almacen as a WHERE p.idalmacen = a.idalmacen;";
         $res=$mysqli->query($sql);
             while ($row = $res->fetch_array()){
             //AQUÍ VAN LAS CANTIDADES DE COLUMNAS REQUERIDAS AGREGA ROW’S A MEDIDA QUE NECESITES
             $this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
             $this->Cell($w[1],6,$row[1],'LR',0,'L',$fill);
             $this->Cell($w[2],6,$row[2],'LR',0,'L',$fill);
-            $this->Cell($w[3],6,$row[3],'LR',0,'C',$fill);
+            $this->Cell($w[3],6,$row[3],'LR',0,'L',$fill);
             $this->Cell($w[4],6,$row[4],'LR',0,'L',$fill);
+            $this->Cell($w[5],6,$row[5],'LR',0,'L',$fill);
             $this->Ln();
             $fill = !$fill;
             }
@@ -50,7 +51,7 @@ class PDF extends FPDF
 $pdf = new PDF();
 // Títulos de las columnas
 //AQUÍ VAN TUS COLUMNAS QUE NECESITAS;
-$header = array('Codigo','Descripcion','Modelo','Stock','Almacen');
+$header = array('Codigo','Descripcion','Modelo','Serie','Stock','Almacen');
 
 // Carga de datos
 //AQUÍ VA TU VARIABLE

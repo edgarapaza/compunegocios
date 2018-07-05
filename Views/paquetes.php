@@ -51,6 +51,9 @@ $data = $paqlista->ListadoPaquetesCerrados();
 					<thead>
 						<tr>
 							<th>Numero de Paquete</th>
+							<th>Cliente/Razon Social</th>
+							<th>RUC / DNI</th>
+							<th>Direccion</th>
 							<th>Total</th>
 							<th>Fecha</th>
 						</tr>
@@ -59,6 +62,9 @@ $data = $paqlista->ListadoPaquetesCerrados();
 						<?php while ($fila = $data->fetch_array(MYSQL_ASSOC)) { ?>
 						<tr>
 							<td><?php echo $fila['idps_temp']; ?></td>
+							<td></td>
+							<td></td>
+							<td></td>
 							<td><?php echo $fila['total']; ?></td>
 							<td><?php echo $fila['fecha']; ?></td>
 							<td><a href="detallesPaquete.php?idps=<?php echo $fila['idps_temp']; ?>" class="btn btn-danger">Ver Detalles</a></td>

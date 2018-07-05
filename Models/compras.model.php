@@ -13,16 +13,26 @@ class Compras
 
 	public function ListadoComprasProveedor($codigo,$idregistro)
 	{
+		# 
+		$sql_compras = "SELECT codigo FROM compraprovedor WHERE idregistro = $idregistro group by codigo;";
 		
-		$sql = "SELECT * FROM compraprovedor WHERE idproveedor = $codigo AND idregistro = $idregistro";
-
-		if (!$data = $this->con->query($sql)) {
- 		  	echo("Error description 1: " . mysqli_error($this->con));
+		if (!$data = $this->con->query($sql_compras)) {
+ 		  	echo("Error buscando Registros: " . mysqli_error($this->con));
 		}
 
 		return $data;
-		
+
 		mysqli_close($this->con);
+	}
+
+	public function ProductosKardex($registro){
+		$sql = "SELECT * FROM productosKardex WHERE codigo = '$registro'";
+			if (!$prodKardes = $this->con->query($sql)) {
+ 		  	echo("Error mostrando productos: " . mysqli_error($this->con));
+			}
+
+			return $prodKardes->fetch_array();
+			mysqli_close($this->con);
 	}
 
 	public function AgregardeListado($idproducto,$codigo,$idproveedor,$cantidad,$pvp,$numfact,$idpersonal,$idregistro)
@@ -51,7 +61,30 @@ class Compras
 		}
 
 		$data = $this->con->query($sql);
-		$dato = $data->fetch_array();
+		$dato = $data->fetch_array(MYSQLI_ASSOC);
+		return $dato;
+
+		mysqli_close($this->con);
+	}
+
+	public function DatosProductoMarca($idproducto)
+	{
+		$sql_1 = "SELECT marca FROM productos WHERE idproducto =  $idproducto";
+
+		if (!$datomarca = $this->con->query($sql_1)) 
+		{
+ 		  echo("Error description 1: " . mysqli_error($this->con));
+		}
+		$resultmarca = $datomarca->fetch_array();
+
+		$sql_2 = "SELECT marca FROM marca WHERE idmarca = $resultmarca[0]";
+
+		if (!$data = $this->con->query($sql_2)) 
+		{
+ 		  echo("Error description 1: " . mysqli_error($this->con));
+		}
+
+		$dato = $data->fetch_array(MYSQLI_ASSOC);
 		return $dato;
 
 		mysqli_close($this->con);

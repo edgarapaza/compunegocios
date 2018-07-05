@@ -49,6 +49,12 @@ class GuardarVenta
 
 				//echo " Stock Actualizado " . $nuevostock;
 				echo "<div class='alert alert-success'><strong>Guardado!</strong> con exito....</div>";
+
+				$sql_changeVendido = "UPDATE productos SET vendido = 0  WHERE idproducto = $idproducto LIMIT 1;";
+				if (!$this->con->query($sql_changeVendido)) {
+		 		  echo("Error Vendiendo: " . mysqli_error($this->con));
+				}
+				
 			}
 		}
 	

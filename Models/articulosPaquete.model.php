@@ -4,6 +4,7 @@ require_once 'Conexion.php';
 class ArticulosAlmacen
 {
   private $con;
+  
   function __construct()
   {
     $link = new Conexion();
@@ -26,7 +27,7 @@ class ArticulosAlmacen
   public function ListaArticulosNombres($nombre)
   {
 
-      $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.descripcion LIKE '%". $nombre ."%' AND p.stocktotal <> 0";
+      $sql = "SELECT p.idproducto, p.numserie, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.descripcion LIKE '%". $nombre ."%' AND p.stocktotal <> 0";
 
         $data = $this->con->query($sql);
        

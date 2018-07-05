@@ -101,6 +101,11 @@ $idregistro = $_REQUEST['idregistro'];
 
 		$(document).ready(function(){
 
+			$("#prueba").click(function(){
+				var mimarca     = $("#inputMarca").val();
+				alert(mimarca);
+			});
+
 			$("#refresh").click(function(){
 				window.location.reload(true);
 				$('#popup').fadeOut('slow');
@@ -214,6 +219,22 @@ $idregistro = $_REQUEST['idregistro'];
 
 			$("#btnRegistrar").click(function(){
 
+				var comboSeries = $("#inputSerieCantidad").val();
+				alert(comboSeries);
+
+				if (comboSeries == "") {
+					alert("Debe seleccionar Serie Unica o Multiples series");
+
+				}
+				if(comboSeries == "Multiples"){
+					var stock = 1;
+					alert(stock+" multiples");
+				}
+				if(comboSeries == "Unico"){
+					var stock       = $("#inputCantidad").val();
+					alert(stock+" unico");
+				}
+
 				var idproveedor = $("#idproveedor").val();
 				var idfamilia   = $("#inputFamilia").val();
 				var subfamilia  = $("#inputSubfamilia").val();
@@ -229,7 +250,7 @@ $idregistro = $_REQUEST['idregistro'];
 				var preven1     = $("#inputPrecioVenta1").val();
 				var preven2     = $("#inputPrecioVenta2").val();
 				var preven3     = $("#inputPrecioVenta3").val();
-				var stock       = $("#inputCantidad").val();
+				
 				var color       = $("#inputColor").val();
 				var inclu       = $("#inputIncluye").val();
 				var partee      = $("#inputNumparte").val();
@@ -242,13 +263,15 @@ $idregistro = $_REQUEST['idregistro'];
 				var feccompra   = $("#inputFechaCompra").val();
 				var idregistro  = $("#idregistro").val();
 
+				var numelementos = $("#inputCantidad").val();
+
 				if(pvp < 0)
 				{
 					alert('El precio introducido es negativo. Corregir');
 					exit();
 				}
 
-				for (var i = 0; i <= stock ; i++) {
+				for (var i = 0; i <= numelementos ; i++) {
 
 					var textserie = document.getElementsByName("serie")[i].value;
 
@@ -582,6 +605,5 @@ $idregistro = $_REQUEST['idregistro'];
         </div>
     </div>
 </div>
-
 
 <?php include "footer4.html"; ?>

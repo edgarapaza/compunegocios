@@ -21,7 +21,9 @@ class NuevoProducto
 		*   REGISTRO DE PRODUCTOS DE MANERA INDIVIDUAL EN LA TABLA
 		*******************************************************************************/
 				
-		$sql = "INSERT INTO productos (idproducto,codigo,idfamilia,idsubfamilia,numserie,marca,modelo,tipoUnidad,tipArticulo,descripcion,PVP,marGanancia1,marGanancia2,marGanancia3,precventa1,precventa2,precventa3,stocktotal,color,incluye,parte,stockmin,idpersonal,fecAlta,idalmacen,total) VALUES (NULL,'$codigo','$idfamilia','$idsubfamilia','$numserie','$marca','$modelo','$tipoUnidad','$tipArticulo','$descripcion','$PVP','$marGanancia1','$marGanancia2','$marGanancia3','$precventa1','$precventa2','$precventa3','$stocktotal','$color','$incluye','$parte', '$stockmin', '$idpersonal', '$fecAlta' , '$idalmacen', '$total')";
+		$sql = "INSERT INTO productos (idproducto,codigo,idfamilia,idsubfamilia,numserie,marca,modelo,tipoUnidad,tipArticulo,descripcion,PVP,marGanancia1,marGanancia2,marGanancia3,precventa1,precventa2,precventa3,stocktotal,color,incluye,parte,stockmin,idpersonal,fecAlta,idalmacen,total,vendido) VALUES (NULL,'$codigo','$idfamilia','$idsubfamilia','$numserie','$marca','$modelo','$tipoUnidad','$tipArticulo','$descripcion','$PVP','$marGanancia1','$marGanancia2','$marGanancia3','$precventa1','$precventa2','$precventa3','$stocktotal','$color','$incluye','$parte', '$stockmin', '$idpersonal', '$fecAlta' , '$idalmacen', '$total',1)";
+
+		# El valor del campor vendido es = 1 si NO esta vendido y cambia a 0 Cuando esta Vendido
 
 				if (!$this->conn->query($sql)) {
 		 		  echo("Error AddProducto: " . mysqli_error($this->conn));

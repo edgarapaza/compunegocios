@@ -28,7 +28,7 @@ if(isset($_SESSION['administrador']))
     <title>CompuNegocios.net</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">-->
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/require.min.js"></script>
     <script>
@@ -159,10 +159,19 @@ if(isset($_SESSION['administrador']))
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-calendar"></i> Ventas</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
                       <a href="./productos_listado.php" class="dropdown-item "> Ventas</a>
+                      
+                      <div class="dropdown-divider"></div>
+                      <a href="./paquetes.php" class="dropdown-item ">Paquetes</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-calendar"></i> Almacen</a>
+                    <div class="dropdown-menu dropdown-menu-arrow">
+                      
                       <a href="./moveralmacen.php" class="dropdown-item ">Mover Almacen</a>
                       <a href="./regCambiosAlmacen.php" class="dropdown-item ">Reg. Cambios de Almacen</a>
                       <div class="dropdown-divider"></div>
-                      <a href="./paquetes.php" class="dropdown-item ">Paquetes</a>
+                      
                     </div>
                   </li>
                   <li class="nav-item dropdown">

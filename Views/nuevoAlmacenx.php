@@ -10,11 +10,74 @@ $articulo = new ArticulosAlmacen();
 $dat = $articulo->ListaArticulosIdProducto($idproducto);
 
 $fila = $dat->fetch_array();
-  echo $fila[0]."<br>";
+  #echo $fila[0]."<br>";
   
 ?>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/comboalmacen2.js"></script>
+
+	<script type="text/javascript">
+
+				$(document).ready(function(){
+					$("#formulario").submit(function(event) {
+												
+						var cboalmacen = $("#inputAlmacen").val();
+						
+						if(cboalmacen == null){
+							alert("Debe elegir el almacen al que debe mover el producto \n Persione al boton amarillo Mostrar Lista de Almacenes. Gracias");
+							
+						}else{
+							if(cboalmacen == 0){
+								alert("Debe Seleccionar por lo menos una una nueva ubicación de almacen");
+								
+							}
+							else{
+								
+								var cantAlmacen  = $("#stock").val();
+								var cant_a_Mover = $("#stockMover").val();
+
+
+								if(parseInt(cant_a_Mover) < 0){
+
+									alert("No se permiten numero Negativos");
+
+								}else{
+
+									if(parseInt(cant_a_Mover) <= parseInt(cantAlmacen)){
+
+												$.ajax({
+									            data: $(this).serialize(),
+									            type: 'POST',
+									            url : '../Controllers/movernuevoalmacen.controller.php',
+
+									            success: function(data) {
+									            	alert("form");
+									            	$("#res").html(data);
+									              //location.reload(true);
+									          	},
+									          	error: function(data){
+									          		console.log(data);
+									          		$("#res").html("<p class='alert alert-danger'>Error moviendo el producto al nuevo almacen</p>" + data);
+									          	}
+								        		});
+								        		return false;
+
+									}else{
+										alert("La cantidad excede a la cantidad en Almacen para mover.  Corriga");
+											
+									}
+
+								}
+									
+							}
+							
+						}
+
+						return false;
+					});
+				});
+			</script>
+
 
 <div class="container">
 	<div class="row">
@@ -23,62 +86,13 @@ $fila = $dat->fetch_array();
 
 			<h3>Cambiar a Nuevo almacen</h3>
 
-			<script type="text/javascript">
-				$(document).ready(function(){
-					$("#btnMoverProducto").click(function(){
-						
-						var cboalmacen = $("#inputAlmacen").val();
-						
-						if(cboalmacen == null){
-							alert("Debe elegir el almacen al que debe mover el producto \n Persione al boton amarillo Mostrar Lista de Almacenes. Gracias");
-						}else{
-							if(cboalmacen == 0){
-								alert("Debe Seleccionar por lo menos una una nueva ubicación de almacen");
-							}
-							else{
-								
-								var cantAlmacen = $("#stock").val();
-								var cant_a_Mover = $("#stockMover").val();
+			
 
-								if(cant_a_Mover < 0){
+			<div id="res"></div>
 
-									alert("No se permiten numero Negativos");
-
-								}else{
-
-									if(cant_a_Mover <= cantAlmacen){
-
-										alert("Pasa");
-										
-												$.ajax({
-									            type: 'POST',
-									            url : '',
-									            data: $(this).serialize(),
-									            success: function(data) {
-									                location.reload(true);
-									          	}
-								        		});
-								        		return false;
-
-									}else{
-										alert("La cantidad excede a la cantidad en Almacen para mover.  Corriga");
-											return false;
-									}
-
-								}
-
-							}
-						}
-
-
-					});
-				});
-			</script>
-
-
-			<form method="POST" class="form-inline" role="form">
-				<input type="hidden" name="idalmacenanterior" value="<?php echo $idalmacenanterior; ?>">
-				<input type="hidden" name="idproducto" value="<?php echo $idproducto; ?>">
+			<form method="POST" class="form-inline" role="form" id="formulario">
+				<input type="hidden" name="idalmacenanterior" id="idalmacenanterior" value="<?php echo $idalmacenanterior; ?>">
+				<input type="hidden" name="idproducto" id="idproducto" value="<?php echo $idproducto; ?>">
 				<table class="table table-striped table-hover">
 					<thead class="thead-dark">
 						<tr>
@@ -99,7 +113,10 @@ $fila = $dat->fetch_array();
 								<?php echo $fila[3]; ?>
 								<input type="hidden" name="stock" id="stock" value="<?php echo $fila[3]; ?>" required="required">
 							</td>
-							<td><div id="combo1"></div></td>
+							<td>
+								<div id="combo1"></div>
+							</td>
+
 							<td><input type="number" name="stockMover" id="stockMover" size="2" min="1" max="999" value="1"></td>
 							<td><button type="submit" class="btn btn-success" id="btnMoverProducto">Mover a Nuevo Almacen</button></td>
 						</tr>
@@ -112,3 +129,4 @@ $fila = $dat->fetch_array();
 
 
 <?php include "footer4.html"; ?>
+

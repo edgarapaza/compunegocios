@@ -119,10 +119,15 @@ if(empty($_SESSION["nuevo_codigo"]))
 			<div class="container">
 				<div class="row">
 
+							
 
 					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 						<form action="" method="POST" class="form-inline" role="form" name="search_datos">
+
+
 							
+
+
 							<table class="table table-hover table-bordered">
 									<caption>Mover almacenes</caption>
 									<thead>
@@ -157,6 +162,16 @@ if(empty($_SESSION["nuevo_codigo"]))
 			</div>
 
 			<form id="Form" action="../Controllers/paqueteGuardarCerrar.controller.php" class="form-inline">
+				<table class="table table-hover">
+								<tr>
+									<th>Nombre/ Razon Social</th>
+									<td><input type="text" name="razonsocial" id="1" class="form-control"></td>
+									<th>RUC / DNI</th>
+									<td><input type="text" name="ruc" id="2" class="form-control"></td>
+									<th>Direccion</th>
+									<td><input type="text" name="direccion" id="3" class="form-control"></td>
+								</tr>
+							</table>
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<input type="hidden" name="next_paquete" value="<?php echo $micodigosession; ?>">
 					<?php echo "Esta trabajando con el Grupo (Paquete): " . $_SESSION["nuevo_codigo"]; ?>

@@ -17,7 +17,13 @@ $idregistro = $_REQUEST['idregistro'];
 		/****************************************************/
 
 $compra = new Compras();
-$dataprov = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
+$codigos = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
+
+	while ($registros = $codigos->fetch_array()) {
+			$datos = $compra->ProductosKardex($registros[0]);
+			
+		}
+
 ?>
 
 <div class="container">
@@ -76,6 +82,7 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 						<th>Codigo</th>
 						<th>Producto</th>
 						<th>Marca</th>
+						<th>Num. Serie</th>
 						<th>Precio Venta</th>
 						<th>Num. Factura</th>
 						<th>Fecha Compra</th>
@@ -94,13 +101,19 @@ $dataprov = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 							<?php 
 								//echo $row['codigo']."-";
 								$prod = $compra->DatosProducto($row['idproducto']);
-								echo $prod[0];
+								echo $prod['descripcion'];
 								
 						?></td>
 						<td>
 							<?php 
-								$prod = $compra->DatosProducto($row['idproducto']);
-								echo $prod[1];
+								$prod = $compra->DatosProductoMarca($row['idproducto']);
+								echo $prod['marca'];
+								
+						?></td>
+						<td>
+							<?php 
+								
+								echo $row['numserie'];
 								
 						?></td>
 						<td><?php printf("S/. %.2f", $row['pvp']); ?></td>
