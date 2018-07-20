@@ -35,36 +35,29 @@ $(document).ready(function() {
 					<thead>
 						<tr class="thead-dark">
 							<th>Producto</th>
+							<th>Marca</th>
+							<th>Modelo</th>
+							<th>Serie</th>
 							<th>Almacen Anterior</th>
 							<th>Almacen Actual</th>
 							<th>Fecha de Cambio</th>
 							<th>Cantidad</th>
-							<th>Num. Serie</th>
 							<th>Realizado por:</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php while ($fila = $data->fetch_array()) { ?>
+						<?php while ($fila = $data->fetch_array(MYSQLI_ASSOC)) { ?>
 						<tr>
-							<td><?php
-							$produc = $change->Producto($fila[0]);
-							echo $produc[0];
-							?></td>
-							<td><?php
-							$almacen1 = $change->Almacen($fila[1]);
-							echo $almacen1[0];
-							?></td>
-							<td><?php
-							$almacen2 = $change->Almacen($fila[2]);
-							echo $almacen2[0];
-							?></td>
-							<td><?php echo $fila[3]; ?></td>
-							<td><?php echo $fila[5]; ?></td>
-						  <td><?php echo $fila[6]; ?></td>
-							<td><?php
-							$pe = $change->Persona($fila[4]);
-							echo $pe[0];
-							?></td>
+							<td><?php echo $fila['descripcion'];?></td>
+							<td><?php echo $fila['marca'];?></td>
+							<td><?php echo $fila['modelo'];?></td>
+						  	<td><?php echo $fila['numserie']; ?></td>
+							<td><?php echo $fila['anterior'];?></td>
+							<td><?php echo $fila['nuevo'];?></td>
+							<td><?php echo $fila['fecmovido']; ?></td>
+							<td><?php echo $fila['cantidad']; ?></td>
+						  	<td><?php echo $fila['personal']; ?></td>
+						
 						</tr>
 						<?php } ?>
 					</tbody>

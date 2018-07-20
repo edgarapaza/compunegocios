@@ -6,10 +6,10 @@ $articulo = new ArticulosAlmacen();
 
 
 $codigo = $_POST['codigo'];
-$nombre = $_POST['nombre'];
-$serie  = $_POST['serie'];
+@$nombre = $_POST['nombre'];
+@$serie  = $_POST['serie'];
 
-$combo = $_POST['idfamilia'];
+@$combo = $_POST['idfamilia'];
 
 $data = "";
 
@@ -20,13 +20,14 @@ if($codigo == 1){
 				<thead>
 					<tr class='thead-dark'>
 						<th>Codigo</th>
-						<th>Serie</th>
 						<th>Fam.</th>
 						<th>Descripcion</th>
+						<th>Serie</th>
+						<th>Modelo</th>
 						<th>Precio1</th>
 						<th>Precio2</th>
 						<th>Precio3</th>
-						<th>Stock Total</th>
+						<th>Stock</th>
 
 					</tr>
 				</thead>";
@@ -37,9 +38,10 @@ if($codigo == 1){
 				<tbody>
 					<tr>
 						<td>".$fila['idproducto']."</td>
-						<td>".$fila['numserie']."</td>
-						<td>".$fila['codigo']."</td>
+						<td>".$fila['familia']."</td>
 						<td>".$fila['descripcion']."</td>
+						<td>".$fila['numserie']."</td>
+						<td>".$fila['modelo']."</td>
 
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa1']); echo "</td>
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa2']); echo "</td>
@@ -68,13 +70,14 @@ if($codigo == 2)
 				<thead>
 					<tr class='thead-dark'>
 						<th>Codigo</th>
-						<th>Serie</th>
 						<th>Fam.</th>
 						<th>Descripcion</th>
+						<th>Serie</th>
+						<th>Modelo</th>
 						<th>Precio1</th>
 						<th>Precio2</th>
 						<th>Precio3</th>
-						<th>Stock Total</th>
+						<th>Stock</th>
 
 					</tr>
 				</thead>";
@@ -85,9 +88,10 @@ if($codigo == 2)
 				<tbody>
 					<tr>
 						<td>".$fila['idproducto']."</td>
-						<td>".$fila['numserie']."</td>
-						<td>".$fila['codigo']."</td>
+						<td>".$fila['familia']."</td>
 						<td>".$fila['descripcion']."</td>
+						<td>".$fila['numserie']."</td>
+						<td>".$fila['modelo']."</td>
 
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa1']); echo "</td>
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa2']); echo "</td>
@@ -117,13 +121,14 @@ if($codigo == 3)
 				<thead>
 					<tr class='thead-dark'>
 						<th>Codigo</th>
-						<th>Serie</th>
 						<th>Fam.</th>
 						<th>Descripcion</th>
+						<th>Serie</th>
+						<th>Modelo</th>
 						<th>Precio1</th>
 						<th>Precio2</th>
 						<th>Precio3</th>
-						<th>Stock Total</th>
+						<th>Stock</th>
 
 					</tr>
 				</thead>";
@@ -134,9 +139,10 @@ if($codigo == 3)
 				<tbody>
 					<tr>
 						<td>".$fila['idproducto']."</td>
-						<td>".$fila['numserie']."</td>
-						<td>".$fila['codigo']."</td>
+						<td>".$fila['familia']."</td>
 						<td>".$fila['descripcion']."</td>
+						<td>".$fila['numserie']."</td>
+						<td>".$fila['modelo']."</td>
 
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa1']); echo "</td>
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa2']); echo "</td>

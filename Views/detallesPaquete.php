@@ -1,4 +1,5 @@
-<?php require_once "header4.php";
+<?php
+require_once "header4.php";
 
 require_once "../Models/detallesPaquete.model.php";
 
@@ -42,6 +43,7 @@ $datos = $det->DetallesPaquete($idps);
 						<td><?php  echo $fila['precio']; ?></td>
 						<td><?php  echo $fila['subtotal']; ?></td>
 						<td><?php  echo $fila['fecCierre']; ?></td>
+						<td><a href="../reportes/reporte4.php?codpaq=<?php echo $idps; ?>" class="btn btn-info" target="_blank">Ver PDF</a></td>
 					</tr>
 				<?php $i++;} ?>
 			</tbody>
@@ -49,5 +51,7 @@ $datos = $det->DetallesPaquete($idps);
 
 	</div>
 </div>
+
+
 
 <?php require_once "footer4.html"; ?>

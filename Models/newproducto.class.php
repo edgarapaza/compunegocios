@@ -13,70 +13,115 @@ class NuevoProducto
 		return $this->conn;
 	}
 
-	public function AddProducto($codigo,$descripcion,$numserie,$marca,$modelo,$tipoUnidad,$tipArticulo,$PVP,$marGanancia1,$marGanancia2,$marGanancia3,$precventa1,$precventa2,$precventa3,$stocktotal,$stockmin,$color,$incluye,$fecAlta,$idfamilia,$idalmacen,$parte,$idsubfamilia,$total,$idpersonal,$idproveedor, $factura, $feccompra, $idregistro)
+	public function AddProducto($idfamilia,$idsubfamilia,$numserie,$marca,$modelo,$tipoUnidad,$tipArticulo,$descripcion,$PVP,$marGanancia1,$marGanancia2,$marGanancia3,$precventa1,$precventa2,$precventa3,$stocktotal,$color,$incluye,$parte,$idpersonal,$fecAlta,$idalmacen,$total,$idregistro,$idproveedor,$factura,$feccompra)
+
 	{
+
 		
 		$flag = true;
+
+		/************************************************************************
+									busca el Ultimo codigo para su ingreso
+		*************************************************************************/				
+
+			$sqlUltimoProducto = "SELECT max(idproducto) FROM productos;";
+
+			if (!$result1 = $this->conn->query($sqlUltimoProducto)){
+				printf("Error Ultimo Codigo Producto: %s", mysqli_error($this->conn));
+				$flag = false;
+			}else{
+
+				$ultimoCodigoProducto = $result1->fetch_array();
+				#echo $ultimoCodigoProducto[0];
+				$id = $ultimoCodigoProducto[0]+1;
+				#printf("Siguiente codigo Productos: %s", $next1);
+			}
+			#########################################################
+
+			$sqlregistroproductos = "SELECT MAX(idregistrop) FROM registroproductos;";
+
+			if (!$result2 = $this->conn->query($sqlregistroproductos)){
+				printf("Error Ultimo Codigo Registro Producto: %s", mysqli_error($this->conn));
+				$flag = false;
+			}else{
+
+				$lastregistroproductos = $result2->fetch_array();
+				#echo $ultimoCodigoProducto[0];
+				$next2 = $lastregistroproductos[0]+1;
+				#printf("Siguiente codigo registroproductos: %s", $next2);
+			}
+
+			#######################################################
+
+			$sqlcompraprovedor = "SELECT MAX(idcompra) FROM compraprovedor;";
+
+			if (!$result3 = $this->conn->query($sqlcompraprovedor)){
+				printf("Error Ultimo Codigo compra Producto: %s", mysqli_error($this->conn));
+				$flag = false;
+			}else{
+
+				$lastcompraprovedor = $result3->fetch_array();
+				#echo $ultimoCodigoProducto[0];
+				$next3 = $lastcompraprovedor[0]+1;
+				#printf("Siguiente codigo Compra Proveedor: %s", $next3);
+			}
+
+			$codigo = "CN-".$id;
+
+	
 		/*****************************************************************************
 		*   REGISTRO DE PRODUCTOS DE MANERA INDIVIDUAL EN LA TABLA
 		*******************************************************************************/
-				
-		$sql = "INSERT INTO productos (idproducto,codigo,idfamilia,idsubfamilia,numserie,marca,modelo,tipoUnidad,tipArticulo,descripcion,PVP,marGanancia1,marGanancia2,marGanancia3,precventa1,precventa2,precventa3,stocktotal,color,incluye,parte,stockmin,idpersonal,fecAlta,idalmacen,total,vendido) VALUES (NULL,'$codigo','$idfamilia','$idsubfamilia','$numserie','$marca','$modelo','$tipoUnidad','$tipArticulo','$descripcion','$PVP','$marGanancia1','$marGanancia2','$marGanancia3','$precventa1','$precventa2','$precventa3','$stocktotal','$color','$incluye','$parte', '$stockmin', '$idpersonal', '$fecAlta' , '$idalmacen', '$total',1)";
+		
+		$sqlprod = "INSERT INTO productos (idproducto,codigo,idfamilia,idsubfamilia,numserie,marca,modelo,tipoUnidad,tipArticulo,
+    descripcion,PVP,marGanancia1,marGanancia2,marGanancia3,precventa1,precventa2,precventa3,
+    stocktotal,color,incluye,parte,stockmin,idpersonal,fecAlta,idalmacen,total,vendido) 
+    VALUES ('$id','$codigo','$idfamilia','$idsubfamilia','$numserie','$marca','$modelo','$tipoUnidad','$tipArticulo','$descripcion','$PVP', '$marGanancia1','$marGanancia2','$marGanancia3','$precventa1','$precventa2','$precventa3','$stocktotal','$color','$incluye','$parte',10,'$idpersonal',now(),'$idalmacen','$total','1');";
 
-		# El valor del campor vendido es = 1 si NO esta vendido y cambia a 0 Cuando esta Vendido
 
-				if (!$this->conn->query($sql)) {
-		 		  echo("Error AddProducto: " . mysqli_error($this->conn));
-		 		  $flag = false;
-				}
+		
+		if (!$this->conn->query($sqlprod)){
+			printf("Error insertando producto: %s", mysqli_error($this->conn));
+			$flag = false;
+		}
 
-				/************************************************************************
-									busca el Ultimo codigo para su ingreso
-				*************************************************************************/				
 
-					$ultimo_codigo = "SELECT idproducto FROM productos ORDER BY idproducto DESC LIMIT 1";
+		$sqlprodkardex = "INSERT INTO productosKardex (idproducto,codigo,idfamilia,idsubfamilia,numserie,marca,modelo,tipoUnidad,tipArticulo,
+    descripcion,PVP,marGanancia1,marGanancia2,marGanancia3,precventa1,precventa2,precventa3,
+    stocktotal,color,incluye,parte,stockmin,idpersonal,fecAlta,idalmacen,total,vendido) 
+    VALUES ('$id','$codigo','$idfamilia','$idsubfamilia','$numserie','$marca','$modelo','$tipoUnidad','$tipArticulo','$descripcion','$PVP', '$marGanancia1','$marGanancia2','$marGanancia3','$precventa1','$precventa2','$precventa3','$stocktotal','$color','$incluye','$parte',10,'$idpersonal',now(),'$idalmacen','$total','1');";
 
-					if(!$result2 = $this->conn->query($ultimo_codigo)){
-						echo("Error Ultimo Registro: " . mysqli_error($this->conn));
-						$flag = false;
-					}
+		
+		if (!$this->conn->query($sqlprodkardex)){
+			printf("Error insertando kardex: %s", mysqli_error($this->conn));
+			$flag = false;
+		}
 
-				$ultimo_cod = $result2->fetch_array();
+		$sqlregprod = "INSERT INTO registroproductos (idregistrop,idregistro,idproducto,fecregistro) VALUES ('$next2','$idregistro','$id',now());";
 
-				/************************************************************************
-									REGISTRO DE PRODUCTOS EN LA TABLA REGISTRO_PRODUCTO
-				*************************************************************************/
+		if (!$this->conn->query($sqlregprod)){
+			printf("Error registro producto: %s", mysqli_error($this->conn));
+			$flag = false;
+		}
 
-				$sqlregistro = "INSERT INTO registroproductos (idregistrop,idregistro,idproducto,fecregistro) VALUES (NULL,'$idregistro','$ultimo_cod[0]',now())";
 
-				if(!$this->conn->query($sqlregistro)){
-					echo("Error Registro productos: " . mysqli_error($this->conn));
-					$flag = false;
-				}
+		$sqlcompraprovedor ="INSERT INTO compraprovedor (idcompra,idproducto,codigo,idproveedor,cantidad,pvp,numfactura,feccompra,idpersonal,idregistro) VALUES ('$next3','$id','$codigo','$idproveedor','$stocktotal','$PVP','$factura','$feccompra','$idpersonal','$idregistro');";
 
-			  
-
-				/************************************************************************
-									INGRESO DE COMPRA PROVEEDOR
-				*************************************************************************/
-
-			
-				$sql2 = "INSERT INTO compraprovedor (idcompra, idproducto, codigo, idproveedor, cantidad, pvp, numfactura, feccompra, idpersonal, idregistro) VALUES (NULL,'$ultimo_cod[0]','$codigo','$idproveedor','$stocktotal','$PVP','$factura','$feccompra', '$idpersonal', '$idregistro')";
-
-				if(!$this->conn->query($sql2)){
-					echo("Error Insertando compraprovedor: " . mysqli_error($this->conn));
-					$flag = false;
-				}
-
-				if($flag === true){
-					echo "Producto Guardado !!!";
-					return 0;
-				}else{
-					echo "Error";
-					return 1;
-				}
-			
+		if (!$this->conn->query($sqlcompraprovedor)){
+			printf("Error insert compra proveedor: %s", mysqli_error($this->conn));
+			$flag = false;
+		}
+		 
+		if($flag === true){
+			echo "Producto Guardado !!!";
+			return 0;   # Retorna 0 si todo sale bien
+		}else{
+			echo "Error 1504. ";
+			return 1504;  # Retorna 1504 si algo sale mal
+		}
+		
 		mysqli_close($this->conn);
 	}
 }
+
 ?>

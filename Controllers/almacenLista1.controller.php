@@ -9,6 +9,9 @@ echo "<table class='table table-hover'>
 					<tr class='thead-dark'>
 						<th>Cod.Prod.</th>
 						<th>Producto</th>
+						<th>Modelo</th>
+						<th>Marca</th>
+						<th>Serie</th>
 						<th>Almacen</th>
 						<th>Cantidad</th>
 						<th>Mover a</th>						
@@ -18,13 +21,16 @@ echo "<table class='table table-hover'>
 				<tbody>";
 while ($fila = $todo->fetch_array()) {
 
-	echo "<tr><td>". $fila[0] ."</td>";
-	echo "<td>". $fila[1] ."</td>";
-	echo "<td>". $fila[2] ."</td>";
-	echo "<td>". $fila[3] ."</td>";
+	echo "<tr><td>". $fila['idproducto'] ."</td>";
+	echo "<td>". $fila['descripcion'] ."</td>";
+	echo "<td>". $fila['marca'] ."</td>";
+	echo "<td>". $fila['modelo'] ."</td>";
+	echo "<td>". $fila['numserie'] ."</td>";
+	echo "<td>". $fila['almacen'] ."</td>";
+	echo "<td>". $fila['stocktotal'] ."</td>";
 	echo "<td>
 				
-						<a href='./nuevoAlmacenx.php?idproducto=". $fila[0] ."&idalmacen=". $fila[4] ."&almacen=". $fila[2] ."' class='btn btn-danger'>Mover a</a>
+						<a href='./nuevoAlmacenx.php?idproducto=". $fila['idproducto'] ."&idalmacen=". $fila['idalmacen'] ."&almacen=". $fila['nuevo'] ."' class='btn btn-danger'>Mover a</a>
  				</td></tr>";
 	
 }

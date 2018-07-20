@@ -1,27 +1,72 @@
 <?php 
 require_once "../Models/paquete.model.php";
-$paq = new Paquete();
 
-date_default_timezone_set('UTC-5');
-
+$paq        = new Paquete();
+# id es idproducto
 $idproducto = $_REQUEST['id'];
+$cantidad   = $_REQUEST['cantidad'];
+$stock      = $_REQUEST['stock'];
 
-#echo "Valor recidivo: " . $idproducto;
 
-$cod_temp =  $paq->GenerarPaqueteSuma();
-echo " Codigo Temporal: ".$cod_temp;
+echo "Codigo del Producto recibido: " . $idproducto;
 
-$data = $paq->Detalleproducto($idproducto);
+$idps_temp =  $paq->GenerarPaqueteSuma();
 
-$fecalta  = date('Y-m-d h:i:s');
-$producto = $data['producto'];
-$modelo   = $data['modelo'];
-$precio   = $data['precio'];
-$cantidad = 1;
-$subtotal = $precio * $cantidad;
+$data      = $paq->Detalleproducto($idproducto);
 
-#echo "Sub total" . $subtotal;
+$fecalta    = date('Y-m-d h:i:s');
+$prod       = $data['descripcion'];
+$marca      = $data['marca'];
+$modelo     = $data['modelo'];
+$serie      = $data['numserie'];
+$precio     = $data['precventa3'];
+$stocktotal = $data['stocktotal'];
+$subtotal   = $precio * $cantidad;
 
-$paq->InsertPaqueteTemporal($fecalta,$idproducto,$producto,$modelo, $precio, $cantidad, $subtotal, $cod_temp);
-header("Location: ../Views/paquetesAgregados.php");
+printf("Producto: %s Stock: %s Venta: %s ", $prod, $stocktotal, $cantidad);
+if($cantidad > 0){
+
+	if($stocktotal >= 1){
+
+		if($cantidad <= $stocktotal){
+
+			$resta = $stocktotal - $cantidad;
+			printf("\nValor de la Resta %s", $resta);
+
+			if( $resta == 0 ){
+
+				$sql_up1 = "agregar a la tabla vendidos temporal";
+				print("actualizar campo vendido = true\n");
+				print("actualizar campo ocultar = true\n");
+
+				$paq->InsertPaqueteTemporalCero($fecalta,$idproducto,$prod,$modelo, $cantidad, $precio, $subtotal, $idps_temp,$marca,$serie);
+				header("Location: ../Views/paquetesAgregados.php");
+				
+			}else{
+
+				if($resta > 0){
+
+					$paq->InsertPaqueteTemporalExistencia($fecalta,$idproducto,$prod,$modelo, $cantidad, $precio, $subtotal, $idps_temp,$marca,$serie,$resta);
+
+					header("Location: ../Views/paquetesAgregados.php");
+					
+				}else{
+
+					print("Error en el ingreso de los datos");
+				}
+			}
+		}else{
+			printf("No procede la venta, debido a que el numero exdece a la cantidad en Stock");
+		}
+
+	}else{
+		echo "Valor 0 o negativo";
+	}
+}else{
+	printf("No se aceptan valores negativos o Ceros");
+}
+
+
+
+
 ?>

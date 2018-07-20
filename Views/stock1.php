@@ -1,7 +1,7 @@
 <?php 
 require_once "header4.php";
 require_once "../Models/Conexion.php";
-require_once "../Models/compras.model.php";
+require_once "../Models/comprasKardex.model.php";
 
 $codprovedor = $_REQUEST['codigo'];
 $idregistro = $_REQUEST['idregistro'];
@@ -16,17 +16,12 @@ $idregistro = $_REQUEST['idregistro'];
 				$fila = $datos->fetch_array();
 		/****************************************************/
 
+
 $compra = new Compras();
-$codigos = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
-
-	while ($registros = $codigos->fetch_array()) {
-			$datos = $compra->ProductosKardex($registros[0]);
-			
-		}
-
+$dataprov = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 ?>
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			
@@ -64,12 +59,8 @@ $codigos = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 			
 			<a href="nuevoProductoProveedor.php?idproveedor=<?php echo $codprovedor; ?>&idregistro=<?php echo $idregistro; ?>" class="btn btn-warning"><span class="glyphicon glyphicon-file"> </span>Nuevo Producto</a>
 
-			
-			
-			<!--
-			<a href="./listadoforCompras.php?idproveedor=<?php echo $codprovedor; ?>&idregistro=<?php echo $idregistro; ?>" target="_blank" onClick="window.open(this.href, this.target, 'width=1024,height=500'); return false;" class="btn btn-success"><span class="glyphicon glyphicon-file"> </span>Listado de Productos</a> -->
-
-			<button type="button" class="btn btn-primary btn-lg" onClick="window.location.reload()"><span class="glyphicon glyphicon-refresh"></span> Actualizar / Refresh Page</button>
+		
+			<button type="button" class="btn btn-primary" onClick="window.location.reload()"><span class="glyphicon glyphicon-refresh"></span> Actualizar / Refresh Page</button>
 			<a href="facturas.php?codigo=<?php echo $codprovedor;?>">Regresar</a>
 		</div>
 	</div>
@@ -96,7 +87,7 @@ $codigos = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 						while ($row = $dataprov->fetch_array(MYSQLI_ASSOC)) {	//echo $row['idproveedor'];
 					 ?>
 					<tr>
-						<td><?php  echo $row['idcompra'];?></td>
+						<td><?php  echo $row['idproducto'];?></td>
 						<td>
 							<?php 
 								//echo $row['codigo']."-";
@@ -105,22 +96,18 @@ $codigos = $compra->ListadoComprasProveedor($codprovedor, $idregistro);
 								
 						?></td>
 						<td>
-							<?php 
-								$prod = $compra->DatosProductoMarca($row['idproducto']);
-								echo $prod['marca'];
-								
-						?></td>
+							<?php echo $row['marca']; ?></td>
 						<td>
 							<?php 
 								
 								echo $row['numserie'];
 								
 						?></td>
-						<td><?php printf("S/. %.2f", $row['pvp']); ?></td>
+						<td><?php printf("S/. %.2f", $row['PVP']); ?></td>
 						<td><?php echo $row['numfactura']; ?></td>
 						<td><?php echo $row['feccompra']; ?></td>
 						
-						<td><?php echo $row['cantidad']; ?></td>
+						<td><?php echo $row['stocktotal']; ?></td>
 						<td>
 							<a href="updateStock.php?codprove=<?php echo $codprovedor; ?>&idcompra=<?php  echo $row['idcompra'];?>&codprod=<?php echo $row['idproducto']; ?>&codgen=<?php echo $row['codigo']; ?>&idregistro=<?php echo $idregistro; ?>" rel="pop-up" class="btn btn-info"> <span class="glyphicon glyphicon-plus"></span> Add Compras</a>
 							

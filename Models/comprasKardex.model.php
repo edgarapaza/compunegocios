@@ -14,8 +14,7 @@ class Compras
 	public function ListadoComprasProveedor($codigo,$idregistro)
 	{
 		
-		$sql = "SELECT  c.idcompra, c.idproducto, c.codigo, c.idproveedor, c.cantidad, c.pvp, c.numfactura, c.feccompra, c.idpersonal, c.idregistro, p.numserie FROM compraprovedor as c, productos as p WHERE c.idproducto = p.idproducto AND
-c.idproveedor = $codigo AND c.idregistro = $idregistro";
+		$sql = "SELECT p.idproducto, p.codigo, p.stocktotal, p.PVP, c.idproveedor, c.feccompra, c.idpersonal, p.numserie, p.marca, c.numfactura, c.idcompra FROM productosKardex as p, compraprovedor as c WHERE c.idproducto = p.idproducto AND c.idproveedor = $codigo AND c.idregistro = $idregistro;";
 		
 
 		if (!$data = $this->con->query($sql)) {
@@ -40,7 +39,7 @@ c.idproveedor = $codigo AND c.idregistro = $idregistro";
 	public function AgregardeListado($idproducto,$codigo,$idproveedor,$cantidad,$pvp,$numfact,$idpersonal,$idregistro)
 	{
 		
-		$sql = "INSERT INTO compraprovedor VALUES (NULL,idproducto,codigo,idproveedor,cantidad,pvp,numfact,now(),idpersonal,idregistro)";
+		$sql = "INSERT INTO compraprovedor VALUES (NULL,$idproducto,$codigo,$idproveedor,$cantidad,$pvp,$numfact,now(),$idpersonal,$idregistro)";
 
 		if (!$data = $this->con->query($sql)) {
  		  	echo("Error description 1: " . mysqli_error($this->con));
@@ -69,39 +68,17 @@ c.idproveedor = $codigo AND c.idregistro = $idregistro";
 		mysqli_close($this->con);
 	}
 
-	public function DatosProductoMarca($idproducto)
-	{
-		$sql_1 = "SELECT marca FROM productos WHERE idproducto =  $idproducto";
-
-		if (!$datomarca = $this->con->query($sql_1)) 
-		{
- 		  echo("Error description 1: " . mysqli_error($this->con));
-		}
-		$resultmarca = $datomarca->fetch_array();
-
-		$sql_2 = "SELECT marca FROM marca WHERE idmarca = $resultmarca[0]";
-
-		if (!$data = $this->con->query($sql_2)) 
-		{
- 		  echo("Error description 1: " . mysqli_error($this->con));
-		}
-
-		$dato = $data->fetch_array(MYSQLI_ASSOC);
-		return $dato;
-
-		mysqli_close($this->con);
-	}
 
 	public function GuardarCompra($idcompra, $cantidad, $pvp, $idproducto, $mg1, $mg2, $mg3, $pv1, $pv2, $pv3,$numfactura, $idproveedor, $codgen)
 	{
 		// primero resiva la cantidad de stcok en la tabla productos
 
-		$sql1 = "SELECT stocktotal FROM productosKardex WHERE idproducto =  '$idproducto';";
+		$sql1 = "SELECT stocktotal FROM productos WHERE idproducto =  '$idproducto';";
 		
 		if(!$this->con->query($sql1))
 		{
 			echo ("Error 1 arriba. " . mysqli_error($this->con));
-			
+			$msg = ("Error 1 arriba. " . mysqli_error($this->con));
 
 		}
 			
@@ -112,24 +89,20 @@ c.idproveedor = $codigo AND c.idregistro = $idregistro";
 			{
 				echo "el stock para este producto es 0";
 				$sql2 = "UPDATE compraprovedor SET cantidad = $cantidad, pvp = $pvp , feccompra = now() WHERE codigo = $codgen";
-				$sqlprodkardex = "UPDATE productosKardex SET stocktotal = $cantidad WHERE codigo = $codgen";
 				$sqlprod = "UPDATE productos SET stocktotal = $cantidad WHERE codigo = $codgen";
 
 				
 				if(!$this->con->query($sql2))
 					{
 						echo ("Error 2 arriba. " . mysqli_error($this->con));
+						$msg = ("Error 2 arriba. " . mysqli_error($this->con));
 					}
 
-				if(!$this->con->query($sqlprodkardex))
-					{
-						echo ("Error 3 arriba. " . mysqli_error($this->con));
-						
-					}
+				
 				if(!$this->con->query($sqlprod))
 					{
 						echo ("Error 3 arriba. " . mysqli_error($this->con));
-						
+						$msg = ("Error 3 arriba. " . mysqli_error($this->con));
 					}
 
 			}else{
@@ -140,29 +113,23 @@ c.idproveedor = $codigo AND c.idregistro = $idregistro";
 				$sql = "UPDATE compraprovedor SET cantidad = '$nuevostock', pvp = '$pvp' , feccompra = now() WHERE codigo = '$codgen';";
 
 				$sqlprod2 = "UPDATE productos SET stocktotal = '$nuevostock', PVP = '$pvp', marGanancia1 = '$mg1', marGanancia2 = $mg2, marGanancia3 = $mg3, precventa1 = $pv1, precventa2= $pv2, precventa3 = $pv3 WHERE codigo = '$codgen';";
-				$sqlprod2kardex = "UPDATE productosKardex SET stocktotal = '$nuevostock', PVP = '$pvp', marGanancia1 = '$mg1', marGanancia2 = $mg2, marGanancia3 = $mg3, precventa1 = $pv1, precventa2= $pv2, precventa3 = $pv3 WHERE codigo = '$codgen';";
 
 				
 				if(!$this->con->query($sql))
 					{
 						echo ("Error 4 arriba. " . mysqli_error($this->con));
-						
+						$msg = ("Error 4 arriba. " . mysqli_error($this->con));
 					}
 
 				if(!$this->con->query($sqlprod2))
 					{
 						echo ("Error 5 arriba. " . mysqli_error($this->con));
-						
-					}
-				if(!$this->con->query($sqlprod2kardex))
-					{
-						echo ("Error 5 arriba. " . mysqli_error($this->con));
-						
+						$msg =  ("Error 5 arriba. " . mysqli_error($this->con));
 					}
 				
 			}
 		
-		
+		return $msg;
 		mysqli_close($this->con);
 
 	}

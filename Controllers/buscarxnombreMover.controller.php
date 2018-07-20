@@ -21,8 +21,12 @@ if($codigo == 1){
 					<tr class='thead-dark'>
 						<th>Cod.Prod.</th>
 						<th>Producto</th>
+						<th>Modelo</th>
+						<th>Marca</th>
+						<th>Serie</th>
 						<th>Almacen</th>
 						<th>Cantidad</th>
+						<th>Mover</th>
 
 					</tr>
 				</thead>";
@@ -34,6 +38,9 @@ if($codigo == 1){
 					<tr>
 						<td>".$fila['idproducto']."</td>
 						<td>".$fila['descripcion']."</td>
+						<td>".$fila['marca']."</td>
+						<td>".$fila['modelo']."</td>
+						<td>".$fila['numserie']."</td>
 						<td>".$fila['almacen']."</td>
 						<td>".$fila['stocktotal']."</td>
 
@@ -62,8 +69,12 @@ if($codigo == 2)
 					<tr class='thead-dark'>
 						<th>Cod.Prod.</th>
 						<th>Producto</th>
+						<th>Modelo</th>
+						<th>Marca</th>
+						<th>Serie</th>
 						<th>Almacen</th>
 						<th>Cantidad</th>
+						<th>Mover</th>
 					</tr>
 				</thead>";
 				
@@ -74,6 +85,9 @@ if($codigo == 2)
 					<tr>
 						<td>".$fila['idproducto']."</td>
 						<td>".$fila['descripcion']."</td>
+						<td>".$fila['modelo']."</td>
+						<td>".$fila['marca']."</td>
+						<td>".$fila['numserie']."</td>
 						<td>".$fila['almacen']."</td>
 						<td>".$fila['stocktotal']."</td>
 						<td>
@@ -101,8 +115,12 @@ if($codigo == 3)
 					<tr class='thead-dark'>
 						<th>Cod.Prod.</th>
 						<th>Producto</th>
+						<th>Modelo</th>
+						<th>Marca</th>
+						<th>Serie</th>
 						<th>Almacen</th>
 						<th>Cantidad</th>
+						<th>Mover</th>
 
 					</tr>
 				</thead>";
@@ -114,6 +132,9 @@ if($codigo == 3)
 					<tr>
 						<td>".$fila['idproducto']."</td>
 						<td>".$fila['descripcion']."</td>
+						<td>".$fila['modelo']."</td>
+						<td>".$fila['marca']."</td>
+						<td>".$fila['numserie']."</td>
 						<td>".$fila['almacen']."</td>
 						<td>".$fila['stocktotal']."</td>
 						<td>

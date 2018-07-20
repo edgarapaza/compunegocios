@@ -10,28 +10,41 @@ $listprod = new ListadoProductos();
 $datos = $listprod->ProductoSolo($idprod);
 
 ?>
-<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
 	
 	$(document).ready(function(){
 		
-		$("#btnuno").click(function(){
-			alert("El producto ya se ha VENDIDO !!!");
-	    	e.preventDefault();
+		$("#btnConfirmar").click(function(){
+						
+			var vender = $("#txtcantidad").val();
+			var stockactual = $("#txtstock").val();
+
+			if(vender <=0)
+			{
+				alert("Ha ingresado 0 o un numero negativo en la cantidad a vender. Corrija Por favor");
+			}else{
+
+				if(stockactual>=vender){
+						    				
+			        $.ajax({
+			            type: 'POST',
+			            url : '../Controllers/confirmarVenta.controller.php',
+			            data: $("#formulario").serialize(),
+			            success: function(){
+			            	alert("Producto Vendido...");
+			            	location.href="../Views/productos_listado.php";
+			            },
+			            error: function(){
+			            	alert("Error");
+			            }
+			            
+			        });
+			        return false;
+				}
+			}
 			
-	        $.ajax({
-	            type: 'POST',
-	            url : '../Controllers/confirmarVenta.controller.php',
-	            data: $(this).serialize(),
-	            success: function(data) {
-	                $("#Mensajes").html(data);
-	            },
-	            error: function(res){
-	            	$("#Mensajes").html(res);
-	            }
-	        });      
-	        return false;
 		});
 
 	});
@@ -41,16 +54,22 @@ $datos = $listprod->ProductoSolo($idprod);
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<form action="../Controllers/confirmarVenta.controller.php" method="POST" role="form">
+
+			<div id="Mensajes"></div>
+
+			<!-- ../Controllers/confirmarVenta.controller.php -->
+			<form action="" method="POST" role="form" id="formulario">
 				<legend>Confirmación de Venta</legend>
 				
 				<table class="table table-hover">
+
 					<thead>
 						<tr>
 							<th>Codigo</th>
 							<th>Descripcion</th>
 							<th>Stock</th>
 							<th>Precio</th>
+				
 							<th>Cantidad</th>
 						</tr>
 					</thead>
@@ -64,15 +83,16 @@ $datos = $listprod->ProductoSolo($idprod);
 							<td><?php echo $datos['descripcion']; ?></td>
 							<td>
 								<?php echo $datos['stocktotal']; ?>
+								<input type="hidden" name="txtstock" id="txtstock" value="<?php echo $datos['stocktotal']; ?>">
 							</td>
 							<td>
 								S/. <input type="text" name="precio" id="precio" value="<?php echo $datos['precventa3']; ?>">
 							</td>
 							<td>
-								<input type="number" name="cantidad" id="cantidad" value="1" min="1" max="99" step="1" required="required">
+								<input type="number" name="txtcantidad" id="txtcantidad" value="1" min="1" max="99" step="1" required="required">
 							</td>
 							<td>
-								<input type="submit" name="btnuno" id="btnuno" class="btn btn-success" value="Confirmar Venta">
+								<input type="submit" name="btnConfirmar" id="btnConfirmar" class="btn btn-success" value="Confirmar Venta">
 								<a href="productos_listado.php" class="btn btn-warning">Cancelar</a>
 							</td>
 						</tr>

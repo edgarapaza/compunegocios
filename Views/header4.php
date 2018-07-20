@@ -1,7 +1,5 @@
 <?php
 session_start();
-if(isset($_SESSION['administrador']))
-{
   require_once "../Models/personal.class.php";
   $idpersonal = $_SESSION['administrador'];
 
@@ -134,13 +132,15 @@ if(isset($_SESSION['administrador']))
         <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-3 ml-auto">
+              <div class="col-lg-12 ml-auto">
+                <!--
                 <form class="input-icon my-3 my-lg-0">
-                  <input type="search" class="form-control header-search" placeholder="Buscar&hellip;" tabindex="1">
+                   <input type="search" class="form-control header-search" placeholder="Buscar&hellip;" tabindex="1"> 
                   <div class="input-icon-addon">
                     <i class="fe fe-search"></i>
                   </div>
                 </form>
+                -->
               </div>
               <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
@@ -158,10 +158,10 @@ if(isset($_SESSION['administrador']))
                   <li class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-calendar"></i> Ventas</a>
                     <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="./productos_listado.php" class="dropdown-item "> Ventas</a>
+                      <a href="./productos_listado.php" class="dropdown-item ">Ventas x Unidad</a>
                       
                       <div class="dropdown-divider"></div>
-                      <a href="./paquetes.php" class="dropdown-item ">Paquetes</a>
+                      <a href="./paquetes.php" class="dropdown-item ">Venta x Factura</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -196,6 +196,8 @@ if(isset($_SESSION['administrador']))
                       <a href="../reportes/reporte1.php" target="_blank" class="dropdown-item ">Stock General</a>
                       <a href="../reportes/reporte2.php" target="_blank" class="dropdown-item ">Sotck por Almacen</a>
                       <a href="../reportes/reporte3.php" target="_blank" class="dropdown-item ">Reporte Ventas del Dia</a>
+                      <a href="../reportes/reporte5.php" target="_blank" class="dropdown-item ">Rep. Venta x Factura</a>
+                      <a href="fechareporte.php" target="_blank" class="dropdown-item ">Reporte por fecha</a>
                       <div class="dropdown-divider"></div>
                       <a href="personalizarReport.php" target="_blank" class="dropdown-item ">Personalizar Reportes</a>
 
@@ -215,11 +217,3 @@ if(isset($_SESSION['administrador']))
           </div>
         </div>
         <div class="my-3 my-md-5">
-
-<?php 
-}
-else{
-  echo "Error: 404.  Consulte al administrador del sistema";
-  header("Location: ../index.html");
-} 
-?>

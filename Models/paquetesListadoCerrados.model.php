@@ -15,7 +15,7 @@ class PaquetesListado
 
 	public function ListadoPaquetesCerrados()
 	{
-		$sql = "SELECT idps_temp, descpaquete, total, fecha FROM paqsuma_temp WHERE pendiente = 0 ORDER BY fecha DESC";
+		$sql = "SELECT idps_temp, descpaquete, total, fecha, razonsocial, ruc, direccion FROM paqsuma_temp WHERE pendiente = 0 AND total <> 0 ORDER BY fecha DESC";
 
 		if (!$res = $this->conn->query($sql)) {
 			echo("Error listado: " . mysqli_error($this->con));
@@ -26,6 +26,8 @@ class PaquetesListado
 		#echo "<div class='alert alert-success'><strong>Listado!</strong></div>";
 	}
 }
+
+
 /*
 $paqlista = new PaquetesListado();
 $data = $paqlista->ListadoPaquetesCerrados();

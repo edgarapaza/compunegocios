@@ -1,29 +1,27 @@
 <?php 
-session_start();
 require_once "header4.php";
 if(empty($_SESSION["nuevo_codigo"]))
-		{
-			echo "Debe crear un nuevo codigo para la Venta por Paquete (Grupo).<br>";
+{
+	echo "Debe crear un nuevo codigo para la Venta por Paquete (Grupo).<br>";
 			
-		}
-		else{	
+}else{	
 
-				$micodigosession = $_SESSION["nuevo_codigo"];
+	$micodigosession = $_SESSION["nuevo_codigo"];
 
-				require_once "../Models/paquete.model.php";
+	require_once "../Models/paquete.model.php";
 
-				$paq = new Paquete();
-				$datos = $paq->Venta_temporal();
+	$paq = new Paquete();
+	$datos = $paq->Venta_temporal($micodigosession);
 
-				$total = $paq->SumaPaquete($micodigosession);
-
-				?>
+	$total = $paq->SumaPaquete($micodigosession);
+?>
 			
 
-			<script type="text/javascript" src="js/jquery.min.js"></script>
+			<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
 
-			<script type="text/javascript">
+			<script type="text/javascript"|>
 				$(document).ready(function(){
+					
 					$("#btnBuscar").click(function(){
 
 						var text1 = $("#xnombre").val();
@@ -105,50 +103,66 @@ if(empty($_SESSION["nuevo_codigo"]))
 				}
 			</script>
 
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-			<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
-
-			
 			<script type="text/javascript">
 				function mandar(codigomuerto){
-					alert(codigomuerto);
+					alert("Matando este codigo ["+codigomuerto+"] que ya no la queremos.");
 					window.location = "muerto.php?codigomuerto=" + codigomuerto;
+				}
+
+				function Quitarproducto(cod_producto){
+					alert("QUITA PRODUCTO: "+cod_producto);
+
+					$.ajax({
+						url: '../Controllers/quitarproducto.php',
+						type: 'POST',
+						data: {id: cod_producto},
+						success: function(res){
+							$("#result").html(res);
+						},
+
+						error: function(){
+							$("#result").html(res);	
+						}
+					});
+					
+					
+				}
+
+				function MasProductos(cod_producto){
+					alert(cod_producto);
 				}
 			</script>
 
-			<div class="container">
+			
+			<div class="container-fluid">
 				<div class="row">
 
-							
-
 					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+
+						<div id="result"></div>
+
 						<form action="" method="POST" class="form-inline" role="form" name="search_datos">
 
-
-							
-
-
 							<table class="table table-hover table-bordered">
-									<caption>Mover almacenes</caption>
-									<thead>
-										<tr>
-											<th>Busqueda por Nombre y Serie</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<div>
-														<input type="text" class="form-control" name="xnombre" id="xnombre" placeholder="Busca x Nombre"><br>
-														<input type="text" class="form-control" name="xserie" id="xserie" placeholder="Buscar x Serie"><br>
+								<thead>
+									<tr>
+										<th>Busqueda por Nombre y Serie</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div>
+												<input type="text" class="form-control" name="xnombre" id="xnombre" placeholder="Busca x Nombre"><br>
+												<input type="text" class="form-control" name="xserie" id="xserie" placeholder="Buscar x Serie"><br>
 
-														<button type="button" class="btn btn-success" name="btnBuscar" id="btnBuscar">Buscar</button>
-														<button type="button" class="btn btn-primary" name="btnLimpiar" id="btnLimpiar">Limpiar</button>
+												<button type="button" class="btn btn-success" name="btnBuscar" id="btnBuscar">Buscar</button>
+												<button type="button" class="btn btn-primary" name="btnLimpiar" id="btnLimpiar">Limpiar</button>
 
-												</div>
-											</td>
-										</tr>
-									</tbody>
+											</div>
+										</td>
+									</tr>
+								</tbody>
 							</table>
 
 						</form>
@@ -163,15 +177,15 @@ if(empty($_SESSION["nuevo_codigo"]))
 
 			<form id="Form" action="../Controllers/paqueteGuardarCerrar.controller.php" class="form-inline">
 				<table class="table table-hover">
-								<tr>
-									<th>Nombre/ Razon Social</th>
-									<td><input type="text" name="razonsocial" id="1" class="form-control"></td>
-									<th>RUC / DNI</th>
-									<td><input type="text" name="ruc" id="2" class="form-control"></td>
-									<th>Direccion</th>
-									<td><input type="text" name="direccion" id="3" class="form-control"></td>
-								</tr>
-							</table>
+					<tr>
+						<th>Nombre/ Razon Social</th>
+						<td><input type="text" name="razonsocial" id="1" class="form-control"></td>
+						<th>RUC / DNI</th>
+						<td><input type="text" name="ruc" id="2" class="form-control"></td>
+						<th>Direccion</th>
+						<td><input type="text" name="direccion" id="3" class="form-control"></td>
+					</tr>
+				</table>
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 					<input type="hidden" name="next_paquete" value="<?php echo $micodigosession; ?>">
 					<?php echo "Esta trabajando con el Grupo (Paquete): " . $_SESSION["nuevo_codigo"]; ?>
@@ -186,7 +200,9 @@ if(empty($_SESSION["nuevo_codigo"]))
 							<th></th>
 							<th>Num</th>
 							<th>Producto</th>
+							<th>Marca</th>
 							<th>Modelo</th>
+							<th>Serie</th>
 							<th>Precio</th>
 							<th>Cantidad</th>
 							<th>Sub Total</th>
@@ -206,21 +222,28 @@ if(empty($_SESSION["nuevo_codigo"]))
 									<input type="checkbox" name="<?php echo "elemento".$i; ?>" value="<?php echo $i; ?>" >
 								</label>
 							</div></td>
-							<td><?php echo $i; ?></td>
-							<td><?php echo $fila['producto']; ?></td>
-							<td><?php echo $fila['modelo']; ?></td>
-							<td>
-								<input type="text" name="precio" class="txt_precio" value="<?php echo $fila['precio']; ?>" min="1" max="9999">
+							<td><?php echo $i; ?>
+								<input type="text" name="cont" value="<?php echo $i?>">
 							</td>
-							<td><input type="number" name="cantidad" id="<?php echo $i; ?>" value="<?php echo $fila['cantidad']; ?>" min="1" max="9999"></td>
+							<td><?php echo $fila['producto']; ?></td>
+							<td><?php echo $fila['marca']; ?></td>
+							<td><?php echo $fila['modelo']; ?></td>
+							<td><?php echo $fila['serie']; ?></td>
+							<td>
+								<input type="text" name="precio" class="txt_precio" value="<?php echo $fila['precio']; ?>" min="1" max="9999" size="8">
+							</td>
+							<td>
+								<?php echo $fila['cantidad']; ?>
+								<input type="text" name="txtcantidad" value ="<?php echo $fila['cantidad']; ?>">
+							</td>
 							<td>
 								
 									<?php echo $fila['subtotal']; ?>
 								</td>
 								<td>
-									<input type="text" name="id_producto" id="id_producto" value="<?php echo $fila['idproducto']; ?>">
-									<a href="#?cod=<?php echo $fila['idproducto']; ?>">Actualizar</a>
-									<a href="#?cod=<?php echo $fila['idproducto']; ?>">Quitar</a>
+									<input type="hidden" name="id_producto" id="id_producto" value="<?php echo $fila['idproducto']; ?>">
+									<a href="#" onclick="MasProductos(<?php echo $fila['idproducto']; ?>);">Actualizar</a>
+									<a href="#" onclick="Quitarproducto(<?php echo $fila['idproducto']; ?>);">Quitar</a>
 								</td>
 						</tr>
 						<?php 

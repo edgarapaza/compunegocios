@@ -1,13 +1,12 @@
+
 <?php
 require_once "../Models/articulosPaquete.model.php";
 
 $articulo = new ArticulosAlmacen();
 
 $codigo = $_POST['codigo'];
-$nombre = $_POST['nombre'];
-$serie  = $_POST['serie'];
-
-$combo = $_POST['idfamilia'];
+@$nombre = $_POST['nombre'];
+@$serie  = $_POST['serie'];
 
 $data = "";
 
@@ -17,15 +16,17 @@ if($codigo == 1){
 		<table class='table table-hover'>
 				<thead>
 					<tr class='thead-dark'>
-						<th>Codigo</th>
-						<th>Serie</th>
-						<th>Fam.</th>
 						<th>Descripcion</th>
+						<th>Marca</th>
+						<th>Serie</th>
 						<th>Precio1</th>
 						<th>Precio2</th>
 						<th>Precio3</th>
 						<th>Stock Total</th>
-
+						<th>Cantidad
+							<input type='number' name='txtcantidad' id='txtcantidad' value='1' required='required' size='2' min='1' max='99'>
+						</th>
+						<th>Opc</th>
 					</tr>
 				</thead>";
 				
@@ -34,28 +35,22 @@ if($codigo == 1){
 				echo "
 				<tbody>
 					<tr>
-						<td>".$fila['idproducto']."</td>
-						<td>".$fila['numserie']."</td>
-						<td>".$fila['codigo']."</td>
 						<td>".$fila['descripcion']."</td>
+						<td>".$fila['marca']."</td>
+						<td>".$fila['numserie']."</td>
+						
 
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa1']); echo "</td>
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa2']); echo "</td>
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa3']); echo "</td>
 						<td align='center'>". $fila['stocktotal']."</td>
 						<td>
-
+							
 						</td>
 
 						<td>
-							<!-- PARTE 1111111111111111111111111111111 DE LA BUSQUEDA PÓR NOMBRE DEL PRODUCTO     -->
-							<a href='../Controllers/paquete.controller.php?id=".$fila['idproducto']."' style='text-decoration: none;' id='ELEMENTO' >
-								<input type='hidden' id='idprod' value='".$fila['idproducto']."'>
-								
-								<div class='display_box' align='left'>
-									<div style='margin-right:6px;' class='btn btn-success'><b>Agregar</b></div>
-								</div>
-							</a>
+							<button type='button' class='btn btn-success' id='button' onclick='MostrarCantidad(".$fila['idproducto'].",".$fila['stocktotal'].")'>Agregar</button>
+							<!--PARTE 11111111111111111 DE LA BUSQUEDA PÓR NOMBRE DEL PRODUCTO -->
 
 						</td>
 					</tr>
@@ -66,22 +61,25 @@ if($codigo == 1){
 		";
 }
 
-if($codigo == 2)
-{
+if($codigo == 2){
 	$dat = $articulo->ListaArticulosSerie($serie);
 	echo "
 		<table class='table table-hover'>
 				<thead>
 					<tr class='thead-dark'>
 						<th>Codigo</th>
+						<th>Descripcion</th>
+						<th>Marca</th>
 						<th>Serie</th>
 						<th>Fam.</th>
-						<th>Descripcion</th>
 						<th>Precio1</th>
 						<th>Precio2</th>
 						<th>Precio3</th>
 						<th>Stock Total</th>
-
+						<th>Cantidad
+							<input type='number' name='txtcantidad' id='txtcantidad' value='1' required='required' size='2' min='1' max='99'>
+						</th>
+						<th>Opc</th>
 					</tr>
 				</thead>";
 				
@@ -91,28 +89,24 @@ if($codigo == 2)
 				<tbody>
 					<tr>
 						<td>".$fila['idproducto']."</td>
-						<td>".$fila['numserie']."</td>
-						<td>".$fila['codigo']."</td>
 						<td>".$fila['descripcion']."</td>
+						<td>".$fila['marca']."</td>
+						<td>".$fila['numserie']."</td>
+						<td>".$fila['familia']."</td>
 
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa1']); echo "</td>
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa2']); echo "</td>
 						<td align='right'>"; printf('S/. %.2f',$fila['precventa3']); echo "</td>
-						<td align='center'>". $fila['stocktotal']."</td>
+						<td align='center'>". $fila['stocktotal']."
+							
+						</td>
 						<td>
-
+							
 						</td>
 
 						<td>
-							<!-- PARTE 222222222222222222222 DE LA BUSQUEDA por SERIE   -->
-							<a href='../Controllers/paquete.controller.php?id=".$fila['idproducto']."' style='text-decoration: none;' id='ELEMENTO' >
-								<input type='hidden' id='idprod' value='".$fila['idproducto']."'>
-								
-								<div class='display_box' align='left'>
-									<div style='margin-right:6px;' class='btn btn-info'><b>Agregar</b></div>
-								</div>
-							</a>
-
+							<!--PARTE 222222222222222222222 DE LA BUSQUEDA por SERIE -->
+							<button type='button' class='btn btn-success' id='button' onclick='MostrarCantidad(".$fila['idproducto'].",".$fila['stocktotal'].")'>Agregar</button>
 						</td>
 					</tr>
 				</tbody>";
@@ -122,63 +116,41 @@ if($codigo == 2)
 		";
 }
 
-#  CODIGO DE BUSQUEDA POR FAMILIA
-if($codigo == 3)
-{
-	$dat = $articulo->ListaArticulosFamilias($combo);
-	echo "
-		<table class='table table-hover'>
-				<thead>
-					<tr class='thead-dark'>
-						<th>Codigo</th>
-						<th>Serie</th>
-						<th>Fam.</th>
-						<th>Descripcion</th>
-						<th>Precio1</th>
-						<th>Precio2</th>
-						<th>Precio3</th>
-						<th>Stock Total</th>
-
-					</tr>
-				</thead>";
-				
-				while ($fila = $dat->fetch_array(MYSQLI_ASSOC)) {
-				
-				echo "
-				<tbody>
-					<tr>
-						<td>".$fila['idproducto']."</td>
-						<td>".$fila['numserie']."</td>
-						<td>".$fila['codigo']."</td>
-						<td>".$fila['descripcion']."</td>
-
-						<td align='right'>"; printf('S/. %.2f',$fila['precventa1']); echo "</td>
-						<td align='right'>"; printf('S/. %.2f',$fila['precventa2']); echo "</td>
-						<td align='right'>"; printf('S/. %.2f',$fila['precventa3']); echo "</td>
-						<td align='center'>". $fila['stocktotal']."</td>
-						<td>
-
-						</td>
-
-						<td>
-							<!-- PARTE 33333333333333333333333333 DE LA BUSQUEDA POR FAMILIA  -->
-
-							<a href='../Controllers/paquete.controller.php?id=".$fila['idproducto']."' style='text-decoration: none;' id='ELEMENTO' >
-								<input type='hidden' id='idprod' value='".$fila['idproducto']."'>
-								
-								<div class='display_box' align='left'>
-									<div style='margin-right:6px;'><b>Agregar</b></div>
-
-								</div>
-							</a>
-
-						</td>
-					</tr>
-				</tbody>";
-				}
-	echo "
-		</table>
-		";
-}
 
 ?>
+
+
+<script type="text/javascript" charset="utf-8" async defer>
+
+	function MostrarCantidad(idproducto, stock){
+		
+		var txtcantidad = $("#txtcantidad").val();
+		
+		if(txtcantidad <=0)
+			{
+				alert("Ha ingresado 0 o un numero negativo en la cantidad a vender. Corrija Por favor");
+			}else{
+
+				if(stock>=txtcantidad){
+						    				
+			        $.ajax({
+			            type: 'POST',
+			            url : '../Controllers/paquete.controller.php',
+			            data: { id: idproducto, cantidad: txtcantidad, stock: stock},
+			            success: function(){
+			            	alert("Producto Agregado");
+			            	location.href="../Views/paquetesAgregados.php";
+			            },
+			            error: function(){
+			            	alert("Error");
+			            }
+			            
+			        });
+			        return false;
+				}else{
+					alert("La cantidad introducida en cantidad es incorrecta");
+					$("#txtcantidad").css('background-color','yellow');
+				}
+			}
+	}
+</script>

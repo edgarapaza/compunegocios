@@ -1,37 +1,39 @@
-<?php require_once "header4.php"; 
+<?php 
+require_once "header4.php";
 require_once "../Models/paquetesListadoCerrados.model.php";
+
 $paqlista = new PaquetesListado();
 $data = $paqlista->ListadoPaquetesCerrados();
 ?>
-<!-- 
-	<script language="JavaScript" src="js/jquery-3.3.1.min.js"></script>
-	<script type='text/javascript' src='js/nuevoPaquete.js'></script>
--->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	
+	
 
-<script type="text/javascript">
-	$(document).ready(function()
-{	
-	$("#btnNuevoPaquete").click(function() {
+	<script type="text/javascript">
 
-		$.ajax({
-			type : "POST",
-			url  : "../Controllers/paqueteNuevo.controller.php",
+		$(document).ready(function(){	
+
+
+			$("#btnNuevoPaquete").click(function() {
+				$.ajax({
+					type : "POST",
+					url  : "../Controllers/paqueteNuevo.controller.php",
+								
+					success:  function(data){
 						
-			success:  function(data){
+						location = "../Views/paquetesAgregados.php";
+									
+					},
+					error: function(response){
+						alert("Hubo un error");
+					}
+				});
 				
-				location = "../Views/paquetesAgregados.php";
-							
-			},
-			error: function(response){
-				alert("Hubo un error");
-			}
-		});
-		
-		return false;
-	});
+				return false;
+			});
 
-});
-</script>
+		});
+	</script>
 	<div class="container">
 		<div class="row">
 
@@ -62,10 +64,10 @@ $data = $paqlista->ListadoPaquetesCerrados();
 						<?php while ($fila = $data->fetch_array(MYSQL_ASSOC)) { ?>
 						<tr>
 							<td><?php echo $fila['idps_temp']; ?></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><?php echo $fila['total']; ?></td>
+							<td><?php echo $fila['razonsocial']; ?></td>
+							<td><?php echo $fila['ruc']; ?></td>
+							<td><?php echo $fila['direccion']; ?></td>
+							<td><?php printf('S/. %.2f',$fila['total']); ?></td>
 							<td><?php echo $fila['fecha']; ?></td>
 							<td><a href="detallesPaquete.php?idps=<?php echo $fila['idps_temp']; ?>" class="btn btn-danger">Ver Detalles</a></td>
 						</tr>

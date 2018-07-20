@@ -13,10 +13,7 @@ class Personal{
 
 	public function AddPersonal($nombres,$paterno,$materno,$dni,$direccion,$telefono1,$telefono2,$idpersonal,$cargo,$usuario,$passwd,$nivel,$estado)
 	{
-		echo $nombres."<br>";
-		echo $paterno."<br>";
-		echo $materno."<br>";
-
+		
 		$sql_duplicado = "SELECT IDpersonal FROM Personal WHERE nombres = '$nombres' AND paterno ='$paterno' AND materno = '$materno' AND dni ='$dni' LIMIT 1;";
 		
 		if(!$res = $this->con->query($sql_duplicado)){
@@ -24,7 +21,7 @@ class Personal{
 		}
 		
 		$num = $res->fetch_array();
-		echo "Numero de resultado NUEVO: ". $num[0];
+		
 		
 		if($num[0] > 0)
 		{ 
@@ -67,10 +64,10 @@ class Personal{
 
 	public function NombreTrabajador($idpersonal)
 	{
-		$sql = "SELECT nombres, concat(paterno,' ',materno) as apellidos, cargo, foto FROM Personal WHERE IDPersonal = $idpersonal";
+		$sqlt = "SELECT nombres, concat(paterno,' ',materno) as apellidos, cargo, foto FROM Personal WHERE IDPersonal = $idpersonal";
 
-		if (!$data = $this->con->query($sql)) {
- 		  echo("Error consulta personal: " . mysqli_error($this->con));
+		if (!$data = $this->con->query($sqlt)) {
+ 		  echo "Error consulta personal: " . mysqli_error($this->con);
 		}
 
 		$fila = $data->fetch_array();

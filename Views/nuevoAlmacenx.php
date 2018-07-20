@@ -9,18 +9,19 @@ $nom_almacen       = $_REQUEST['almacen'];
 $articulo = new ArticulosAlmacen();
 $dat = $articulo->ListaArticulosIdProducto($idproducto);
 
-$fila = $dat->fetch_array();
+$fila = $dat->fetch_array(MYSQLI_ASSOC);
   #echo $fila[0]."<br>";
   
 ?>
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/comboalmacen2.js"></script>
+<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="js/comboalmacen3.js"></script>
 
 	<script type="text/javascript">
 
 				$(document).ready(function(){
-					$("#formulario").submit(function(event) {
-												
+					$("#btnMoverProducto").click(function(event)
+					{
+													
 						var cboalmacen = $("#inputAlmacen").val();
 						
 						if(cboalmacen == null){
@@ -46,14 +47,14 @@ $fila = $dat->fetch_array();
 									if(parseInt(cant_a_Mover) <= parseInt(cantAlmacen)){
 
 												$.ajax({
-									            data: $(this).serialize(),
 									            type: 'POST',
 									            url : '../Controllers/movernuevoalmacen.controller.php',
+									            data: $("#formulario").serialize(),
 
 									            success: function(data) {
-									            	alert("form");
-									            	$("#res").html(data);
-									              //location.reload(true);
+									            	alert("Producto Cambiado");
+									            	location.href="moveralmacen.php";
+									            	//$("#res").html(data);
 									          	},
 									          	error: function(data){
 									          		console.log(data);
@@ -107,11 +108,11 @@ $fila = $dat->fetch_array();
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $nom_almacen; ?></td>
-							<td><?php echo $fila[1]." | " . $fila[2]; ?></td>
+							<td><?php echo $fila['actual']; ?></td>
+							<td><?php echo $fila['descripcion']." | " . $fila['marca']; ?></td>
 							<td>
-								<?php echo $fila[3]; ?>
-								<input type="hidden" name="stock" id="stock" value="<?php echo $fila[3]; ?>" required="required">
+								<?php echo $fila['stocktotal']; ?>
+								<input type="hidden" name="stock" id="stock" value="<?php echo $fila['stocktotal']; ?>" required="required">
 							</td>
 							<td>
 								<div id="combo1"></div>

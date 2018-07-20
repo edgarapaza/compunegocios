@@ -14,7 +14,7 @@ class ArticulosAlmacen
 
   public function Todos()
   {
-      $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.stocktotal <> 0";
+      $sql = "SELECT p.idproducto, f.codigo as familia, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.stocktotal <> 0";
 
       if(!$data = $this->con->query($sql)){
         echo "Error todos". mysqli_error($this->con);
@@ -27,7 +27,7 @@ class ArticulosAlmacen
   public function ListaArticulosNombres($nombre)
   {
 
-      $sql = "SELECT p.idproducto, p.numserie, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.descripcion LIKE '%". $nombre ."%' AND p.stocktotal <> 0";
+      $sql = "SELECT p.idproducto, p.descripcion, p.marca, p.numserie, f.codigo as familia, p.precventa1, p.precventa2, p.precventa3, p.stocktotal FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.descripcion LIKE '%$nombre%' AND p.stocktotal <> 0 AND p.oculto = false;";
 
         $data = $this->con->query($sql);
        
@@ -53,7 +53,7 @@ class ArticulosAlmacen
     {
 
       
-        $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal, p.numserie FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.numserie = '". $serie ."' AND p.stocktotal <> 0";
+        $sql = "SELECT p.idproducto, f.codigo as familia, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal, p.numserie, p.marca FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.numserie = '". $serie ."' AND p.stocktotal <> 0 and p.oculto = false";
 
           $data = $this->con->query($sql);
       
@@ -72,7 +72,7 @@ class ArticulosAlmacen
 
     if($idfamilia === 'all'){
 
-      $sql = "SELECT p.idproducto, f.codigo, p.descripcion, p.precventa1, p.precventa2, p.precventa3, p.stocktotal, p.numserie FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.stocktotal <> 0";
+      $sql = "SELECT p.idproducto, f.codigo as familia, p.descripcion, p.marca, p.precventa1, p.precventa2, p.precventa3, p.stocktotal, p.numserie FROM productos as p, familia as f WHERE p.idfamilia = f.IDfamilia AND p.stocktotal <> 0";
 
         $data = $this->con->query($sql);
         #return $data;

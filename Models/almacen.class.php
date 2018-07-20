@@ -13,7 +13,7 @@ class Almacen
 
 	public function AddAlmacen($tienda, $descripcion, $direccion, $telefono, $idpersonal)
 	{
-		$duplicado = "SELECT idalmacen FROM almacen WHERE almacen = '".$tienda."'";
+		$duplicado = "SELECT idalmacen FROM almacenLista WHERE almacen = '".$tienda."'";
 
 		if($res = $this->con->query($duplicado))
 		{
@@ -27,7 +27,7 @@ class Almacen
 				$valor_final = $last->fetch_array();
 				$next = $valor_final[0] + 1;
 
-				$sql ="INSERT INTO almacen (idalmacen,almacen,descripcion,direccion,telefono,IDpersonal) VALUES ('$next','$tienda','$descripcion','$direccion','$telefono','1002')";
+				$sql ="INSERT INTO almacenLista (idalmacen,almacen,descripcion,direccion,telefono,IDpersonal) VALUES ('$next','$tienda','$descripcion','$direccion','$telefono','$idpersonal')";
 
 				if (!$this->con->query($sql)) {
 		 		  echo("Error description insert: " . mysqli_error($this->con));
@@ -39,7 +39,7 @@ class Almacen
 				echo "<span class='alert alert-danger'>Alerta!... Dato duplicado.</span>";
 			}
 
-			$res->close();
+			
 
 		}else{
 			echo("Error description final: " . mysqli_error($this->con));

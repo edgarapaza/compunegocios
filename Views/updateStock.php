@@ -1,11 +1,40 @@
 <?php 
 require_once "header4.php";
+
 $codprove   = $_REQUEST['codprove'];
 $codprod    = $_REQUEST['codprod'];
 $idcompra   = $_REQUEST['idcompra'];
 $codprodgen = $_REQUEST['codgen'];
 $idregistro = $_REQUEST['idregistro'];
  ?>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btnCalcular").click(function(){
+				var precio = $("#precioventa").val();
+
+				var margen1 = $("#inputMargenGanancia1").val();
+				var margen2 = $("#inputMargenGanancia2").val();
+				var margen3 = $("#inputMargenGanancia3").val();
+
+				var cal1 = (margen1 / 100) + 1;
+				var cal2 = (margen2 / 100) + 1;
+				var cal3 = (margen3 / 100) + 1;
+
+				var pv1 = precio * cal1;
+				var pv2 = precio * cal2;
+				var pv3 = precio * cal3;
+
+				$("#inputPrecioVenta1").val(pv1.toFixed(2));
+				$("#inputPrecioVenta2").val(pv2.toFixed(2));
+				$("#inputPrecioVenta3").val(pv3.toFixed(2));
+			});
+	});
+</script>
+
 
 <div class="container">
 	<div class="row">
@@ -91,31 +120,6 @@ $idregistro = $_REQUEST['idregistro'];
 	</div>
 </div>
 
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#btnCalcular").click(function(){
-				var precio = $("#precioventa").val();
-
-				var margen1 = $("#inputMargenGanancia1").val();
-				var margen2 = $("#inputMargenGanancia2").val();
-				var margen3 = $("#inputMargenGanancia3").val();
-
-				var cal1 = (margen1 / 100) + 1;
-				var cal2 = (margen2 / 100) + 1;
-				var cal3 = (margen3 / 100) + 1;
-
-				var pv1 = precio * cal1;
-				var pv2 = precio * cal2;
-				var pv3 = precio * cal3;
-
-				$("#inputPrecioVenta1").val(pv1.toFixed(2));
-				$("#inputPrecioVenta2").val(pv2.toFixed(2));
-				$("#inputPrecioVenta3").val(pv3.toFixed(2));
-			});
-	});
-</script>
 
 <?php include "footer4.html"; ?>

@@ -78,7 +78,9 @@ $todayh = getdate();
             $s = $todayh['seconds'];
         $fecha = $d."/".$m."/".$y;
         $hora = $h.":".$n.":".$s;
-$fecha2 = date('Y-m-d');
+
+$fecha2 = $_REQUEST['calendario'];
+
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',14);
 $pdf->Cell(190,10,'Reporte 3 - Reporte por Fechas de hoy y Total Ventas',1,1,'C');
